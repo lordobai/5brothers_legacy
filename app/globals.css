@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Primary Colors - Elegant Indigo/Blue */
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --primary: #2563eb;
+  --primary-dark: #1e40af;
+  --primary-light: #3b82f6;
+  --primary-foreground: #ffffff;
+  
+  /* Secondary Colors - Improved contrast */
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+  
+  /* Accent Colors */
+  --accent: #8b5cf6;
+  --accent-foreground: #ffffff;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --teal: #14b8a6;
+  
+  /* Neutral Colors - Enhanced for better contrast */
+  --muted: #e2e8f0;
+  --muted-foreground: #334155;
+  --border: #cbd5e1;
+  --ring: #2563eb;
+  
+  /* Text Colors - Darker for better readability */
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #475569;
+  
+  /* Section Background Colors - Refined for contrast */
+  --section-light: #e2e8f0;
+  --section-medium: #cbd5e1;
+  --section-dark: #1e293b;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent;
+  }
+  
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-28 xl:py-32;
+  }
+  
+  .container-padding {
+    @apply px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Continuous scroll animation for partner logos */
+@keyframes scroll-horizontal {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll-horizontal 30s linear infinite;
+  display: flex;
+  width: fit-content;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+

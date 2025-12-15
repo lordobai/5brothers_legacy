@@ -1,52 +1,60 @@
-# 5brothers Legacy
+# 5Brothers Legacy Initiative - Website
 
-A legacy repository containing project documentation and resources.
+A modern, elegant website for 5Brothers Legacy Initiative - a nonprofit organization dedicated to empowering vulnerable communities in Africa.
 
-## Overview
-
-This repository serves as a legacy archive for the 5brothers project. It contains foundational documentation and mission statements that outline the project's vision and objectives.
-
-## Contents
-
-- **Mission Statement.pdf** - Core mission statement and project documentation
-
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
-
-No specific prerequisites are required to view the documentation in this repository.
+- Node.js 18+ 
+- npm, yarn, or pnpm
 
 ### Installation
 
-This repository contains documentation files only. No installation is required.
+```bash
+# Install dependencies
+npm install
 
-## Documentation
-
-For detailed information about the project's mission and objectives, please refer to the [Mission Statement.pdf](./Mission Statement.pdf) file included in this repository.
-
-## Repository Structure
-
-```
-5brothers_legacy/
-├── Mission Statement.pdf
-└── README.md
+# Run development server
+npm run dev
 ```
 
-## Contributing
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-This is a legacy repository. For active development, please refer to the main project repository.
+## 📁 Project Structure
 
-## License
+```
+5brothers-legacy/
+├── app/                    # Next.js App Router pages
+├── components/             # React components
+├── lib/                    # Utilities and helpers
+├── public/                 # Static assets
+└── styles/                 # Global styles
+```
 
-Please refer to the project documentation for license information.
+## 🛠️ Tech Stack
 
-## Contact
+- **Framework:** Next.js 14+ (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **UI Components:** Custom components (shadcn/ui style)
 
-For questions or inquiries about this legacy repository, please contact the repository maintainer.
+## 📝 Available Scripts
 
-## Notes
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run type-check` - TypeScript type checking
 
-- This repository is maintained for archival and reference purposes
-- The Mission Statement PDF contains the foundational documentation for the project
-- For active development, please check the main project repository
+## 📚 Documentation
 
+- [Project Specification](./PROJECT_SPECIFICATION.md)
+- [Tooling Guide](./TOOLING.md)
+
+## 🎯 Development Phases
+
+See [PROJECT_SPECIFICATION.md](./PROJECT_SPECIFICATION.md) for detailed implementation phases.
+
+## 📄 License
+
+This project is private and proprietary.
