@@ -160,7 +160,7 @@ export default function OurTeamPage() {
               Join Our Team
             </h2>
             <p className="text-xl text-gray-600 mb-8">
-              We're always looking for passionate individuals who share our vision of creating lasting change
+              We&apos;re always looking for passionate individuals who share our vision of creating lasting change
             </p>
             <a
               href="/career"

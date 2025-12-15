@@ -49,7 +49,7 @@ export const SponsorLogos = () => {
             Our Trusted Partners
           </h2>
           <p className="text-lg lg:text-xl text-slate-700 max-w-3xl xl:max-w-4xl mx-auto">
-            Together, we're creating lasting impact in communities across Africa
+            Together, we&apos;re creating lasting impact in communities across Africa
           </p>
         </motion.div>
 

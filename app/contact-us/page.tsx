@@ -34,7 +34,7 @@ export default function ContactUsPage() {
               Contact Us
             </h1>
             <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
-              We'd love to hear from you. Get in touch with our team
+              We&apos;d love to hear from you. Get in touch with our team
             </p>
           </motion.div>
         </div>

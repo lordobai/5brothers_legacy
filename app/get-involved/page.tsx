@@ -109,7 +109,7 @@ export default function GetInvolvedPage() {
 
               {submitted ? (
                 <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
-                  <p className="text-green-800 font-semibold">Thank you! We'll be in touch soon.</p>
+                  <p className="text-green-800 font-semibold">Thank you! We&apos;ll be in touch soon.</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
