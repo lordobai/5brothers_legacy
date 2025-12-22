@@ -1,4 +1,4 @@
-import { Translations } from './translations';
+import { Translations } from '../translations';
 
 export const zh: Translations = {
   common: {
@@ -121,7 +121,7 @@ export const zh: Translations = {
       orgNameRequired: '组织名称是必填项',
       resourceType: '资源类型',
       resourceTypeRequired: '资源类型是必填项',
-      description: '简短描述',
+      descriptionLabel: '简短描述',
       descriptionRequired: '描述是必填项',
       descriptionMax: '（最多300个字符）',
       linkUrl: '资源链接（URL）',

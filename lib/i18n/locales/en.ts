@@ -1,4 +1,4 @@
-import { Translations } from './translations';
+import { Translations } from '../translations';
 
 export const en: Translations = {
   common: {
@@ -121,7 +121,7 @@ export const en: Translations = {
       orgNameRequired: 'Organization name is required',
       resourceType: 'Resource Type',
       resourceTypeRequired: 'Resource type is required',
-      description: 'Short Description',
+      descriptionLabel: 'Short Description',
       descriptionRequired: 'Description is required',
       descriptionMax: '(max 300 characters)',
       linkUrl: 'Resource Link (URL)',

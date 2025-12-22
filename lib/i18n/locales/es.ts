@@ -1,4 +1,4 @@
-import { Translations } from './translations';
+import { Translations } from '../translations';
 
 export const es: Translations = {
   common: {
@@ -121,7 +121,7 @@ export const es: Translations = {
       orgNameRequired: 'El nombre de la organización es obligatorio',
       resourceType: 'Tipo de Recurso',
       resourceTypeRequired: 'El tipo de recurso es obligatorio',
-      description: 'Descripción Corta',
+      descriptionLabel: 'Descripción Corta',
       descriptionRequired: 'La descripción es obligatoria',
       descriptionMax: '(máx. 300 caracteres)',
       linkUrl: 'Enlace del Recurso (URL)',

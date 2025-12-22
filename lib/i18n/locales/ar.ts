@@ -1,4 +1,4 @@
-import { Translations } from './translations';
+import { Translations } from '../translations';
 
 export const ar: Translations = {
   common: {
@@ -121,7 +121,7 @@ export const ar: Translations = {
       orgNameRequired: 'اسم المنظمة مطلوب',
       resourceType: 'نوع المورد',
       resourceTypeRequired: 'نوع المورد مطلوب',
-      description: 'وصف قصير',
+      descriptionLabel: 'وصف قصير',
       descriptionRequired: 'الوصف مطلوب',
       descriptionMax: '(حد أقصى 300 حرف)',
       linkUrl: 'رابط المورد (URL)',

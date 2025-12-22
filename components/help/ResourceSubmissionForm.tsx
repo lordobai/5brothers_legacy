@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Icon } from '@/components/ui/Icon';
-import { RESOURCE_TYPES, ResourceType, Resource } from '@/app/help/page';
+import { RESOURCE_TYPES, ResourceType, Resource } from '@/lib/types/resources';
 import { useTranslations } from '@/contexts/LanguageContext';
 import { getResourceTypeTranslation } from '@/lib/i18n/resourceTypes';
 
@@ -223,7 +223,7 @@ export const ResourceSubmissionForm = ({ onSubmit, onCancel }: ResourceSubmissio
         {/* Description - Required */}
         <div>
           <label htmlFor="description" className="block text-sm font-semibold text-gray-700 mb-2">
-            {t.help.form.description} <span className="text-red-500">*</span>
+            {t.help.form.descriptionLabel} <span className="text-red-500">*</span>
             <span className="text-gray-500 font-normal ml-2">{t.help.form.descriptionMax}</span>
           </label>
           <textarea

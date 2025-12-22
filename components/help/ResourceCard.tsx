@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Icon } from '@/components/ui/Icon';
-import { Resource } from '@/app/help/page';
+import { Resource } from '@/lib/types/resources';
 import { useTranslations } from '@/contexts/LanguageContext';
 import { getResourceTypeTranslation } from '@/lib/i18n/resourceTypes';
 

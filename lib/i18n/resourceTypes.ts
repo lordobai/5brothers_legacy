@@ -1,4 +1,4 @@
-import { ResourceType } from '@/app/help/page';
+import { ResourceType } from '@/lib/types/resources';
 import { Translations } from './translations';
 
 // Map resource types to translation keys

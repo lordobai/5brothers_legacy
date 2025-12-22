@@ -7,44 +7,7 @@ import { ResourceCard } from '@/components/help/ResourceCard';
 import { ResourceSubmissionForm } from '@/components/help/ResourceSubmissionForm';
 import { Icon } from '@/components/ui/Icon';
 import { useTranslations } from '@/contexts/LanguageContext';
-
-// Resource type options (English keys - will be translated in UI)
-export const RESOURCE_TYPES = [
-  'Food Assistance',
-  'Housing',
-  'Healthcare',
-  'Mental Health',
-  'Employment',
-  'Education',
-  'Legal Aid',
-  'Transportation',
-  'Financial Assistance',
-  'Domestic Violence Support',
-  'Disability Services',
-  'Immigration Support',
-  'Other',
-] as const;
-
-export type ResourceType = typeof RESOURCE_TYPES[number];
-
-// Resource data model
-export interface Resource {
-  id: string;
-  organization_name: string;
-  resource_type: ResourceType;
-  description: string;
-  link_url: string;
-  logo_image_url?: string;
-  contact_phone?: string;
-  contact_email?: string;
-  address?: string;
-  service_area?: string;
-  eligibility?: string;
-  languages?: string[];
-  status: 'draft' | 'pending' | 'published';
-  created_at: string;
-  updated_at: string;
-}
+import { Resource, ResourceType, SortOption } from '@/lib/types/resources';
 
 // Mock data - in production, this would come from a database
 const mockResources: Resource[] = [
@@ -74,7 +37,6 @@ const mockResources: Resource[] = [
   },
 ];
 
-type SortOption = 'relevance' | 'az' | 'newest';
 
 export default function HelpPage() {
   const t = useTranslations();
@@ -149,7 +111,7 @@ export default function HelpPage() {
     setSortBy('relevance');
   };
 
-  const hasActiveFilters = searchQuery || selectedTypes.length > 0 || selectedServiceArea;
+  const hasActiveFilters = Boolean(searchQuery || selectedTypes.length > 0 || selectedServiceArea);
 
   return (
     <main className="min-h-screen bg-white">

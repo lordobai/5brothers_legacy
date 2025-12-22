@@ -141,7 +141,7 @@ export interface Translations {
       orgNameRequired: string;
       resourceType: string;
       resourceTypeRequired: string;
-      description: string;
+      descriptionLabel: string;
       descriptionRequired: string;
       descriptionMax: string;
       linkUrl: string;

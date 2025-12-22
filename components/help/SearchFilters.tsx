@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Icon } from '@/components/ui/Icon';
-import { RESOURCE_TYPES, ResourceType, SortOption } from '@/app/help/page';
+import { RESOURCE_TYPES, ResourceType, SortOption } from '@/lib/types/resources';
 import { useTranslations } from '@/contexts/LanguageContext';
 import { getResourceTypeTranslation } from '@/lib/i18n/resourceTypes';
 

@@ -15,6 +15,9 @@ const Counter = ({ end, suffix }: { end: number; suffix: string }) => {
   useEffect(() => {
     if (hasStarted) return;
 
+    const currentRef = counterRef.current;
+    if (!currentRef) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -41,15 +44,10 @@ const Counter = ({ end, suffix }: { end: number; suffix: string }) => {
       { threshold: 0.5 }
     );
 
-    if (counterRef.current) {
-      observer.observe(counterRef.current);
-    }
+    observer.observe(currentRef);
 
     return () => {
-      const currentRef = counterRef.current;
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
+      observer.unobserve(currentRef);
     };
   }, [end, hasStarted]);
 
