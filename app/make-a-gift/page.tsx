@@ -3,11 +3,13 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Image from 'next/image';
+import { useTranslations } from '@/contexts/LanguageContext';
 
 const donationAmounts = [5000, 10000, 25000, 50000, 100000];
 const currencies = ['NGN', 'USD'];
 
 export default function MakeAGiftPage() {
+  const t = useTranslations();
   const [amount, setAmount] = useState<number | string>('');
   const [currency, setCurrency] = useState('NGN');
   const [donationType, setDonationType] = useState<'one-time' | 'monthly'>('one-time');
@@ -26,7 +28,7 @@ export default function MakeAGiftPage() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800">
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0B334A] via-[#0F4A6A] to-[#0B334A]">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=1920&q=80"
@@ -44,10 +46,10 @@ export default function MakeAGiftPage() {
             className="max-w-4xl mx-auto"
           >
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-              Make a Gift
+              {t.makeAGift.hero.title}
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
-              Your donation helps us create lasting change in communities across Africa
+            <p className="text-xl md:text-2xl text-slate-100 max-w-3xl mx-auto">
+              {t.makeAGift.hero.subtitle}
             </p>
           </motion.div>
         </div>
@@ -64,20 +66,20 @@ export default function MakeAGiftPage() {
             className="max-w-4xl mx-auto text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Your Gift Makes a Difference
+              {t.makeAGift.yourGift.title}
             </h2>
             <div className="grid md:grid-cols-3 gap-8 mt-12">
               <div className="text-center">
-                <div className="text-4xl font-bold text-blue-600 mb-2">₦5,000</div>
-                <p className="text-gray-600">Provides school supplies for 5 children</p>
+                <div className="text-4xl font-bold text-[#0B334A] mb-2">₦5,000</div>
+                <p className="text-gray-600">{t.makeAGift.impact.schoolSupplies}</p>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-blue-600 mb-2">₦25,000</div>
-                <p className="text-gray-600">Supports a family with clean water for a month</p>
+                <div className="text-4xl font-bold text-[#0B334A] mb-2">₦25,000</div>
+                <p className="text-gray-600">{t.makeAGift.impact.cleanWater}</p>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-blue-600 mb-2">₦100,000</div>
-                <p className="text-gray-600">Funds healthcare services for 50 people</p>
+                <div className="text-4xl font-bold text-[#0B334A] mb-2">₦100,000</div>
+                <p className="text-gray-600">{t.makeAGift.impact.healthcare}</p>
               </div>
             </div>
           </motion.div>
@@ -97,40 +99,40 @@ export default function MakeAGiftPage() {
                 transition={{ duration: 0.6 }}
                 className="bg-white rounded-2xl shadow-lg p-8 lg:p-10"
               >
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Donation Details</h2>
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">{t.makeAGift.form.donationDetails}</h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Donation Type */}
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-3">Donation Type</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-3">{t.makeAGift.form.donationType}</label>
                     <div className="flex gap-4">
                       <button
                         type="button"
                         onClick={() => setDonationType('one-time')}
                         className={`flex-1 px-4 py-3 rounded-lg font-semibold transition-all ${
                           donationType === 'one-time'
-                            ? 'bg-blue-600 text-white'
+                            ? 'bg-[#0B334A] text-white'
                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                         }`}
                       >
-                        One-Time
+                        {t.makeAGift.form.oneTime}
                       </button>
                       <button
                         type="button"
                         onClick={() => setDonationType('monthly')}
                         className={`flex-1 px-4 py-3 rounded-lg font-semibold transition-all ${
                           donationType === 'monthly'
-                            ? 'bg-blue-600 text-white'
+                            ? 'bg-[#0B334A] text-white'
                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                         }`}
                       >
-                        Monthly
+                        {t.makeAGift.form.monthly}
                       </button>
                     </div>
                   </div>
 
                   {/* Currency */}
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Currency</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">{t.makeAGift.form.currency}</label>
                     <select
                       value={currency}
                       onChange={(e) => setCurrency(e.target.value)}
@@ -144,7 +146,7 @@ export default function MakeAGiftPage() {
 
                   {/* Amount */}
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Amount</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">{t.makeAGift.form.amount}</label>
                     <div className="grid grid-cols-3 gap-2 mb-3">
                       {donationAmounts.map((amt) => (
                         <button
@@ -153,7 +155,7 @@ export default function MakeAGiftPage() {
                           onClick={() => setAmount(amt)}
                           className={`px-4 py-2 rounded-lg font-semibold transition-all ${
                             amount === amt
-                              ? 'bg-blue-600 text-white'
+                              ? 'bg-[#0B334A] text-white'
                               : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                           }`}
                         >
@@ -163,49 +165,49 @@ export default function MakeAGiftPage() {
                     </div>
                     <input
                       type="number"
-                      placeholder="Or enter custom amount"
+                      placeholder={t.makeAGift.form.customAmount}
                       value={amount}
                       onChange={(e) => setAmount(e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A]"
                     />
                   </div>
 
                   {/* Personal Info */}
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Name *</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">{t.makeAGift.form.name} *</label>
                     <input
                       type="text"
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A]"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Email *</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">{t.makeAGift.form.email} *</label>
                     <input
                       type="email"
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A]"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Phone</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">{t.makeAGift.form.phone}</label>
                     <input
                       type="tel"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A]"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
+                    className="w-full px-8 py-4 bg-gradient-to-r from-[#0B334A] to-[#0F4A6A] text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
                   >
-                    Proceed to Payment
+                    {t.makeAGift.form.proceedToPayment}
                   </button>
                 </form>
               </motion.div>
@@ -218,33 +220,32 @@ export default function MakeAGiftPage() {
                 transition={{ duration: 0.6 }}
                 className="space-y-6"
               >
-                <div className="bg-blue-50 rounded-2xl p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Why Donate?</h3>
+                <div className="bg-slate-50 rounded-2xl p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{t.makeAGift.whyDonate.title}</h3>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
-                      <span>100% of donations go directly to programs</span>
+                      <span className="text-[#0B334A] mr-2">✓</span>
+                      <span>{t.makeAGift.whyDonate.directToPrograms}</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
-                      <span>Transparent financial reporting</span>
+                      <span className="text-[#0B334A] mr-2">✓</span>
+                      <span>{t.makeAGift.whyDonate.transparentReporting}</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
-                      <span>Tax-deductible receipts provided</span>
+                      <span className="text-[#0B334A] mr-2">✓</span>
+                      <span>{t.makeAGift.whyDonate.taxDeductible}</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">✓</span>
-                      <span>Secure payment processing</span>
+                      <span className="text-[#0B334A] mr-2">✓</span>
+                      <span>{t.makeAGift.whyDonate.securePayment}</span>
                     </li>
                   </ul>
                 </div>
 
                 <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Privacy & Security</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{t.makeAGift.privacy.title}</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    Your donation information is secure and confidential. We use industry-standard encryption 
-                    to protect your personal and payment information. We never share your details with third parties.
+                    {t.makeAGift.privacy.description}
                   </p>
                 </div>
               </motion.div>

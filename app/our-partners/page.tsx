@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useTranslations } from '@/contexts/LanguageContext';
 
 const partners = [
   { name: 'Partner Organization 1', logo: 'https://via.placeholder.com/300x150/3b82f6/ffffff?text=Partner+1', description: 'Supporting education initiatives' },
@@ -13,10 +14,11 @@ const partners = [
 ];
 
 export default function OurPartnersPage() {
+  const t = useTranslations();
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800">
+      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0B334A] via-[#0F4A6A] to-[#0B334A]">
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -25,10 +27,10 @@ export default function OurPartnersPage() {
             className="max-w-4xl mx-auto"
           >
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-              Our Partners
+              {t.ourPartners.hero.title}
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
-              Together, we&apos;re creating lasting impact in communities across Africa
+            <p className="text-xl md:text-2xl text-slate-100 max-w-3xl mx-auto">
+              {t.ourPartners.hero.subtitle}
             </p>
           </motion.div>
         </div>
@@ -45,10 +47,10 @@ export default function OurPartnersPage() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
-              Trusted Partnerships
+              {t.ourPartners.trustedPartnerships.title}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We collaborate with organizations, governments, and communities to amplify our impact
+              {t.ourPartners.trustedPartnerships.subtitle}
             </p>
           </motion.div>
 
@@ -89,16 +91,16 @@ export default function OurPartnersPage() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Become a Partner
+                {t.ourPartners.becomePartner.title}
               </h2>
               <p className="text-xl text-gray-600 mb-8">
-                Join us in creating lasting change. We welcome partnerships with organizations that share our vision
+                {t.ourPartners.becomePartner.subtitle}
               </p>
               <a
                 href="/get-involved"
-                className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
+                className="inline-block px-8 py-4 bg-gradient-to-r from-[#0B334A] to-[#0F4A6A] text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
               >
-                Partner With Us
+                {t.ourPartners.becomePartner.button}
               </a>
             </motion.div>
           </div>

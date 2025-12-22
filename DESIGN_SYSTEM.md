@@ -1,29 +1,31 @@
 # Design System - 5Brothers Legacy Initiative
 
-## Color Palette
+## Color Palette (Based on Logo Colors)
 
 ### Primary Colors
-- **Primary Blue**: `#2563EB` (Indigo-600) - Trust, professionalism, stability
-- **Primary Dark**: `#1E40AF` (Blue-700) - Depth, authority
-- **Primary Light**: `#3B82F6` (Blue-500) - Energy, action
+- **Navy**: `#0B334A` - Primary brand color from logo, trust, professionalism, stability
+- **Navy Dark**: `#082530` - Depth, authority, hover states
+- **Navy Light**: `#0F4A6A` - Lighter shade for gradients and hover states
 
 ### Accent Colors
+- **Red**: `#DE3C3A` - Accent color from logo, urgency, action, call-to-action buttons
+- **Red Dark**: `#C22A2A` - Darker shade for depth
+- **Red Light**: `#E85A5A` - Lighter shade for hover states
 - **Success Green**: `#10B981` (Emerald-500) - Growth, positive impact
 - **Warm Orange**: `#F59E0B` (Amber-500) - Warmth, community
-- **Elegant Purple**: `#8B5CF6` (Violet-500) - Innovation, creativity
 - **Soft Teal**: `#14B8A6` (Teal-500) - Freshness, renewal
 
 ### Neutral Colors
-- **Charcoal**: `#1F2937` (Gray-800) - Primary text
+- **Charcoal**: `#0F172A` (Slate-900) - Primary text
 - **Slate**: `#475569` (Slate-600) - Secondary text
 - **Light Gray**: `#F1F5F9` (Slate-100) - Backgrounds
 - **White**: `#FFFFFF` - Pure backgrounds
 
 ### Gradient Combinations
-1. **Primary Gradient**: `from-indigo-600 via-blue-600 to-indigo-700`
-2. **Warm Gradient**: `from-amber-500 via-orange-500 to-amber-600`
-3. **Cool Gradient**: `from-teal-500 via-cyan-500 to-teal-600`
-4. **Elegant Gradient**: `from-violet-500 via-purple-500 to-indigo-600`
+1. **Primary Gradient**: `from-[#0B334A] via-[#0F4A6A] to-[#0B334A]`
+2. **Accent Gradient**: `from-[#0B334A] to-[#DE3C3A]` (for urgent CTAs)
+3. **Warm Gradient**: `from-amber-500 via-orange-500 to-amber-600`
+4. **Cool Gradient**: `from-teal-500 via-cyan-500 to-teal-600`
 
 ## Typography
 
@@ -87,5 +89,6 @@
 - **Focus Border**: Indigo-500 with ring
 - **Error**: Red-500
 - **Success**: Emerald-500
+
 
 

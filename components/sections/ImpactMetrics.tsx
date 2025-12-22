@@ -1,77 +1,104 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Icon } from '@/components/ui/Icon';
+import { useTranslations } from '@/contexts/LanguageContext';
 
-const metrics = [
-  { 
-    value: 12500, 
-    suffix: '+', 
-    label: 'People Impacted', 
-    icon: 'users' as const, 
-    color: 'from-indigo-500 to-blue-600',
-    bgColor: 'bg-indigo-50',
-  },
-  { 
-    value: 30, 
-    suffix: '+', 
-    label: 'Communities Served', 
-    icon: 'mapPin' as const, 
-    color: 'from-emerald-500 to-teal-600',
-    bgColor: 'bg-emerald-50',
-  },
-  { 
-    value: 500, 
-    suffix: '+', 
-    label: 'Volunteers Engaged', 
-    icon: 'handshake' as const, 
-    color: 'from-violet-500 to-purple-600',
-    bgColor: 'bg-violet-50',
-  },
-  { 
-    value: 7, 
-    suffix: '', 
-    label: 'Program Areas', 
-    icon: 'barChart3' as const, 
-    color: 'from-amber-500 to-orange-600',
-    bgColor: 'bg-amber-50',
-  },
-];
+// Metrics will be created inside component to access translations
 
 const Counter = ({ end, suffix }: { end: number; suffix: string }) => {
   const [count, setCount] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
+  const counterRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    const duration = 2000;
-    const steps = 60;
-    const increment = end / steps;
-    const stepDuration = duration / steps;
+    if (hasStarted) return;
 
-    let current = 0;
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= end) {
-        setCount(end);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(current));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasStarted) {
+            setHasStarted(true);
+            const duration = 2000;
+            const steps = 60;
+            const increment = end / steps;
+            const stepDuration = duration / steps;
+
+            let current = 0;
+            const timer = setInterval(() => {
+              current += increment;
+              if (current >= end) {
+                setCount(end);
+                clearInterval(timer);
+              } else {
+                setCount(Math.floor(current));
+              }
+            }, stepDuration);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    if (counterRef.current) {
+      observer.observe(counterRef.current);
+    }
+
+    return () => {
+      if (counterRef.current) {
+        observer.unobserve(counterRef.current);
       }
-    }, stepDuration);
-
-    return () => clearInterval(timer);
-  }, [end]);
+    };
+  }, [end, hasStarted]);
 
   return (
-    <span>
+    <span ref={counterRef}>
       {count.toLocaleString()}{suffix}
     </span>
   );
 };
 
 export const ImpactMetrics = () => {
+  const t = useTranslations();
+  
+  const metrics = [
+    { 
+      value: 1500, 
+      suffix: '+', 
+      label: t.home.metrics.peopleImpacted, 
+      icon: 'users' as const, 
+      color: 'from-[#0B334A] to-[#0F4A6A]',
+      bgColor: 'bg-slate-50',
+    },
+    { 
+      value: 10, 
+      suffix: '+', 
+      label: t.home.metrics.communitiesServed, 
+      icon: 'mapPin' as const, 
+      color: 'from-emerald-500 to-teal-600',
+      bgColor: 'bg-emerald-50',
+    },
+    { 
+      value: 50, 
+      suffix: '+', 
+      label: t.home.metrics.volunteersEngaged, 
+      icon: 'handshake' as const, 
+      color: 'from-violet-500 to-purple-600',
+      bgColor: 'bg-violet-50',
+    },
+    { 
+      value: 6, 
+      suffix: '', 
+      label: t.home.metrics.programAreas, 
+      icon: 'barChart3' as const, 
+      color: 'from-amber-500 to-orange-600',
+      bgColor: 'bg-amber-50',
+    },
+  ];
+  
   return (
-    <section className="section-padding bg-gradient-to-br from-slate-100 via-blue-100 to-indigo-100">
+    <section className="section-padding bg-gradient-to-br from-slate-100 via-slate-50 to-slate-100">
       <div className="container mx-auto container-padding">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -81,10 +108,10 @@ export const ImpactMetrics = () => {
           className="text-center mb-16 lg:mb-20"
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold text-slate-900 mb-4">
-            Our Impact at a Glance
+            {t.home.metrics.title}
           </h2>
           <p className="text-xl lg:text-2xl text-slate-700 max-w-3xl xl:max-w-4xl mx-auto">
-            Numbers that reflect our commitment to creating lasting change
+            {t.home.metrics.subtitle}
           </p>
         </motion.div>
 
@@ -102,7 +129,7 @@ export const ImpactMetrics = () => {
                 <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${metric.color} flex items-center justify-center mb-6 shadow-md`}>
                   <Icon name={metric.icon} size={32} className="text-white" strokeWidth={2.5} />
                 </div>
-                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-600 via-blue-600 to-violet-600 bg-clip-text text-transparent mb-2">
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#0B334A] via-[#0F4A6A] to-[#DE3C3A] bg-clip-text text-transparent mb-2">
                   <Counter end={metric.value} suffix={metric.suffix} />
                 </div>
                 <div className="text-slate-700 font-medium">{metric.label}</div>

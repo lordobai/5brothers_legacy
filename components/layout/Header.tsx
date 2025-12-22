@@ -5,9 +5,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
+import { LanguageSelector } from '@/components/ui/LanguageSelector';
+import { useTranslations } from '@/contexts/LanguageContext';
 
 export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const t = useTranslations();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur-md supports-[backdrop-filter]:bg-white/80 shadow-sm">
@@ -31,22 +34,26 @@ export const Header: React.FC = () => {
           </Link>
           
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
-            <Link href="/who-we-are" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
-              Who We Are
+          <nav className="hidden lg:flex items-center space-x-6">
+            <Link href="/who-we-are" className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium">
+              {t.nav.whoWeAre}
             </Link>
-            <Link href="/our-team" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
-              Our Team
+            <Link href="/our-team" className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium">
+              {t.nav.ourTeam}
             </Link>
-            <Link href="/our-initiatives" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
-              Initiatives
+            <Link href="/our-initiatives" className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium">
+              {t.nav.initiatives}
             </Link>
-            <Link href="/get-involved" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
-              Get Involved
+            <Link href="/get-involved" className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium">
+              {t.nav.getInvolved}
             </Link>
+            <Link href="/help" className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium">
+              {t.nav.help}
+            </Link>
+            <LanguageSelector />
             <Link href="/make-a-gift">
               <Button variant="primary" size="sm" className="shadow-md hover:shadow-lg">
-                Donate Now
+                {t.nav.donate}
               </Button>
             </Link>
           </nav>
@@ -71,35 +78,45 @@ export const Header: React.FC = () => {
             <div className="flex flex-col space-y-4">
               <Link 
                 href="/who-we-are" 
-                className="text-gray-700 hover:text-blue-600 transition-colors font-medium py-2"
+                className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Who We Are
+                {t.nav.whoWeAre}
               </Link>
               <Link 
                 href="/our-team" 
-                className="text-gray-700 hover:text-blue-600 transition-colors font-medium py-2"
+                className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Our Team
+                {t.nav.ourTeam}
               </Link>
               <Link 
                 href="/our-initiatives" 
-                className="text-gray-700 hover:text-blue-600 transition-colors font-medium py-2"
+                className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Initiatives
+                {t.nav.initiatives}
               </Link>
               <Link 
                 href="/get-involved" 
-                className="text-gray-700 hover:text-blue-600 transition-colors font-medium py-2"
+                className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Get Involved
+                {t.nav.getInvolved}
               </Link>
+              <Link 
+                href="/help" 
+                className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {t.nav.help}
+              </Link>
+              <div className="py-2">
+                <LanguageSelector />
+              </div>
               <Link href="/make-a-gift" onClick={() => setMobileMenuOpen(false)}>
                 <Button variant="primary" size="sm" className="w-full">
-                  Donate Now
+                  {t.nav.donate}
                 </Button>
               </Link>
             </div>

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useTranslations } from '@/contexts/LanguageContext';
 
 // Trusted partner logos - using high-quality placeholder images
 const sponsors = [
@@ -35,6 +36,8 @@ const sponsors = [
 const duplicatedSponsors = [...sponsors, ...sponsors];
 
 export const SponsorLogos = () => {
+  const t = useTranslations();
+  
   return (
     <section className="section-padding bg-white border-t border-slate-200 overflow-hidden">
       <div className="container mx-auto container-padding">
@@ -46,10 +49,10 @@ export const SponsorLogos = () => {
           className="text-center mb-12 lg:mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold text-slate-900 mb-4">
-            Our Trusted Partners
+            {t.home.partners.title}
           </h2>
           <p className="text-lg lg:text-xl text-slate-700 max-w-3xl xl:max-w-4xl mx-auto">
-            Together, we&apos;re creating lasting impact in communities across Africa
+            {t.home.partners.subtitle}
           </p>
         </motion.div>
 

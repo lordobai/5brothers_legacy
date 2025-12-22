@@ -4,6 +4,9 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { EventsTable } from '@/components/events/EventsTable';
+import { Event } from '@/lib/types/events';
+import { useTranslations } from '@/contexts/LanguageContext';
 
 const updates = [
   {
@@ -44,7 +47,55 @@ const updates = [
   },
 ];
 
+// Mock events data - in production, this would come from a database
+const mockEvents: Event[] = [
+  {
+    id: '1',
+    event_name: 'Community Health Fair 2024',
+    event_date_start: '2024-06-15',
+    event_date_end: '2024-06-15',
+    event_link: 'https://example.com/health-fair',
+    event_type: 'internal',
+    location: 'in-person',
+    description: 'Free health screenings and wellness resources for the community.',
+    status: 'published',
+    featured: true,
+    created_at: '2024-01-10',
+    updated_at: '2024-01-10',
+  },
+  {
+    id: '2',
+    event_name: 'Education Summit 2024',
+    event_date_start: '2024-07-20',
+    event_date_end: '2024-07-22',
+    event_link: 'https://example.com/education-summit',
+    event_type: 'external',
+    hosting_organization: 'Global Education Network',
+    location: 'virtual',
+    description: 'A three-day virtual summit on innovative education solutions.',
+    status: 'published',
+    featured: false,
+    created_at: '2024-01-15',
+    updated_at: '2024-01-15',
+  },
+  {
+    id: '3',
+    event_name: 'Youth Leadership Workshop',
+    event_date_start: '2024-05-10',
+    event_date_end: '2024-05-10',
+    event_link: 'https://example.com/youth-workshop',
+    event_type: 'internal',
+    location: 'in-person',
+    description: 'Empowering young leaders with skills and mentorship opportunities.',
+    status: 'published',
+    featured: false,
+    created_at: '2024-01-05',
+    updated_at: '2024-01-05',
+  },
+];
+
 export default function UpdatesEventsPage() {
+  const t = useTranslations();
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const categories = ['All', 'Education', 'Health', 'WASH', 'Youth', 'Events'];
 
@@ -64,10 +115,10 @@ export default function UpdatesEventsPage() {
             className="max-w-4xl mx-auto"
           >
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-              Updates & Events
+              {t.updatesEvents.hero.title}
             </h1>
             <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
-              Stay informed about our latest projects, events, and community impact
+              {t.updatesEvents.hero.subtitle}
             </p>
           </motion.div>
         </div>
@@ -140,6 +191,9 @@ export default function UpdatesEventsPage() {
           </div>
         </div>
       </section>
+
+      {/* Events Table Section */}
+      <EventsTable events={mockEvents} />
     </main>
   );
 }

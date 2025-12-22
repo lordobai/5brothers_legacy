@@ -3,38 +3,40 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Image from 'next/image';
-
-const involvementTypes = [
-  {
-    id: 'volunteer',
-    title: 'Volunteer',
-    subtitle: 'Step In, Stand Up',
-    description: 'Join our team of dedicated volunteers and make a difference on the ground. Your time and skills can transform lives.',
-    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80',
-    fields: ['name', 'email', 'phone', 'availability', 'skills', 'interests'],
-  },
-  {
-    id: 'partner',
-    title: 'Partner',
-    subtitle: 'Building a Better Future, Side by Side',
-    description: 'Collaborate with us to amplify our impact. Together, we can reach more communities and create lasting change.',
-    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80',
-    fields: ['name', 'email', 'phone', 'organization', 'partnershipType', 'message'],
-  },
-  {
-    id: 'advocate',
-    title: 'Advocate',
-    subtitle: 'Stand, Speak, Inspire',
-    description: 'Use your voice to raise awareness and advocate for vulnerable communities. Be a champion for change.',
-    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80',
-    fields: ['name', 'email', 'phone', 'platform', 'message'],
-  },
-];
+import { useTranslations } from '@/contexts/LanguageContext';
 
 export default function GetInvolvedPage() {
+  const t = useTranslations();
   const [selectedType, setSelectedType] = useState<string>('volunteer');
   const [formData, setFormData] = useState<any>({});
   const [submitted, setSubmitted] = useState(false);
+
+  const involvementTypes = [
+    {
+      id: 'volunteer',
+      title: t.getInvolved.types.volunteer.title,
+      subtitle: t.getInvolved.types.volunteer.subtitle,
+      description: t.getInvolved.types.volunteer.description,
+      image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80',
+      fields: ['name', 'email', 'phone', 'availability', 'skills', 'interests'],
+    },
+    {
+      id: 'partner',
+      title: t.getInvolved.types.partner.title,
+      subtitle: t.getInvolved.types.partner.subtitle,
+      description: t.getInvolved.types.partner.description,
+      image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80',
+      fields: ['name', 'email', 'phone', 'organization', 'partnershipType', 'message'],
+    },
+    {
+      id: 'advocate',
+      title: t.getInvolved.types.advocate.title,
+      subtitle: t.getInvolved.types.advocate.subtitle,
+      description: t.getInvolved.types.advocate.description,
+      image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80',
+      fields: ['name', 'email', 'phone', 'platform', 'message'],
+    },
+  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,7 +49,7 @@ export default function GetInvolvedPage() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800">
+      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0B334A] via-[#0F4A6A] to-[#0B334A]">
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -56,10 +58,10 @@ export default function GetInvolvedPage() {
             className="max-w-4xl mx-auto"
           >
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-              Get Involved
+              {t.getInvolved.hero.title}
             </h1>
             <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
-              Join us in creating positive change. Every action counts.
+              {t.getInvolved.hero.subtitle}
             </p>
           </motion.div>
         </div>
@@ -79,7 +81,7 @@ export default function GetInvolvedPage() {
                 onClick={() => setSelectedType(type.id)}
                 className={`text-left p-6 rounded-2xl transition-all ${
                   selectedType === type.id
-                    ? 'bg-blue-600 text-white shadow-xl'
+                    ? 'bg-[#0B334A] text-white shadow-xl'
                     : 'bg-gray-50 hover:bg-gray-100'
                 }`}
               >
@@ -109,13 +111,14 @@ export default function GetInvolvedPage() {
 
               {submitted ? (
                 <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
-                  <p className="text-green-800 font-semibold">Thank you! We&apos;ll be in touch soon.</p>
+                  <p className="text-green-800 font-semibold">{t.getInvolved.form.success}</p>
+                  <p className="text-green-700 mt-2">{t.getInvolved.form.successMessage}</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">Name *</label>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">{t.getInvolved.form.name} *</label>
                       <input
                         type="text"
                         required
@@ -123,7 +126,7 @@ export default function GetInvolvedPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">Email *</label>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">{t.getInvolved.form.email} *</label>
                       <input
                         type="email"
                         required
@@ -132,7 +135,7 @@ export default function GetInvolvedPage() {
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Phone *</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">{t.getInvolved.form.phone} *</label>
                     <input
                       type="tel"
                       required
@@ -142,19 +145,19 @@ export default function GetInvolvedPage() {
                   {selectedType === 'volunteer' && (
                     <>
                       <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">Availability</label>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">{t.getInvolved.form.availability}</label>
                         <textarea
                           rows={3}
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                          placeholder="When are you available to volunteer?"
+                          placeholder={t.getInvolved.form.availabilityPlaceholder}
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">Skills & Interests</label>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">{t.getInvolved.form.skillsInterests}</label>
                         <textarea
                           rows={3}
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                          placeholder="Tell us about your skills and what areas interest you"
+                          placeholder={t.getInvolved.form.skillsPlaceholder}
                         />
                       </div>
                     </>
@@ -162,19 +165,19 @@ export default function GetInvolvedPage() {
                   {selectedType === 'partner' && (
                     <>
                       <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">Organization</label>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">{t.getInvolved.form.organization}</label>
                         <input
                           type="text"
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">Partnership Type</label>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">{t.getInvolved.form.partnershipType}</label>
                         <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                          <option>Financial Support</option>
-                          <option>Program Collaboration</option>
-                          <option>Resource Sharing</option>
-                          <option>Other</option>
+                          <option>{t.getInvolved.form.partnershipOptions.financial}</option>
+                          <option>{t.getInvolved.form.partnershipOptions.collaboration}</option>
+                          <option>{t.getInvolved.form.partnershipOptions.resources}</option>
+                          <option>{t.getInvolved.form.partnershipOptions.other}</option>
                         </select>
                       </div>
                     </>
@@ -182,28 +185,28 @@ export default function GetInvolvedPage() {
                   {selectedType === 'advocate' && (
                     <>
                       <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">Platform</label>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">{t.getInvolved.form.platform}</label>
                         <input
                           type="text"
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                          placeholder="Social media, blog, community, etc."
+                          placeholder={t.getInvolved.form.platformPlaceholder}
                         />
                       </div>
                     </>
                   )}
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Message</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">{t.getInvolved.form.message}</label>
                     <textarea
                       rows={5}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                      placeholder="Tell us more about how you'd like to get involved"
+                      placeholder={t.getInvolved.form.messagePlaceholder}
                     />
                   </div>
                   <button
                     type="submit"
-                    className="w-full px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
+                    className="w-full px-8 py-4 bg-gradient-to-r from-[#0B334A] to-[#0F4A6A] text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
                   >
-                    Submit
+                    {t.getInvolved.form.submit}
                   </button>
                 </form>
               )}

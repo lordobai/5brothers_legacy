@@ -1,30 +1,35 @@
 # Refined Color Palette & Theme Guide
 
-## 🎨 Primary Color Scheme
+## 🎨 Primary Color Scheme (Based on Logo Colors)
 
 ### Main Brand Colors
-- **Indigo-600** (`#2563EB`) - Primary brand color, trust, professionalism
-- **Blue-600** (`#2563EB`) - Secondary brand color, energy
-- **Indigo-700** (`#1E40AF`) - Darker shade for depth
+- **Navy** (`#0B334A`) - Primary brand color from logo, trust, professionalism
+- **Navy Light** (`#0F4A6A`) - Lighter shade for hover states and gradients
+- **Navy Dark** (`#082530`) - Darker shade for depth and emphasis
 
 ### Accent Colors
-- **Violet-500** (`#8B5CF6`) - Innovation, creativity
+- **Red** (`#DE3C3A`) - Accent color from logo, urgency, action, call-to-action
+- **Red Light** (`#E85A5A`) - Lighter shade for hover states
+- **Red Dark** (`#C22A2A`) - Darker shade for depth
+
+### Supporting Colors
 - **Emerald-500** (`#10B981`) - Success, growth, positive impact
 - **Amber-500** (`#F59E0B`) - Warmth, community, attention
 - **Teal-500** (`#14B8A6`) - Freshness, renewal, health
+- **Violet-500** (`#8B5CF6`) - Innovation, creativity (used sparingly)
 
 ## 🌈 Gradient Combinations
 
 ### Primary Gradients (Hero Sections)
 ```css
-from-indigo-600 via-blue-600 to-indigo-700
-from-indigo-900/85 via-blue-800/75 to-indigo-900/85 (with opacity)
+from-[#0B334A] via-[#0F4A6A] to-[#0B334A]
+from-[#0B334A]/85 via-[#0F4A6A]/75 to-[#0B334A]/85 (with opacity)
 ```
 
 ### Accent Gradients
 ```css
-from-indigo-500 to-blue-600      /* Mission, Trust */
-from-violet-500 to-purple-600     /* Vision, Innovation */
+from-[#0B334A] to-[#0F4A6A]      /* Mission, Trust, Primary Actions */
+from-[#0B334A] to-[#DE3C3A]       /* Urgent CTAs, Donations */
 from-emerald-500 to-teal-600      /* Impact, Success */
 from-amber-500 to-orange-600      /* Warmth, Community */
 from-teal-500 to-cyan-600         /* Freshness, Health */
@@ -32,17 +37,18 @@ from-teal-500 to-cyan-600         /* Freshness, Health */
 
 ### Background Gradients
 ```css
-from-indigo-50 via-blue-50 to-violet-50    /* Light backgrounds */
-from-gray-50 to-blue-50                     /* Subtle backgrounds */
+from-slate-100 via-slate-50 to-slate-100    /* Light backgrounds */
+from-gray-50 to-slate-50                     /* Subtle backgrounds */
 ```
 
 ## 🎯 Usage Guidelines
 
 ### Text Colors
-- **Primary Text**: `text-gray-900` or `text-charcoal` (#1F2937)
+- **Primary Text**: `text-gray-900` or `text-slate-900` (#0F172A)
 - **Secondary Text**: `text-gray-600` or `text-slate-600` (#475569)
 - **Muted Text**: `text-gray-500` or `text-slate-500` (#64748B)
-- **Links**: `text-indigo-600` hover: `text-indigo-700`
+- **Links**: `text-[#0B334A]` hover: `text-[#082530]`
+- **Accent Links**: `text-[#DE3C3A]` hover: `text-[#C22A2A]`
 
 ### Background Colors
 - **White**: Pure white for cards and main content
@@ -103,5 +109,6 @@ Colors are defined in:
 1. `app/globals.css` - CSS variables
 2. `tailwind.config.ts` - Tailwind color extensions
 3. Components use Tailwind classes for consistency
+
 
 

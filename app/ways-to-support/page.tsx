@@ -3,60 +3,61 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-
-const supportMethods = [
-  {
-    id: 'fund',
-    title: 'Fund Us',
-    description: 'Your financial contribution directly supports our programs and helps us reach more communities.',
-    icon: '💰',
-    action: 'Donate Now',
-    link: '/make-a-gift',
-    color: 'from-green-500 to-emerald-500',
-  },
-  {
-    id: 'voice',
-    title: 'Lend Your Voice',
-    description: 'Advocate for our cause and help raise awareness about the challenges facing vulnerable communities.',
-    icon: '📢',
-    action: 'Become an Advocate',
-    link: '/get-involved',
-    color: 'from-purple-500 to-pink-500',
-  },
-  {
-    id: 'project',
-    title: 'Support Our Project',
-    description: 'Choose a specific project or program to support and see your impact in action.',
-    icon: '🎯',
-    action: 'View Projects',
-    link: '/our-initiatives',
-    color: 'from-blue-500 to-cyan-500',
-  },
-  {
-    id: 'collaborate',
-    title: 'Collaborate',
-    description: 'Partner with us to amplify our impact through organizational partnerships and collaborations.',
-    icon: '🤝',
-    action: 'Partner With Us',
-    link: '/get-involved',
-    color: 'from-orange-500 to-red-500',
-  },
-  {
-    id: 'products',
-    title: 'Buy Our Products',
-    description: 'Support us by purchasing products from our Instagram shop. All proceeds go directly to our programs.',
-    icon: '🛍️',
-    action: 'Visit Shop',
-    link: 'https://instagram.com/5brotherslegacy',
-    color: 'from-pink-500 to-rose-500',
-  },
-];
+import { useTranslations } from '@/contexts/LanguageContext';
 
 export default function WaysToSupportPage() {
+  const t = useTranslations();
+  const supportMethods = [
+    {
+      id: 'fund',
+      title: t.waysToSupport.methods.fund.title,
+      description: t.waysToSupport.methods.fund.description,
+      icon: '💰',
+      action: t.waysToSupport.methods.fund.action,
+      link: '/make-a-gift',
+      color: 'from-green-500 to-emerald-500',
+    },
+    {
+      id: 'voice',
+      title: t.waysToSupport.methods.voice.title,
+      description: t.waysToSupport.methods.voice.description,
+      icon: '📢',
+      action: t.waysToSupport.methods.voice.action,
+      link: '/get-involved',
+      color: 'from-purple-500 to-pink-500',
+    },
+    {
+      id: 'project',
+      title: t.waysToSupport.methods.project.title,
+      description: t.waysToSupport.methods.project.description,
+      icon: '🎯',
+      action: t.waysToSupport.methods.project.action,
+      link: '/our-initiatives',
+      color: 'from-blue-500 to-cyan-500',
+    },
+    {
+      id: 'collaborate',
+      title: t.waysToSupport.methods.collaborate.title,
+      description: t.waysToSupport.methods.collaborate.description,
+      icon: '🤝',
+      action: t.waysToSupport.methods.collaborate.action,
+      link: '/get-involved',
+      color: 'from-orange-500 to-red-500',
+    },
+    {
+      id: 'products',
+      title: t.waysToSupport.methods.products.title,
+      description: t.waysToSupport.methods.products.description,
+      icon: '🛍️',
+      action: t.waysToSupport.methods.products.action,
+      link: '/make-a-gift',
+      color: 'from-pink-500 to-rose-500',
+    },
+  ];
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800">
+      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0B334A] via-[#0F4A6A] to-[#0B334A]">
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -65,10 +66,10 @@ export default function WaysToSupportPage() {
             className="max-w-4xl mx-auto"
           >
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-              Ways to Support
+              {t.waysToSupport.hero.title}
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
-              There are many ways to make a difference. Choose what works best for you
+            <p className="text-xl md:text-2xl text-slate-100 max-w-3xl mx-auto">
+              {t.waysToSupport.hero.subtitle}
             </p>
           </motion.div>
         </div>
@@ -116,18 +117,18 @@ export default function WaysToSupportPage() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Your Support Makes a Difference
+              {t.waysToSupport.impactStories.title}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              See how your contributions are transforming lives in communities across Africa
+              {t.waysToSupport.impactStories.subtitle}
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {[
-              { quote: 'Your donations helped build our new school. Our children now have access to quality education.', author: 'Community Leader, Imo State' },
-              { quote: 'The health clinic you supported saved my daughter\'s life. Thank you for making healthcare accessible.', author: 'Mother, Rural Community' },
-              { quote: 'Clean water changed everything for our village. We\'re healthier and more productive now.', author: 'Village Elder, Enugu State' },
+              { quote: t.waysToSupport.stories.story1.quote, author: t.waysToSupport.stories.story1.author },
+              { quote: t.waysToSupport.stories.story2.quote, author: t.waysToSupport.stories.story2.author },
+              { quote: t.waysToSupport.stories.story3.quote, author: t.waysToSupport.stories.story3.author },
             ].map((story, index) => (
               <motion.div
                 key={index}

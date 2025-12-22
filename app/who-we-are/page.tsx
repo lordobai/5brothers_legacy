@@ -3,83 +3,86 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState } from 'react';
+import Link from 'next/link';
 import { Icon } from '@/components/ui/Icon';
-
-const values = [
-  {
-    title: 'Empowerment',
-    description: 'We believe in empowering communities to become self-sufficient and sustainable.',
-    icon: 'trendingUp' as const,
-    color: 'from-indigo-500 to-blue-600',
-    bgColor: 'bg-indigo-50',
-  },
-  {
-    title: 'Equality',
-    description: 'We champion equal opportunities for all, regardless of gender, background, or circumstance.',
-    icon: 'users' as const,
-    color: 'from-violet-500 to-purple-600',
-    bgColor: 'bg-violet-50',
-  },
-  {
-    title: 'Transparency',
-    description: 'We maintain the highest standards of accountability and transparency in all our operations.',
-    icon: 'shield' as const,
-    color: 'from-emerald-500 to-teal-600',
-    bgColor: 'bg-emerald-50',
-  },
-  {
-    title: 'Innovation',
-    description: 'We embrace innovative solutions to address complex social challenges.',
-    icon: 'lightbulb' as const,
-    color: 'from-amber-500 to-orange-600',
-    bgColor: 'bg-amber-50',
-  },
-  {
-    title: 'Collaboration',
-    description: 'We work hand-in-hand with communities, partners, and stakeholders to achieve shared goals.',
-    icon: 'handshake' as const,
-    color: 'from-teal-500 to-cyan-600',
-    bgColor: 'bg-teal-50',
-  },
-  {
-    title: 'Impact',
-    description: 'We measure success by the lasting positive change we create in communities.',
-    icon: 'barChart3' as const,
-    color: 'from-blue-500 to-indigo-600',
-    bgColor: 'bg-blue-50',
-  },
-];
-
-const goals = [
-  {
-    title: 'Education Access',
-    description: 'Ensure quality education for 50,000 children by 2030',
-    progress: 25,
-  },
-  {
-    title: 'Healthcare Coverage',
-    description: 'Provide healthcare services to 100,000 people across underserved regions',
-    progress: 30,
-  },
-  {
-    title: 'Clean Water Access',
-    description: 'Install 500 water wells and sanitation facilities',
-    progress: 20,
-  },
-  {
-    title: 'Youth Empowerment',
-    description: 'Train and empower 10,000 young people with skills and opportunities',
-    progress: 15,
-  },
-];
+import { useTranslations } from '@/contexts/LanguageContext';
 
 export default function WhoWeArePage() {
+  const t = useTranslations();
   const [expandedGoal, setExpandedGoal] = useState<number | null>(null);
+  
+  const values = [
+    {
+      title: t.whoWeAre.values.empowerment.title,
+      description: t.whoWeAre.values.empowerment.description,
+      icon: 'trendingUp' as const,
+      color: 'from-indigo-500 to-blue-600',
+      bgColor: 'bg-indigo-50',
+    },
+    {
+      title: t.whoWeAre.values.equality.title,
+      description: t.whoWeAre.values.equality.description,
+      icon: 'users' as const,
+      color: 'from-violet-500 to-purple-600',
+      bgColor: 'bg-violet-50',
+    },
+    {
+      title: t.whoWeAre.values.transparency.title,
+      description: t.whoWeAre.values.transparency.description,
+      icon: 'shield' as const,
+      color: 'from-emerald-500 to-teal-600',
+      bgColor: 'bg-emerald-50',
+    },
+    {
+      title: t.whoWeAre.values.innovation.title,
+      description: t.whoWeAre.values.innovation.description,
+      icon: 'lightbulb' as const,
+      color: 'from-amber-500 to-orange-600',
+      bgColor: 'bg-amber-50',
+    },
+    {
+      title: t.whoWeAre.values.collaboration.title,
+      description: t.whoWeAre.values.collaboration.description,
+      icon: 'handshake' as const,
+      color: 'from-teal-500 to-cyan-600',
+      bgColor: 'bg-teal-50',
+    },
+    {
+      title: t.whoWeAre.values.impact.title,
+      description: t.whoWeAre.values.impact.description,
+      icon: 'barChart3' as const,
+      color: 'from-blue-500 to-indigo-600',
+      bgColor: 'bg-blue-50',
+    },
+  ];
+
+  const goals = [
+    {
+      title: t.whoWeAre.goalsList.education.title,
+      description: t.whoWeAre.goalsList.education.description,
+      progress: 25,
+    },
+    {
+      title: t.whoWeAre.goalsList.healthcare.title,
+      description: t.whoWeAre.goalsList.healthcare.description,
+      progress: 30,
+    },
+    {
+      title: t.whoWeAre.goalsList.cleanWater.title,
+      description: t.whoWeAre.goalsList.cleanWater.description,
+      progress: 20,
+    },
+    {
+      title: t.whoWeAre.goalsList.youthEmpowerment.title,
+      description: t.whoWeAre.goalsList.youthEmpowerment.description,
+      progress: 15,
+    },
+  ];
 
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800">
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0B334A] via-[#0F4A6A] to-[#0B334A]">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1920&q=80"
@@ -97,11 +100,10 @@ export default function WhoWeArePage() {
             className="max-w-4xl mx-auto"
           >
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-              Who We Are
+              {t.whoWeAre.title}
             </h1>
             <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
-              Empowering vulnerable communities across Africa through sustainable development, 
-              education, healthcare, and equality
+              {t.whoWeAre.subtitle}
             </p>
           </motion.div>
         </div>
@@ -119,24 +121,17 @@ export default function WhoWeArePage() {
               className="mb-12"
             >
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 text-center">
-                Our Story
+                {t.whoWeAre.ourStory}
               </h2>
               <div className="prose prose-lg max-w-none">
                 <p className="text-xl text-gray-700 leading-relaxed mb-6">
-                  5Brothers Legacy Initiative was founded with a vision to create lasting positive change 
-                  in vulnerable communities across Africa. Born from a deep commitment to social justice 
-                  and sustainable development, our organization has grown from a small grassroots movement 
-                  into a trusted partner for communities in need.
+                  {t.whoWeAre.storyText1}
                 </p>
                 <p className="text-xl text-gray-700 leading-relaxed mb-6">
-                  We believe that every individual deserves access to quality education, healthcare, clean water, 
-                  and equal opportunities. Through our comprehensive programs, we work tirelessly to break down 
-                  barriers and create pathways to prosperity for those who need it most.
+                  {t.whoWeAre.storyText2}
                 </p>
                 <p className="text-xl text-gray-700 leading-relaxed">
-                  Our approach is community-centered, recognizing that sustainable change comes from within. 
-                  We partner with local leaders, organizations, and community members to design and implement 
-                  solutions that are culturally appropriate, environmentally sustainable, and economically viable.
+                  {t.whoWeAre.storyText3}
                 </p>
               </div>
             </motion.div>
@@ -187,7 +182,7 @@ export default function WhoWeArePage() {
               className="text-center mb-16"
             >
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
-                Our Mission, Vision & Goals
+                {t.whoWeAre.missionVisionGoals}
               </h2>
             </motion.div>
 
@@ -203,12 +198,9 @@ export default function WhoWeArePage() {
                 <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center mb-6 shadow-md">
                   <Icon name="target" size={32} className="text-white" strokeWidth={2.5} />
                 </div>
-                <h3 className="text-3xl font-bold text-gray-900 mb-4">Our Mission</h3>
+                <h3 className="text-3xl font-bold text-gray-900 mb-4">{t.whoWeAre.mission}</h3>
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  To provide hope for sustainable lives by empowering vulnerable communities with equal 
-                  opportunities, safe lives, quality education, better health, and clean water. We 
-                  strive to create lasting positive change that transforms lives and builds thriving 
-                  communities across Africa.
+                  {t.whoWeAre.missionText}
                 </p>
               </motion.div>
 
@@ -223,12 +215,9 @@ export default function WhoWeArePage() {
                 <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center mb-6 shadow-md">
                   <Icon name="sparkles" size={32} className="text-white" strokeWidth={2.5} />
                 </div>
-                <h3 className="text-3xl font-bold text-gray-900 mb-4">Our Vision</h3>
+                <h3 className="text-3xl font-bold text-gray-900 mb-4">{t.whoWeAre.vision}</h3>
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  To see thriving communities across Africa built on safety, equality, and opportunity 
-                  for all. We envision a future where every individual has access to quality education, 
-                  healthcare, clean water, and the resources needed to reach their full potential, 
-                  regardless of their circumstances.
+                  {t.whoWeAre.visionText}
                 </p>
               </motion.div>
             </div>
@@ -244,7 +233,7 @@ export default function WhoWeArePage() {
               <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center mb-6 shadow-md">
                 <Icon name="target" size={32} className="text-white" strokeWidth={2.5} />
               </div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-8">Our Goals</h3>
+              <h3 className="text-3xl font-bold text-gray-900 mb-8">{t.whoWeAre.goals}</h3>
               <div className="space-y-6">
                 {goals.map((goal, index) => (
                   <div
@@ -254,7 +243,7 @@ export default function WhoWeArePage() {
                   >
                     <div className="flex items-center justify-between mb-2">
                       <h4 className="text-xl font-semibold text-gray-900">{goal.title}</h4>
-                      <span className="text-blue-600 font-bold">{goal.progress}%</span>
+                      <span className="text-[#0B334A] font-bold">{goal.progress}%</span>
                     </div>
                     <p className="text-gray-600 mb-3">{goal.description}</p>
                     <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
@@ -263,7 +252,7 @@ export default function WhoWeArePage() {
                         whileInView={{ width: `${goal.progress}%` }}
                         viewport={{ once: true }}
                         transition={{ duration: 1, delay: index * 0.1 }}
-                        className="bg-gradient-to-r from-blue-600 to-blue-700 h-full rounded-full"
+                        className="bg-gradient-to-r from-[#0B334A] to-[#0F4A6A] h-full rounded-full"
                       />
                     </div>
                   </div>
@@ -285,10 +274,10 @@ export default function WhoWeArePage() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
-              Our Core Values
+              {t.whoWeAre.coreValues}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              The principles that guide everything we do
+              {t.whoWeAre.coreValuesSubtitle}
             </p>
           </motion.div>
 
@@ -314,7 +303,7 @@ export default function WhoWeArePage() {
       </section>
 
       {/* Call to Action */}
-      <section className="section-padding bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white">
+      <section className="section-padding bg-gradient-to-br from-[#0B334A] via-[#0F4A6A] to-[#0B334A] text-white">
         <div className="container mx-auto container-padding text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -324,24 +313,24 @@ export default function WhoWeArePage() {
             className="max-w-3xl mx-auto"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Join Us in Making a Difference
+              {t.whoWeAre.joinUs}
             </h2>
             <p className="text-xl text-blue-100 mb-8">
-              Together, we can create lasting change in communities across Africa
+              {t.whoWeAre.joinUsSubtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
+              <Link
                 href="/get-involved"
-                className="px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
+                className="px-8 py-4 bg-white text-[#0B334A] font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
               >
-                Get Involved
-              </a>
-              <a
+                {t.whoWeAre.getInvolved}
+              </Link>
+              <Link
                 href="/make-a-gift"
                 className="px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-all"
               >
-                Make a Donation
-              </a>
+                {t.whoWeAre.makeDonation}
+              </Link>
             </div>
           </motion.div>
         </div>

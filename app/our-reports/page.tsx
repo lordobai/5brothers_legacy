@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { useTranslations } from '@/contexts/LanguageContext';
 
 const reports = [
   {
@@ -42,17 +43,30 @@ const reports = [
 ];
 
 export default function OurReportsPage() {
-  const [selectedCategory, setSelectedCategory] = useState<string>('All');
-  const categories = ['All', 'Annual', 'Financial', 'Audit'];
+  const t = useTranslations();
+  const [selectedCategory, setSelectedCategory] = useState<string>(t.ourReports.categories.all);
+  const categories = [
+    t.ourReports.categories.all,
+    t.ourReports.categories.annual,
+    t.ourReports.categories.financial,
+    t.ourReports.categories.audit,
+  ];
 
-  const filteredReports = selectedCategory === 'All'
+  const filteredReports = selectedCategory === t.ourReports.categories.all
     ? reports
-    : reports.filter(report => report.category === selectedCategory);
+    : reports.filter(report => {
+        const categoryMap: Record<string, string> = {
+          [t.ourReports.categories.annual]: 'Annual',
+          [t.ourReports.categories.financial]: 'Financial',
+          [t.ourReports.categories.audit]: 'Audit',
+        };
+        return report.category === categoryMap[selectedCategory];
+      });
 
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800">
+      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0B334A] via-[#0F4A6A] to-[#0B334A]">
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -61,10 +75,10 @@ export default function OurReportsPage() {
             className="max-w-4xl mx-auto"
           >
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-              Our Reports
+              {t.ourReports.hero.title}
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
-              Transparency and accountability in everything we do
+            <p className="text-xl md:text-2xl text-slate-100 max-w-3xl mx-auto">
+              {t.ourReports.hero.subtitle}
             </p>
           </motion.div>
         </div>
@@ -81,12 +95,9 @@ export default function OurReportsPage() {
               transition={{ duration: 0.6 }}
               className="bg-gradient-to-br from-blue-100 to-indigo-100 rounded-2xl p-8 lg:p-10"
             >
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Commitment to Transparency</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.ourReports.transparency.title}</h2>
               <p className="text-lg text-gray-700 leading-relaxed">
-                At 5Brothers Legacy Initiative, we believe in complete transparency and accountability. 
-                We regularly publish detailed reports on our activities, financial performance, and impact. 
-                These reports demonstrate our commitment to responsible stewardship of resources and 
-                our dedication to creating measurable, lasting change.
+                {t.ourReports.transparency.description}
               </p>
             </motion.div>
           </div>
@@ -105,7 +116,7 @@ export default function OurReportsPage() {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-6 py-3 rounded-lg font-semibold transition-all ${
                   selectedCategory === category
-                    ? 'bg-blue-600 text-white shadow-lg'
+                    ? 'bg-[#0B334A] text-white shadow-lg'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -126,7 +137,7 @@ export default function OurReportsPage() {
                 className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
               >
                 <div className="mb-4">
-                  <span className="inline-block px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-semibold mb-2">
+                  <span className="inline-block px-3 py-1 bg-slate-100 text-[#0B334A] rounded-full text-sm font-semibold mb-2">
                     {report.category}
                   </span>
                   <span className="ml-2 text-gray-500">{report.year}</span>
@@ -135,9 +146,9 @@ export default function OurReportsPage() {
                 <p className="text-gray-600 mb-6 leading-relaxed">{report.description}</p>
                 <a
                   href={report.downloadUrl}
-                  className="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold"
+                  className="inline-flex items-center text-[#0B334A] hover:text-[#082530] font-semibold"
                 >
-                  Download PDF
+                  {t.ourReports.downloadPdf}
                   <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>

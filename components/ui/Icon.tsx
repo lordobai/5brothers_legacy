@@ -31,6 +31,15 @@ import {
   FileText,
   Calendar,
   Search,
+  ExternalLink,
+  Info,
+  Check,
+  Loader2,
+  Plus,
+  Globe,
+  Star,
+  Video,
+  Building,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -71,6 +80,16 @@ const iconMap = {
   fileText: FileText,
   calendar: Calendar,
   search: Search,
+  externalLink: ExternalLink,
+  info: Info,
+  check: Check,
+  loader: Loader2,
+  plus: Plus,
+  checkCircle: CheckCircle2,
+  globe: Globe,
+  star: Star,
+  video: Video,
+  building: Building,
 };
 
 export type IconName = keyof typeof iconMap;

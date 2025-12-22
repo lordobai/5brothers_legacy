@@ -23,6 +23,8 @@ const config: Config = {
         },
         accent: {
           DEFAULT: "var(--accent)",
+          light: "var(--accent-light)",
+          dark: "var(--accent-dark)",
           foreground: "var(--accent-foreground)",
         },
         success: "var(--success)",
@@ -36,6 +38,15 @@ const config: Config = {
           primary: "var(--text-primary)",
           secondary: "var(--text-secondary)",
           muted: "var(--text-muted)",
+        },
+        // Brand colors from logo
+        brand: {
+          navy: "#0B334A",
+          "navy-light": "#0F4A6A",
+          "navy-dark": "#082530",
+          red: "#DE3C3A",
+          "red-light": "#E85A5A",
+          "red-dark": "#C22A2A",
         },
       },
       container: {
