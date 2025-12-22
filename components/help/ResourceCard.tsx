@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Icon } from '@/components/ui/Icon';
 import { Resource } from '@/app/help/page';
 import { useTranslations } from '@/contexts/LanguageContext';
@@ -63,13 +64,16 @@ export const ResourceCard = ({ resource }: ResourceCardProps) => {
       {/* Logo/Image Section */}
       <div className="relative h-32 bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center overflow-hidden rounded-t-lg">
         {logoUrl && !imageError && !showInitials ? (
-          <img
-            src={logoUrl}
-            alt={`${resource.organization_name} logo`}
-            className="w-20 h-20 object-contain rounded"
-            onError={handleImageError}
-            loading="lazy"
-          />
+          <div className="relative w-20 h-20">
+            <Image
+              src={logoUrl}
+              alt={`${resource.organization_name} logo`}
+              fill
+              className="object-contain rounded"
+              onError={handleImageError}
+              unoptimized
+            />
+          </div>
         ) : (
           <div className="w-20 h-20 bg-gradient-to-br from-[#0B334A] to-[#0F4A6A] rounded-full flex items-center justify-center text-white font-bold text-xl">
             {initials}

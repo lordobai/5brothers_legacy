@@ -46,8 +46,9 @@ const Counter = ({ end, suffix }: { end: number; suffix: string }) => {
     }
 
     return () => {
-      if (counterRef.current) {
-        observer.unobserve(counterRef.current);
+      const currentRef = counterRef.current;
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, [end, hasStarted]);

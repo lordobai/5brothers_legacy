@@ -20,22 +20,22 @@ export const LanguagePrompt = () => {
           exit={{ opacity: 0, y: -20 }}
           className="fixed top-20 left-1/2 transform -translate-x-1/2 z-50 max-w-md w-full mx-4"
         >
-          <div className="bg-white border-2 border-blue-500 rounded-lg shadow-xl p-4">
+          <div className="bg-white border-2 border-[#0B334A] rounded-lg shadow-xl p-4">
             <div className="flex items-start gap-3">
               <div className="flex-shrink-0">
-                <Icon name="globe" size={24} className="text-blue-600" />
+                <Icon name="globe" size={24} className="text-[#0B334A]" />
               </div>
               <div className="flex-1">
                 <h3 className="font-semibold text-gray-900 mb-1">
                   Switch to {browserLang.nativeName}?
                 </h3>
                 <p className="text-sm text-gray-600 mb-3">
-                  We noticed you're browsing in {browserLang.name}. Would you like to view this site in {browserLang.nativeName}?
+                  We noticed you&apos;re browsing in {browserLang.name}. Would you like to view this site in {browserLang.nativeName}?
                 </p>
                 <div className="flex gap-2">
                   <button
                     onClick={() => setLanguage(browserLang.code)}
-                    className="px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+                    className="px-4 py-2 bg-[#0B334A] text-white text-sm font-semibold rounded-lg hover:bg-[#082530] transition-colors"
                   >
                     Yes, switch
                   </button>
