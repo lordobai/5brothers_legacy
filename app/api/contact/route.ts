@@ -50,47 +50,43 @@ This email was sent from the 5Brothers Legacy Initiative contact form.
     const recipientEmail = process.env.CONTACT_EMAIL || 'info@fivebrotherslegacy.org';
     
     // Email sending logic
-    // Check if Resend is configured and available
-    let emailSent = false;
-    if (process.env.RESEND_API_KEY) {
-      try {
-        // Dynamic import to avoid errors if resend is not installed
-        const resendModule = await import('resend').catch(() => null);
-        if (resendModule) {
-          const { Resend } = resendModule;
-          const resend = new Resend(process.env.RESEND_API_KEY);
-          const { data, error } = await resend.emails.send({
-            from: process.env.RESEND_FROM_EMAIL || 'Contact Form <contact@fivebrotherslegacy.org>',
-            to: [recipientEmail],
-            subject: `Contact Form: ${subject}`,
-            text: emailContent,
-            replyTo: email,
-          });
-          if (error) {
-            console.error('Resend error:', error);
-            throw error;
-          }
-          console.log('Email sent via Resend:', data);
-          emailSent = true;
-        }
-      } catch (err) {
-        console.error('Failed to send via Resend:', err);
-      }
-    }
+    // Currently logs to console. To enable email sending:
+    // 1. Install resend: npm install resend
+    // 2. Add RESEND_API_KEY to environment variables
+    // 3. Uncomment the resend code block below
     
-    // If email wasn't sent via service, log it (for development)
-    if (!emailSent) {
-      console.log('=== CONTACT FORM SUBMISSION ===');
-      console.log('To:', recipientEmail);
-      console.log('From:', email);
-      console.log('Subject:', subject);
-      console.log('Content:', emailContent);
-      console.log('==============================');
-      if (!process.env.RESEND_API_KEY) {
-        console.log('NOTE: Configure RESEND_API_KEY in .env.local to enable email sending');
-        console.log('See CONTACT_FORM_SETUP.md for setup instructions');
-      }
-    }
+    // Log the submission (for development/testing)
+    console.log('=== CONTACT FORM SUBMISSION ===');
+    console.log('To:', recipientEmail);
+    console.log('From:', email);
+    console.log('Subject:', subject);
+    console.log('Content:', emailContent);
+    console.log('==============================');
+    
+    // Uncomment below when resend is installed and configured
+    // if (process.env.RESEND_API_KEY) {
+    //   try {
+    //     const { Resend } = await import('resend');
+    //     const resend = new Resend(process.env.RESEND_API_KEY);
+    //     const { data, error } = await resend.emails.send({
+    //       from: process.env.RESEND_FROM_EMAIL || 'Contact Form <contact@fivebrotherslegacy.org>',
+    //       to: [recipientEmail],
+    //       subject: `Contact Form: ${subject}`,
+    //       text: emailContent,
+    //       replyTo: email,
+    //     });
+    //     if (error) {
+    //       console.error('Resend error:', error);
+    //       throw error;
+    //     }
+    //     console.log('Email sent via Resend:', data);
+    //   } catch (err) {
+    //     console.error('Failed to send via Resend:', err);
+    //   }
+    // } else {
+    //   console.log('NOTE: Configure RESEND_API_KEY to enable email sending');
+    //   console.log('See CONTACT_FORM_SETUP.md for setup instructions');
+    // }
 
     // In production, uncomment and configure one of these options:
 
