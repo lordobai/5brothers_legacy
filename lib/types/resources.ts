@@ -11,7 +11,7 @@ export const RESOURCE_TYPES = [
   'Financial Assistance',
   'Domestic Violence Support',
   'Disability Services',
-  'Immigration Support',
+  'Cancer Screening & Support',
   'Other',
 ] as const;
 
@@ -22,6 +22,7 @@ export interface Resource {
   id: string;
   organization_name: string;
   resource_type: ResourceType;
+  custom_resource_type?: string; // For when "Other" is selected
   description: string;
   link_url: string;
   logo_image_url?: string;
@@ -37,4 +38,5 @@ export interface Resource {
 }
 
 export type SortOption = 'relevance' | 'az' | 'newest';
+
 

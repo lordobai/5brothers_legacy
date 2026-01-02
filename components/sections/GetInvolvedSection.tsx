@@ -23,7 +23,7 @@ export const GetInvolvedSection = () => {
       description: t.home.getInvolved.volunteerDescription,
       icon: 'users' as const,
       link: '/get-involved',
-      color: 'from-blue-500 to-cyan-600',
+      color: 'from-[#0B334A] to-[#0F4A6A]',
       bgColor: 'bg-white/10',
     },
     {
@@ -31,7 +31,7 @@ export const GetInvolvedSection = () => {
       description: t.home.getInvolved.partnerDescription,
       icon: 'handshake' as const,
       link: '/get-involved',
-      color: 'from-violet-500 to-indigo-600',
+      color: 'from-[#0B334A] to-[#0F4A6A]',
       bgColor: 'bg-white/10',
     },
   ];
@@ -48,7 +48,7 @@ export const GetInvolvedSection = () => {
           <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold mb-4">
             {t.home.getInvolved.title}
           </h2>
-          <p className="text-xl lg:text-2xl text-blue-50 max-w-3xl xl:max-w-4xl mx-auto">
+          <p className="text-xl lg:text-2xl text-slate-100 max-w-3xl xl:max-w-4xl mx-auto">
             {t.home.getInvolved.subtitle}
           </p>
         </motion.div>
@@ -68,7 +68,7 @@ export const GetInvolvedSection = () => {
                   <Icon name={action.icon} size={40} className="text-white" strokeWidth={2.5} />
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-white">{action.title}</h3>
-                <p className="text-blue-50 mb-6 leading-relaxed">
+                <p className="text-slate-100 mb-6 leading-relaxed">
                   {action.description}
                 </p>
                 <Link href={action.link}>

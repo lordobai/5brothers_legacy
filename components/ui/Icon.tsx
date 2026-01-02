@@ -40,6 +40,9 @@ import {
   Star,
   Video,
   Building,
+  Send,
+  Youtube,
+  Linkedin,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -68,11 +71,11 @@ const iconMap = {
   chevronDown: ChevronDown,
   x: X,
   menu: Menu,
-  // Social icons - using generic icons as placeholders
+  // Social icons
   facebook: Users, // Replace with actual Facebook icon if needed
-  twitter: Users, // Replace with actual Twitter icon if needed
+  twitter: X, // Using X icon for Twitter/X
   instagram: Users, // Replace with actual Instagram icon if needed
-  linkedin: Users, // Replace with actual LinkedIn icon if needed
+  linkedin: Linkedin,
   dollarSign: DollarSign,
   gift: Gift,
   shoppingBag: ShoppingBag,
@@ -90,6 +93,8 @@ const iconMap = {
   star: Star,
   video: Video,
   building: Building,
+  send: Send,
+  youtube: Youtube,
 };
 
 export type IconName = keyof typeof iconMap;

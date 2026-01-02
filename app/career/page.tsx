@@ -6,30 +6,21 @@ import { useState } from 'react';
 const jobOpenings = [
   {
     id: 1,
-    title: 'Program Coordinator',
-    department: 'Programs',
-    location: 'Owerri, Nigeria',
-    type: 'Full-time',
-    description: 'We are seeking a dedicated Program Coordinator to oversee our education and health initiatives.',
-    requirements: ['Bachelor\'s degree in relevant field', '3+ years experience', 'Strong communication skills'],
-  },
-  {
-    id: 2,
-    title: 'Community Outreach Specialist',
-    department: 'Outreach',
-    location: 'Remote',
-    type: 'Full-time',
-    description: 'Join our team to build relationships with communities and implement grassroots programs.',
-    requirements: ['Experience in community work', 'Excellent interpersonal skills', 'Willingness to travel'],
-  },
-  {
-    id: 3,
     title: 'Grant Writer',
     department: 'Development',
     location: 'Remote',
-    type: 'Part-time',
-    description: 'Help us secure funding by writing compelling grant proposals and funding applications.',
-    requirements: ['Proven grant writing experience', 'Research skills', 'Attention to detail'],
+    type: 'Full-time',
+    description: 'Help us secure funding by writing compelling grant proposals and funding applications to support our community initiatives.',
+    requirements: ['Proven grant writing experience', 'Strong research and analytical skills', 'Excellent written communication', 'Attention to detail', 'Ability to meet deadlines'],
+  },
+  {
+    id: 2,
+    title: 'Administrative Assistant',
+    department: 'Administration',
+    location: 'Owerri, Nigeria',
+    type: 'Full-time',
+    description: 'Support our operations by managing administrative tasks, coordinating schedules, and ensuring smooth day-to-day operations.',
+    requirements: ['Strong organizational skills', 'Proficiency in office software', 'Excellent communication skills', 'Ability to multitask', 'Detail-oriented'],
   },
 ];
 
@@ -59,7 +50,7 @@ export default function CareerPage() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800">
+      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0B334A] via-[#0F4A6A] to-[#0B334A]">
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -70,7 +61,7 @@ export default function CareerPage() {
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
               Careers
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-slate-100 max-w-3xl mx-auto">
               Join our team and make a meaningful impact in communities across Africa
             </p>
           </motion.div>
@@ -121,7 +112,7 @@ export default function CareerPage() {
                       setSelectedJob(job.id);
                       setShowApplicationForm(true);
                     }}
-                    className="mt-4 md:mt-0 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+                    className="mt-4 md:mt-0 px-6 py-3 bg-[#0B334A] text-white font-semibold rounded-lg hover:bg-[#082530] transition-colors"
                   >
                     Apply Now
                   </button>
@@ -168,7 +159,7 @@ export default function CareerPage() {
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A]"
                 />
               </div>
               <div>
@@ -178,7 +169,7 @@ export default function CareerPage() {
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A]"
                 />
               </div>
               <div>
@@ -188,7 +179,7 @@ export default function CareerPage() {
                   required
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A]"
                 />
               </div>
               <div>
@@ -197,7 +188,7 @@ export default function CareerPage() {
                   rows={3}
                   value={formData.address}
                   onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A]"
                 />
               </div>
               <div>
@@ -207,7 +198,7 @@ export default function CareerPage() {
                   accept=".pdf,.doc,.docx"
                   required
                   onChange={handleFileChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A]"
                 />
               </div>
               <div>
@@ -215,13 +206,13 @@ export default function CareerPage() {
                 <input
                   type="file"
                   accept=".pdf,.doc,.docx"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A]"
                 />
               </div>
               <div className="flex gap-4">
                 <button
                   type="submit"
-                  className="flex-1 px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all"
+                  className="flex-1 px-8 py-4 bg-gradient-to-r from-[#0B334A] to-[#0F4A6A] text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all"
                 >
                   Submit Application
                 </button>
@@ -240,6 +231,7 @@ export default function CareerPage() {
     </main>
   );
 }
+
 
 
 

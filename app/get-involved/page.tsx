@@ -60,7 +60,7 @@ export default function GetInvolvedPage() {
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
               {t.getInvolved.hero.title}
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-slate-100 max-w-3xl mx-auto">
               {t.getInvolved.hero.subtitle}
             </p>
           </motion.div>
@@ -87,7 +87,7 @@ export default function GetInvolvedPage() {
               >
                 <h3 className="text-2xl font-bold mb-2">{type.title}</h3>
                 <p className="text-sm opacity-80 mb-4">{type.subtitle}</p>
-                <p className={selectedType === type.id ? 'text-blue-50' : 'text-gray-600'}>
+                <p className={selectedType === type.id ? 'text-slate-100' : 'text-gray-600'}>
                   {type.description}
                 </p>
               </motion.button>
@@ -122,7 +122,7 @@ export default function GetInvolvedPage() {
                       <input
                         type="text"
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A]"
                       />
                     </div>
                     <div>
@@ -130,7 +130,7 @@ export default function GetInvolvedPage() {
                       <input
                         type="email"
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A]"
                       />
                     </div>
                   </div>
@@ -148,7 +148,7 @@ export default function GetInvolvedPage() {
                         <label className="block text-sm font-semibold text-gray-700 mb-2">{t.getInvolved.form.availability}</label>
                         <textarea
                           rows={3}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A]"
                           placeholder={t.getInvolved.form.availabilityPlaceholder}
                         />
                       </div>
@@ -156,7 +156,7 @@ export default function GetInvolvedPage() {
                         <label className="block text-sm font-semibold text-gray-700 mb-2">{t.getInvolved.form.skillsInterests}</label>
                         <textarea
                           rows={3}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A]"
                           placeholder={t.getInvolved.form.skillsPlaceholder}
                         />
                       </div>
@@ -168,7 +168,7 @@ export default function GetInvolvedPage() {
                         <label className="block text-sm font-semibold text-gray-700 mb-2">{t.getInvolved.form.organization}</label>
                         <input
                           type="text"
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A]"
                         />
                       </div>
                       <div>
@@ -188,7 +188,7 @@ export default function GetInvolvedPage() {
                         <label className="block text-sm font-semibold text-gray-700 mb-2">{t.getInvolved.form.platform}</label>
                         <input
                           type="text"
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A]"
                           placeholder={t.getInvolved.form.platformPlaceholder}
                         />
                       </div>

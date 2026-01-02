@@ -92,3 +92,5 @@ export function shouldRefreshTranslations(lang: Language): boolean {
   return Date.now() - cached.timestamp >= CACHE_DURATION;
 }
 
+
+

@@ -124,7 +124,7 @@ export const SearchFilters = ({
           <select
             value={sortBy}
             onChange={(e) => onSortChange(e.target.value as SortOption)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A] focus:border-transparent bg-white"
             aria-label="Sort resources"
           >
             <option value="relevance">{t.help.sortRelevance}</option>

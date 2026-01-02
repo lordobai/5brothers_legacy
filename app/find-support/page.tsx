@@ -31,7 +31,7 @@ export default function FindSupportPage() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800">
+      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0B334A] via-[#0F4A6A] to-[#0B334A]">
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -42,7 +42,7 @@ export default function FindSupportPage() {
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
               Find Support
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-slate-100 max-w-3xl mx-auto">
               Resources and services to help you and your community
             </p>
           </motion.div>
@@ -96,14 +96,14 @@ export default function FindSupportPage() {
                   {resource.items.map((item, idx) => (
                     <div
                       key={idx}
-                      className="bg-gradient-to-br from-blue-100 to-indigo-100 rounded-2xl p-6 hover:shadow-lg transition-all"
+                      className="bg-gradient-to-br from-slate-100 via-slate-50 to-slate-100 rounded-2xl p-6 hover:shadow-lg transition-all"
                     >
                       <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
                       <p className="text-gray-600 mb-4">{item.description}</p>
                       {item.contact && (
                         <a
                           href={item.contact.includes('@') ? `mailto:${item.contact}` : `tel:${item.contact}`}
-                          className="text-blue-600 hover:text-blue-700 font-semibold"
+                          className="text-[#0B334A] hover:text-[#082530] font-semibold"
                         >
                           Contact: {item.contact}
                         </a>
@@ -111,7 +111,7 @@ export default function FindSupportPage() {
                       {item.link && (
                         <a
                           href={item.link}
-                          className="text-blue-600 hover:text-blue-700 font-semibold"
+                          className="text-[#0B334A] hover:text-[#082530] font-semibold"
                         >
                           Learn More →
                         </a>

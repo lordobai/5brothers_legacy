@@ -6,37 +6,37 @@ import { useTranslations } from '@/contexts/LanguageContext';
 
 const reports = [
   {
-    title: 'Annual Report 2023',
+    title: 'Annual Report 2026',
     category: 'Annual',
-    year: '2023',
-    description: 'Comprehensive overview of our activities, impact, and financial performance for 2023',
+    year: '2026',
+    description: 'Comprehensive overview of our activities, impact, and financial performance for 2026',
     downloadUrl: '#',
   },
   {
-    title: 'Financial Report Q4 2023',
+    title: 'Financial Report Q4 2026',
     category: 'Financial',
-    year: '2023',
+    year: '2026',
     description: 'Detailed financial statements and budget allocation for the fourth quarter',
     downloadUrl: '#',
   },
   {
-    title: 'Audit Report 2023',
+    title: 'Audit Report 2026',
     category: 'Audit',
-    year: '2023',
+    year: '2026',
     description: 'Independent audit report verifying our financial practices and accountability',
     downloadUrl: '#',
   },
   {
-    title: 'Annual Report 2022',
+    title: 'Annual Report 2025',
     category: 'Annual',
-    year: '2022',
-    description: 'Annual report covering our programs and impact throughout 2022',
+    year: '2025',
+    description: 'Annual report covering our programs and impact throughout 2025',
     downloadUrl: '#',
   },
   {
-    title: 'Impact Assessment Report 2023',
+    title: 'Impact Assessment Report 2026',
     category: 'Annual',
-    year: '2023',
+    year: '2026',
     description: 'Detailed assessment of program outcomes and community impact',
     downloadUrl: '#',
   },
@@ -93,7 +93,7 @@ export default function OurReportsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-gradient-to-br from-blue-100 to-indigo-100 rounded-2xl p-8 lg:p-10"
+              className="bg-gradient-to-br from-slate-100 via-slate-50 to-slate-100 rounded-2xl p-8 lg:p-10"
             >
               <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.ourReports.transparency.title}</h2>
               <p className="text-lg text-gray-700 leading-relaxed">

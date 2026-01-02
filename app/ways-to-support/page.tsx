@@ -32,7 +32,7 @@ export default function WaysToSupportPage() {
       description: t.waysToSupport.methods.project.description,
       icon: '🎯',
       action: t.waysToSupport.methods.project.action,
-      link: '/our-initiatives',
+      link: '/our-programs',
       color: 'from-blue-500 to-cyan-500',
     },
     {
@@ -107,7 +107,7 @@ export default function WaysToSupportPage() {
       </section>
 
       {/* Impact Stories */}
-      <section className="section-padding bg-gradient-to-br from-slate-100 via-blue-100 to-indigo-100">
+      <section className="section-padding bg-gradient-to-br from-slate-100 via-slate-50 to-slate-100">
         <div className="container mx-auto container-padding">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

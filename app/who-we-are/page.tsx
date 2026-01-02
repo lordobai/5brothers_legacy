@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { Icon } from '@/components/ui/Icon';
 import { useTranslations } from '@/contexts/LanguageContext';
@@ -11,13 +11,13 @@ export default function WhoWeArePage() {
   const t = useTranslations();
   const [expandedGoal, setExpandedGoal] = useState<number | null>(null);
   
-  const values = [
+  const values = useMemo(() => [
     {
       title: t.whoWeAre.values.empowerment.title,
       description: t.whoWeAre.values.empowerment.description,
       icon: 'trendingUp' as const,
-      color: 'from-indigo-500 to-blue-600',
-      bgColor: 'bg-indigo-50',
+      color: 'from-[#0B334A] to-[#0F4A6A]',
+      bgColor: 'bg-slate-50',
     },
     {
       title: t.whoWeAre.values.equality.title,
@@ -51,12 +51,12 @@ export default function WhoWeArePage() {
       title: t.whoWeAre.values.impact.title,
       description: t.whoWeAre.values.impact.description,
       icon: 'barChart3' as const,
-      color: 'from-blue-500 to-indigo-600',
-      bgColor: 'bg-blue-50',
+      color: 'from-[#0B334A] to-[#0F4A6A]',
+      bgColor: 'bg-slate-50',
     },
-  ];
+  ], [t.whoWeAre.values]);
 
-  const goals = [
+  const goals = useMemo(() => [
     {
       title: t.whoWeAre.goalsList.education.title,
       description: t.whoWeAre.goalsList.education.description,
@@ -77,7 +77,52 @@ export default function WhoWeArePage() {
       description: t.whoWeAre.goalsList.youthEmpowerment.description,
       progress: 15,
     },
-  ];
+  ], [t.whoWeAre.goalsList]);
+
+  const sdgCards = useMemo(() => [
+    {
+      number: 4,
+      color: '#C5192D',
+      title: t.whoWeAre.sdgAlignment.sdg4.title,
+      programs: t.whoWeAre.sdgAlignment.sdg4.programs,
+      items: t.whoWeAre.sdgAlignment.sdg4.items,
+    },
+    {
+      number: 3,
+      color: '#4C9F38',
+      title: t.whoWeAre.sdgAlignment.sdg3.title,
+      programs: t.whoWeAre.sdgAlignment.sdg3.programs,
+      items: t.whoWeAre.sdgAlignment.sdg3.items,
+    },
+    {
+      number: 6,
+      color: '#26BDE2',
+      title: t.whoWeAre.sdgAlignment.sdg6.title,
+      programs: t.whoWeAre.sdgAlignment.sdg6.programs,
+      items: t.whoWeAre.sdgAlignment.sdg6.items,
+    },
+    {
+      number: 8,
+      color: '#A21942',
+      title: t.whoWeAre.sdgAlignment.sdg8.title,
+      programs: t.whoWeAre.sdgAlignment.sdg8.programs,
+      items: t.whoWeAre.sdgAlignment.sdg8.items,
+    },
+    {
+      number: 1,
+      color: '#E5243B',
+      title: t.whoWeAre.sdgAlignment.sdg1.title,
+      programs: t.whoWeAre.sdgAlignment.sdg1.programs,
+      items: t.whoWeAre.sdgAlignment.sdg1.items,
+    },
+    {
+      number: 16,
+      color: '#00689D',
+      title: t.whoWeAre.sdgAlignment.sdg16.title,
+      programs: t.whoWeAre.sdgAlignment.sdg16.programs,
+      items: t.whoWeAre.sdgAlignment.sdg16.items,
+    },
+  ], [t.whoWeAre.sdgAlignment]);
 
   return (
     <main className="min-h-screen">
@@ -102,7 +147,7 @@ export default function WhoWeArePage() {
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
               {t.whoWeAre.title}
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-slate-100 max-w-3xl mx-auto">
               {t.whoWeAre.subtitle}
             </p>
           </motion.div>
@@ -171,7 +216,7 @@ export default function WhoWeArePage() {
       </section>
 
       {/* Mission, Vision, Goals */}
-      <section className="section-padding bg-gradient-to-br from-slate-100 via-blue-100 to-indigo-100">
+      <section className="section-padding bg-gradient-to-br from-slate-100 via-slate-50 to-slate-100">
         <div className="container mx-auto container-padding">
           <div className="max-w-7xl mx-auto">
             <motion.div
@@ -195,7 +240,7 @@ export default function WhoWeArePage() {
                 transition={{ duration: 0.6 }}
                 className="bg-white rounded-2xl p-8 lg:p-10 shadow-lg hover:shadow-xl transition-all border border-gray-100"
               >
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center mb-6 shadow-md">
+                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#0B334A] to-[#0F4A6A] flex items-center justify-center mb-6 shadow-md">
                   <Icon name="target" size={32} className="text-white" strokeWidth={2.5} />
                 </div>
                 <h3 className="text-3xl font-bold text-gray-900 mb-4">{t.whoWeAre.mission}</h3>
@@ -238,7 +283,7 @@ export default function WhoWeArePage() {
                 {goals.map((goal, index) => (
                   <div
                     key={index}
-                    className="border-l-4 border-blue-600 pl-6 py-4 hover:bg-gray-50 rounded-r-lg transition-colors cursor-pointer"
+                    className="border-l-4 border-[#0B334A] pl-6 py-4 hover:bg-gray-50 rounded-r-lg transition-colors cursor-pointer"
                     onClick={() => setExpandedGoal(expandedGoal === index ? null : index)}
                   >
                     <div className="flex items-center justify-between mb-2">
@@ -260,6 +305,74 @@ export default function WhoWeArePage() {
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* UN SDG Alignment Section */}
+      <section className="section-padding bg-gradient-to-br from-slate-50 via-white to-slate-50">
+        <div className="container mx-auto container-padding">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+              {t.whoWeAre.sdgAlignment.title}
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              {t.whoWeAre.sdgAlignment.subtitle}
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+            {sdgCards.map((sdg, index) => (
+              <motion.div
+                key={sdg.number}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: (index + 1) * 0.1 }}
+                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all border-2"
+                style={{ borderColor: sdg.color }}
+              >
+                <div className="flex items-center mb-4">
+                  <div 
+                    className="w-16 h-16 rounded-lg flex items-center justify-center text-white font-bold text-xl mr-4"
+                    style={{ backgroundColor: sdg.color }}
+                  >
+                    {sdg.number}
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900">{sdg.title}</h3>
+                </div>
+                <p className="text-gray-600 mb-3">{sdg.programs}</p>
+                <ul className="space-y-1 text-sm text-gray-700">
+                  {sdg.items.map((item, idx) => (
+                    <li key={idx}>• {item}</li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            className="mt-12 text-center"
+          >
+            <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+              {t.whoWeAre.sdgAlignment.conclusion.replace('{count}', '6')}
+            </p>
+            <Link
+              href="/our-programs"
+              className="inline-block mt-6 px-8 py-4 bg-gradient-to-r from-[#0B334A] to-[#0F4A6A] text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
+            >
+              {t.whoWeAre.sdgAlignment.explorePrograms}
+            </Link>
+          </motion.div>
         </div>
       </section>
 
@@ -315,7 +428,7 @@ export default function WhoWeArePage() {
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
               {t.whoWeAre.joinUs}
             </h2>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-slate-100 mb-8">
               {t.whoWeAre.joinUsSubtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

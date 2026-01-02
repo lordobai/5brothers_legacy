@@ -149,6 +149,7 @@ export interface Translations {
       linkUrlInvalid: string;
       phone: string;
       email: string;
+      emailRequired: string;
       address: string;
       serviceArea: string;
       eligibility: string;
@@ -170,7 +171,7 @@ export interface Translations {
       financialAssistance: string;
       domesticViolence: string;
       disabilityServices: string;
-      immigrationSupport: string;
+      cancerScreeningSupport: string;
       other: string;
     };
   };
@@ -232,6 +233,42 @@ export interface Translations {
       cleanWater: { title: string; description: string };
       youthEmpowerment: { title: string; description: string };
     };
+    sdgAlignment: {
+      title: string;
+      subtitle: string;
+      sdg4: {
+        title: string;
+        programs: string;
+        items: string[];
+      };
+      sdg3: {
+        title: string;
+        programs: string;
+        items: string[];
+      };
+      sdg6: {
+        title: string;
+        programs: string;
+        items: string[];
+      };
+      sdg8: {
+        title: string;
+        programs: string;
+        items: string[];
+      };
+      sdg1: {
+        title: string;
+        programs: string;
+        items: string[];
+      };
+      sdg16: {
+        title: string;
+        programs: string;
+        items: string[];
+      };
+      conclusion: string;
+      explorePrograms: string;
+    };
   };
 
   // Contact Us Page
@@ -283,28 +320,43 @@ export interface Translations {
       subtitle: string;
     };
     roles: {
-      executiveDirector: string;
-      programDirector: string;
-      financeDirector: string;
-      educationCoordinator: string;
-      educationProgramLead: string;
-      healthProgramsManager: string;
-      communityOutreachCoordinator: string;
+      financeManager: string;
+      publicHealthSupplyChainAdvisor: string;
+      legalAdvisor: string;
+      mealAdvisor: string;
+      programsManager: string;
+      operationsManager: string;
+      programOfficer: string;
+      coFounder: string;
     };
     bios: {
-      john: string;
-      sarah: string;
-      michael: string;
-      amina: string;
-      scott: string;
-      david: string;
-      grace: string;
+      kenneth: string;
+      umeh: string;
+      oyeniyi: string;
+      geraldine: string;
+      uwalaka: string;
+      kalu: string;
+      nkachukwu: string;
+      peter: string;
     };
     contact: string;
     joinTeam: {
       title: string;
       subtitle: string;
       viewPositions: string;
+    };
+    structure: {
+      title: string;
+      leadership: {
+        title: string;
+        description: string;
+        roles: string[];
+      };
+      management: {
+        title: string;
+        description: string;
+        roles: string[];
+      };
     };
   };
 

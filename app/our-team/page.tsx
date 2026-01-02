@@ -2,64 +2,71 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslations } from '@/contexts/LanguageContext';
 
 export default function OurTeamPage() {
   const t = useTranslations();
   const [selectedMember, setSelectedMember] = useState<number | null>(null);
 
-  const teamMembers = [
+  const teamMembers = useMemo(() => [
     {
-      name: 'Dr. John Okonkwo',
-      role: t.ourTeam.roles.executiveDirector,
-      bio: t.ourTeam.bios.john,
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
-      email: 'john@5brotherslegacy.org',
+      name: 'Dr. Peter Okorie',
+      role: t.ourTeam.roles.coFounder,
+      bio: t.ourTeam.bios.peter,
+      image: '/images/f18963a1-eae1-47af-ab06-d71c636d170a.JPG',
+      email: 'peter@5brotherslegacy.org',
     },
     {
-      name: 'Sarah Adebayo',
-      role: t.ourTeam.roles.programDirector,
-      bio: t.ourTeam.bios.sarah,
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80',
-      email: 'sarah@5brotherslegacy.org',
+      name: 'Dr. Uwalaka Chiamaka',
+      role: t.ourTeam.roles.programsManager,
+      bio: t.ourTeam.bios.uwalaka,
+      image: '/images/0ea2b0a7-24f7-41d0-a0b9-d90f846495bc.JPG',
+      email: 'uwalaka@5brotherslegacy.org',
     },
     {
-      name: 'Michael Chukwu',
-      role: t.ourTeam.roles.financeDirector,
-      bio: t.ourTeam.bios.michael,
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80',
-      email: 'michael@5brotherslegacy.org',
+      name: 'Kalu Eke',
+      role: t.ourTeam.roles.operationsManager,
+      bio: t.ourTeam.bios.kalu,
+      image: '/images/1b36139e-8638-46b1-8024-110cadd97814.JPG',
+      email: 'kalu@5brotherslegacy.org',
     },
     {
-      name: 'Amina Hassan',
-      role: t.ourTeam.roles.educationCoordinator,
-      bio: t.ourTeam.bios.amina,
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80',
-      email: 'amina@5brotherslegacy.org',
+      name: 'Kenneth Nwakwuo',
+      role: t.ourTeam.roles.financeManager,
+      bio: t.ourTeam.bios.kenneth,
+      image: '/images/01ba7ad0-1e18-4c30-818d-60445cce4c60.JPG',
+      email: 'kenneth@5brotherslegacy.org',
     },
     {
-      name: 'Scott Murphree',
-      role: t.ourTeam.roles.educationProgramLead,
-      bio: t.ourTeam.bios.scott,
-      image: '/images/better.png',
-      email: 'scott@5brotherslegacy.org',
+      name: 'Umeh Chukwunonso, MPH',
+      role: t.ourTeam.roles.publicHealthSupplyChainAdvisor,
+      bio: t.ourTeam.bios.umeh,
+      image: '/images/ef91a549-c1c2-4a63-a8de-2269389d6a85.JPG',
+      email: 'umeh@5brotherslegacy.org',
     },
     {
-      name: 'David Okafor',
-      role: t.ourTeam.roles.healthProgramsManager,
-      bio: t.ourTeam.bios.david,
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80',
-      email: 'david@5brotherslegacy.org',
+      name: 'Oyeniyi Sodimu, LLM',
+      role: t.ourTeam.roles.legalAdvisor,
+      bio: t.ourTeam.bios.oyeniyi,
+      image: '/images/e4bad332-757a-43e8-8ebf-5b74f1d12d42.JPG',
+      email: 'oyeniyi@5brotherslegacy.org',
     },
     {
-      name: 'Grace Nwosu',
-      role: t.ourTeam.roles.communityOutreachCoordinator,
-      bio: t.ourTeam.bios.grace,
-      image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80',
-      email: 'grace@5brotherslegacy.org',
+      name: 'Geraldine Chinonso Mbagwu, MPH',
+      role: t.ourTeam.roles.mealAdvisor,
+      bio: t.ourTeam.bios.geraldine,
+      image: '/images/18531ccf-8229-466f-9ba4-0b08cf871a72.JPG',
+      email: 'geraldine@5brotherslegacy.org',
     },
-  ];
+    {
+      name: 'Nkachukwu Abanobi',
+      role: t.ourTeam.roles.programOfficer,
+      bio: t.ourTeam.bios.nkachukwu,
+      image: '/images/61c635a0-5f6a-41aa-ab9f-bc8c6d2d8ab9.JPG',
+      email: 'nkachukwu@5brotherslegacy.org',
+    },
+  ], [t]);
 
   return (
     <main className="min-h-screen">
@@ -84,10 +91,87 @@ export default function OurTeamPage() {
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
               {t.ourTeam.hero.title}
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-slate-100 max-w-3xl mx-auto">
               {t.ourTeam.hero.subtitle}
             </p>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Team Structure Section */}
+      <section className="section-padding bg-gradient-to-br from-slate-50 via-white to-slate-50">
+        <div className="container mx-auto container-padding">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+              {t.ourTeam.structure.title}
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-16">
+            {/* Leadership */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="bg-white rounded-2xl p-8 shadow-lg border-2 border-[#0B334A]"
+            >
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#0B334A] to-[#0F4A6A] flex items-center justify-center mr-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <h3 className="text-3xl font-bold text-gray-900">{t.ourTeam.structure.leadership.title}</h3>
+              </div>
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                {t.ourTeam.structure.leadership.description}
+              </p>
+              <ul className="space-y-3">
+                {t.ourTeam.structure.leadership.roles.map((role, idx) => (
+                  <li key={idx} className="flex items-start">
+                    <span className="text-[#0B334A] mr-3 mt-1">•</span>
+                    <span className="text-gray-700">{role}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Management */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="bg-white rounded-2xl p-8 shadow-lg border-2 border-[#DE3C3A]"
+            >
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#DE3C3A] to-[#E85A5A] flex items-center justify-center mr-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                  </svg>
+                </div>
+                <h3 className="text-3xl font-bold text-gray-900">{t.ourTeam.structure.management.title}</h3>
+              </div>
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                {t.ourTeam.structure.management.description}
+              </p>
+              <ul className="space-y-3">
+                {t.ourTeam.structure.management.roles.map((role, idx) => (
+                  <li key={idx} className="flex items-start">
+                    <span className="text-[#DE3C3A] mr-3 mt-1">•</span>
+                    <span className="text-gray-700">{role}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -156,7 +240,7 @@ export default function OurTeamPage() {
       </section>
 
       {/* Join Our Team */}
-      <section className="section-padding bg-gradient-to-br from-slate-100 via-blue-100 to-indigo-100">
+      <section className="section-padding bg-gradient-to-br from-slate-100 via-slate-50 to-slate-100">
         <div className="container mx-auto container-padding text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

@@ -5,12 +5,16 @@ import Image from 'next/image';
 import { useTranslations } from '@/contexts/LanguageContext';
 
 const partners = [
-  { name: 'Partner Organization 1', logo: 'https://via.placeholder.com/300x150/3b82f6/ffffff?text=Partner+1', description: 'Supporting education initiatives' },
-  { name: 'Partner Organization 2', logo: 'https://via.placeholder.com/300x150/1e40af/ffffff?text=Partner+2', description: 'Healthcare program partner' },
-  { name: 'Partner Organization 3', logo: 'https://via.placeholder.com/300x150/2563eb/ffffff?text=Partner+3', description: 'Water and sanitation projects' },
-  { name: 'Partner Organization 4', logo: 'https://via.placeholder.com/300x150/3b82f6/ffffff?text=Partner+4', description: 'Youth empowerment programs' },
-  { name: 'Partner Organization 5', logo: 'https://via.placeholder.com/300x150/1e40af/ffffff?text=Partner+5', description: 'Disaster response support' },
-  { name: 'Partner Organization 6', logo: 'https://via.placeholder.com/300x150/2563eb/ffffff?text=Partner+6', description: 'Advocacy and policy work' },
+  { 
+    name: 'House of Renaissance for Health Initiative', 
+    logo: '/images/bb3a945c-355f-4ff6-91cb-646e9dd7f91d.JPG', 
+    description: 'Partnering to improve health outcomes in underserved communities' 
+  },
+  { 
+    name: 'Biomec Nigeria Limited', 
+    logo: '/images/95e8571a-ca74-44c7-8191-f14ee2b0a12c.JPG', 
+    description: 'Supporting sustainable development and community initiatives' 
+  },
 ];
 
 export default function OurPartnersPage() {
@@ -81,7 +85,7 @@ export default function OurPartnersPage() {
       </section>
 
       {/* Partnership Opportunities */}
-      <section className="section-padding bg-gradient-to-br from-slate-100 via-blue-100 to-indigo-100">
+      <section className="section-padding bg-gradient-to-br from-slate-100 via-slate-50 to-slate-100">
         <div className="container mx-auto container-padding">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div

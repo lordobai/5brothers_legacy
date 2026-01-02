@@ -35,20 +35,20 @@ export const Header: React.FC = () => {
           
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-6">
+            <Link href="/" className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium">
+              {t.nav.home}
+            </Link>
             <Link href="/who-we-are" className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium">
               {t.nav.whoWeAre}
             </Link>
             <Link href="/our-team" className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium">
               {t.nav.ourTeam}
             </Link>
-            <Link href="/our-initiatives" className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium">
+            <Link href="/our-programs" className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium">
               {t.nav.initiatives}
             </Link>
             <Link href="/get-involved" className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium">
               {t.nav.getInvolved}
-            </Link>
-            <Link href="/help" className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium">
-              {t.nav.help}
             </Link>
             <LanguageSelector />
             <Link href="/make-a-gift">
@@ -77,6 +77,13 @@ export const Header: React.FC = () => {
           <nav className="lg:hidden py-4 border-t">
             <div className="flex flex-col space-y-4">
               <Link 
+                href="/" 
+                className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {t.nav.home}
+              </Link>
+              <Link 
                 href="/who-we-are" 
                 className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium py-2"
                 onClick={() => setMobileMenuOpen(false)}
@@ -91,7 +98,7 @@ export const Header: React.FC = () => {
                 {t.nav.ourTeam}
               </Link>
               <Link 
-                href="/our-initiatives" 
+                href="/our-programs" 
                 className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -103,13 +110,6 @@ export const Header: React.FC = () => {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {t.nav.getInvolved}
-              </Link>
-              <Link 
-                href="/help" 
-                className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {t.nav.help}
               </Link>
               <div className="py-2">
                 <LanguageSelector />

@@ -15,7 +15,7 @@ export const getResourceTypeTranslation = (type: ResourceType, t: Translations['
     'Financial Assistance': 'financialAssistance',
     'Domestic Violence Support': 'domesticViolence',
     'Disability Services': 'disabilityServices',
-    'Immigration Support': 'immigrationSupport',
+    'Cancer Screening & Support': 'cancerScreeningSupport',
     'Other': 'other',
   };
 
@@ -37,7 +37,7 @@ export const getTranslatedResourceTypes = (t: Translations['help']): ResourceTyp
     'Financial Assistance',
     'Domestic Violence Support',
     'Disability Services',
-    'Immigration Support',
+    'Cancer Screening & Support',
     'Other',
   ] as const;
 };

@@ -15,6 +15,7 @@ interface ResourceSubmissionFormProps {
 interface FormData {
   organization_name: string;
   resource_type: ResourceType | '';
+  custom_resource_type: string;
   description: string;
   link_url: string;
   contact_phone: string;
@@ -30,6 +31,7 @@ export const ResourceSubmissionForm = ({ onSubmit, onCancel }: ResourceSubmissio
   const [formData, setFormData] = useState<FormData>({
     organization_name: '',
     resource_type: '',
+    custom_resource_type: '',
     description: '',
     link_url: '',
     contact_phone: '',
@@ -63,6 +65,10 @@ export const ResourceSubmissionForm = ({ onSubmit, onCancel }: ResourceSubmissio
       newErrors.resource_type = t.help.form.resourceTypeRequired;
     }
 
+    if (formData.resource_type === 'Other' && !formData.custom_resource_type.trim()) {
+      newErrors.custom_resource_type = t.help.form.resourceTypeRequired;
+    }
+
     if (!formData.description.trim()) {
       newErrors.description = t.help.form.descriptionRequired;
     } else if (formData.description.length > 300) {
@@ -75,7 +81,9 @@ export const ResourceSubmissionForm = ({ onSubmit, onCancel }: ResourceSubmissio
       newErrors.link_url = t.help.form.linkUrlInvalid;
     }
 
-    if (formData.contact_email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.contact_email)) {
+    if (!formData.contact_email.trim()) {
+      newErrors.contact_email = t.help.form.emailRequired;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.contact_email)) {
       newErrors.contact_email = t.help.form.linkUrlInvalid.replace('URL', 'email address');
     }
 
@@ -98,10 +106,13 @@ export const ResourceSubmissionForm = ({ onSubmit, onCancel }: ResourceSubmissio
     const resource: Omit<Resource, 'id' | 'created_at' | 'updated_at' | 'status'> = {
       organization_name: formData.organization_name.trim(),
       resource_type: formData.resource_type as ResourceType,
+      custom_resource_type: formData.resource_type === 'Other' && formData.custom_resource_type.trim() 
+        ? formData.custom_resource_type.trim() 
+        : undefined,
       description: formData.description.trim(),
       link_url: formData.link_url.trim(),
       contact_phone: formData.contact_phone.trim() || undefined,
-      contact_email: formData.contact_email.trim() || undefined,
+      contact_email: formData.contact_email.trim(),
       address: formData.address.trim() || undefined,
       service_area: formData.service_area.trim() || undefined,
       eligibility: formData.eligibility.trim() || undefined,
@@ -117,6 +128,7 @@ export const ResourceSubmissionForm = ({ onSubmit, onCancel }: ResourceSubmissio
       setFormData({
         organization_name: '',
         resource_type: '',
+        custom_resource_type: '',
         description: '',
         link_url: '',
         contact_phone: '',
@@ -220,6 +232,32 @@ export const ResourceSubmissionForm = ({ onSubmit, onCancel }: ResourceSubmissio
           )}
         </div>
 
+        {/* Custom Resource Type - Required when "Other" is selected */}
+        {formData.resource_type === 'Other' && (
+          <div>
+            <label htmlFor="custom_resource_type" className="block text-sm font-semibold text-gray-700 mb-2">
+              {t.help.form.resourceType} <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="custom_resource_type"
+              value={formData.custom_resource_type}
+              onChange={(e) => handleChange('custom_resource_type', e.target.value)}
+              placeholder={t.help.form.resourceType}
+              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#0B334A] focus:border-transparent ${
+                errors.custom_resource_type ? 'border-red-500' : 'border-gray-300'
+              }`}
+              aria-invalid={!!errors.custom_resource_type}
+              aria-describedby={errors.custom_resource_type ? 'custom-resource-type-error' : undefined}
+            />
+            {errors.custom_resource_type && (
+              <p id="custom-resource-type-error" className="mt-1 text-sm text-red-600" role="alert">
+                {errors.custom_resource_type}
+              </p>
+            )}
+          </div>
+        )}
+
         {/* Description - Required */}
         <div>
           <label htmlFor="description" className="block text-sm font-semibold text-gray-700 mb-2">
@@ -291,7 +329,7 @@ export const ResourceSubmissionForm = ({ onSubmit, onCancel }: ResourceSubmissio
 
           <div>
             <label htmlFor="contact_email" className="block text-sm font-semibold text-gray-700 mb-2">
-              {t.help.form.email}
+              {t.help.form.email} <span className="text-red-500">*</span>
             </label>
             <input
               type="email"
@@ -302,9 +340,10 @@ export const ResourceSubmissionForm = ({ onSubmit, onCancel }: ResourceSubmissio
                 errors.contact_email ? 'border-red-500' : 'border-gray-300'
               }`}
               aria-invalid={!!errors.contact_email}
+              aria-describedby={errors.contact_email ? 'email-error' : undefined}
             />
             {errors.contact_email && (
-              <p className="mt-1 text-sm text-red-600" role="alert">
+              <p id="email-error" className="mt-1 text-sm text-red-600" role="alert">
                 {errors.contact_email}
               </p>
             )}

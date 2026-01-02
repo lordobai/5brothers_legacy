@@ -13,21 +13,21 @@ export const InitiativesOverview = () => {
       title: t.home.initiatives.educationTitle,
       description: t.home.initiatives.educationDescription,
       image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80',
-      link: '/our-initiatives#education',
+      link: '/our-programs#education',
       color: 'from-[#0B334A] to-[#0F4A6A]',
     },
     {
       title: t.home.initiatives.healthTitle,
       description: t.home.initiatives.healthDescription,
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&q=80',
-      link: '/our-initiatives#health',
+      image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80',
+      link: '/our-programs#health',
       color: 'from-green-500 to-green-600',
     },
     {
       title: t.home.initiatives.washTitle,
       description: t.home.initiatives.washDescription,
       image: 'https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?w=800&q=80',
-      link: '/our-initiatives#wash',
+      link: '/our-programs#wash',
       color: 'from-cyan-500 to-cyan-600',
     },
   ];
@@ -97,7 +97,7 @@ export const InitiativesOverview = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mt-12"
         >
-          <Link href="/our-initiatives">
+          <Link href="/our-programs">
             <button className="px-8 py-3 bg-gradient-to-r from-[#0B334A] to-[#0F4A6A] text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all">
               {t.home.initiatives.viewAll}
             </button>

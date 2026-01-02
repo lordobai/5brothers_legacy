@@ -87,7 +87,7 @@ export default function MakeAGiftPage() {
       </section>
 
       {/* Donation Form */}
-      <section className="section-padding bg-gradient-to-br from-slate-100 via-blue-100 to-indigo-100">
+      <section className="section-padding bg-gradient-to-br from-slate-100 via-slate-50 to-slate-100">
         <div className="container mx-auto container-padding">
           <div className="max-w-4xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12">
@@ -136,7 +136,7 @@ export default function MakeAGiftPage() {
                     <select
                       value={currency}
                       onChange={(e) => setCurrency(e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A]"
                     >
                       {currencies.map((curr) => (
                         <option key={curr} value={curr}>{curr}</option>

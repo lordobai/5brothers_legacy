@@ -29,7 +29,7 @@ export default function OurInitiativesPage() {
       id: 'health',
       title: t.ourInitiatives.initiatives.health.title,
       description: t.ourInitiatives.initiatives.health.description,
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&q=80',
+      image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80',
       programs: [
         t.ourInitiatives.initiatives.health.programs.clinics,
         t.ourInitiatives.initiatives.health.programs.nutrition,
@@ -117,7 +117,7 @@ export default function OurInitiativesPage() {
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
               {t.ourInitiatives.hero.title}
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-slate-100 max-w-3xl mx-auto">
               {t.ourInitiatives.hero.subtitle}
             </p>
           </motion.div>
@@ -208,7 +208,7 @@ export default function OurInitiativesPage() {
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               {t.ourInitiatives.cta.title}
             </h2>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-slate-100 mb-8">
               {t.ourInitiatives.cta.subtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

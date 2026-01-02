@@ -92,7 +92,7 @@ export const EventsTable = ({ events }: EventsTableProps) => {
                   onClick={() => setTimeFilter('upcoming')}
                   className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
                     timeFilter === 'upcoming'
-                      ? 'bg-blue-600 text-white shadow-md'
+                      ? 'bg-[#0B334A] text-white shadow-md'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                   aria-pressed={timeFilter === 'upcoming'}
@@ -103,7 +103,7 @@ export const EventsTable = ({ events }: EventsTableProps) => {
                   onClick={() => setTimeFilter('past')}
                   className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
                     timeFilter === 'past'
-                      ? 'bg-blue-600 text-white shadow-md'
+                      ? 'bg-[#0B334A] text-white shadow-md'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                   aria-pressed={timeFilter === 'past'}
@@ -114,7 +114,7 @@ export const EventsTable = ({ events }: EventsTableProps) => {
                   onClick={() => setTimeFilter('all')}
                   className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
                     timeFilter === 'all'
-                      ? 'bg-blue-600 text-white shadow-md'
+                      ? 'bg-[#0B334A] text-white shadow-md'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                   aria-pressed={timeFilter === 'all'}
@@ -131,7 +131,7 @@ export const EventsTable = ({ events }: EventsTableProps) => {
                   onClick={() => setTypeFilter('internal')}
                   className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
                     typeFilter === 'internal'
-                      ? 'bg-blue-600 text-white shadow-md'
+                      ? 'bg-[#0B334A] text-white shadow-md'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                   aria-pressed={typeFilter === 'internal'}
@@ -142,7 +142,7 @@ export const EventsTable = ({ events }: EventsTableProps) => {
                   onClick={() => setTypeFilter('external')}
                   className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
                     typeFilter === 'external'
-                      ? 'bg-blue-600 text-white shadow-md'
+                      ? 'bg-[#0B334A] text-white shadow-md'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                   aria-pressed={typeFilter === 'external'}
@@ -153,7 +153,7 @@ export const EventsTable = ({ events }: EventsTableProps) => {
                   onClick={() => setTypeFilter('all')}
                   className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
                     typeFilter === 'all'
-                      ? 'bg-blue-600 text-white shadow-md'
+                      ? 'bg-[#0B334A] text-white shadow-md'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                   aria-pressed={typeFilter === 'all'}
@@ -165,8 +165,8 @@ export const EventsTable = ({ events }: EventsTableProps) => {
 
             {/* Disclaimer for external events */}
             {typeFilter === 'external' || typeFilter === 'all' ? (
-              <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-                <p className="text-sm text-blue-800">
+              <div className="bg-slate-50 border-l-4 border-[#0B334A] p-4 mb-6 rounded-r-lg">
+                <p className="text-sm text-[#0B334A]">
                   <Icon name="info" size={16} className="inline mr-2" />
                   {t.updatesEvents.events.externalDisclaimer}
                 </p>
@@ -234,7 +234,7 @@ export const EventsTable = ({ events }: EventsTableProps) => {
                           <span
                             className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${
                               event.event_type === 'internal'
-                                ? 'bg-blue-100 text-blue-800'
+                                ? 'bg-slate-100 text-[#0B334A]'
                                 : 'bg-purple-100 text-purple-800'
                             }`}
                           >
@@ -266,7 +266,7 @@ export const EventsTable = ({ events }: EventsTableProps) => {
                             href={event.event_link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-600 hover:text-blue-700 font-semibold inline-flex items-center gap-1"
+                            className="text-[#0B334A] hover:text-[#082530] font-semibold inline-flex items-center gap-1"
                             aria-label={`${t.updatesEvents.events.viewEvent}: ${event.event_name}`}
                           >
                             {t.updatesEvents.events.viewEvent}
@@ -305,7 +305,7 @@ export const EventsTable = ({ events }: EventsTableProps) => {
                       <span
                         className={`ml-2 px-2 py-1 rounded-full text-xs font-semibold whitespace-nowrap ${
                           event.event_type === 'internal'
-                            ? 'bg-blue-100 text-blue-800'
+                            ? 'bg-slate-100 text-[#0B334A]'
                             : 'bg-purple-100 text-purple-800'
                         }`}
                       >
