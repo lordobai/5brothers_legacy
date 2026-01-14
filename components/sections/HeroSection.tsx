@@ -1,105 +1,112 @@
-'use client';
+'use client'
 
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Button } from '@/components/ui/Button';
-import { useTranslations } from '@/contexts/LanguageContext';
+import { motion } from 'framer-motion'
+import Image from 'next/image'
+import Link from 'next/link'
+import { DecorativeCircle, DecorativePattern, FloatingShape } from '@/components/ui/DecorativeElements'
 
 export const HeroSection = () => {
-  const t = useTranslations();
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
+    <section className="relative min-h-[95vh] flex items-center justify-center overflow-hidden">
+      {/* Background Image with Elegant Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1920&q=80"
-          alt="Community empowerment"
+          src="/images/01ba7ad0-1e18-4c30-818d-60445cce4c60.JPG"
+          alt="Community Impact"
           fill
           className="object-cover"
           priority
+          quality={90}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0B334A]/85 via-[#0F4A6A]/75 to-[#0B334A]/85" />
+        <div className="absolute inset-0 bg-gradient-primary opacity-95"></div>
+        <div className="absolute inset-0 bg-black/10"></div>
+        <DecorativePattern className="text-white" opacity={0.1} />
       </div>
 
+      {/* Decorative Elements */}
+      <DecorativeCircle size={400} className="top-20 -left-40 text-white" delay={0.5} />
+      <DecorativeCircle size={300} className="bottom-20 -right-40 text-white" delay={0.7} />
+      <FloatingShape className="top-1/4 right-1/4" delay={0} />
+      <FloatingShape className="bottom-1/4 left-1/4" delay={1} />
+      
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 container mx-auto container-padding text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto"
+          className="max-w-6xl mx-auto"
         >
+          {/* Elegant Badge */}
           <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-6 py-2 mb-8 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white/90 text-sm font-medium"
+          >
+            <span className="h-2 w-2 rounded-full bg-gold-400 animate-pulse"></span>
+            Empowering Communities Since 2020
+          </motion.div>
+
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 leading-tight"
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-display-1 md:text-display-2 lg:text-display-1 font-bold text-white mb-8 leading-tight drop-shadow-2xl"
           >
-            {t.home.hero.title.includes(',') ? (
-              <>
-                {t.home.hero.title.split(',')[0]},
-                <br />
-                <span className="text-[#E85A5A]">{t.home.hero.title.split(',')[1]?.trim()}</span>
-              </>
-            ) : (
-              t.home.hero.title
-            )}
-          </motion.div>
+            Empowering Communities,<br />
+            <span className="text-gradient-gold">Changing Lives</span>
+          </motion.h1>
           
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl lg:text-3xl xl:text-3xl text-slate-100 mb-10 max-w-3xl xl:max-w-4xl mx-auto leading-relaxed"
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="text-body-lg md:text-xl lg:text-2xl text-white/90 mb-12 max-w-4xl mx-auto leading-relaxed font-light"
           >
-            {t.home.hero.subtitle}
+            Advancing education, healthcare, and equality across underserved regions in Africa
           </motion.p>
-
+          
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            transition={{ duration: 0.8, delay: 0.7 }}
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           >
-            <Link href="/make-a-gift">
-              <Button variant="secondary" size="lg" className="shadow-lg hover:shadow-xl transform hover:scale-105 transition-all">
-                {t.home.hero.ctaDonate}
-              </Button>
+            <Link
+              href="/make-a-gift"
+              className="btn-primary text-lg px-10 py-5 min-w-[200px]"
+            >
+              Donate Now
             </Link>
-            <Link href="/get-involved">
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="bg-transparent border-2 border-white text-white hover:bg-white/10 shadow-lg"
-              >
-                {t.home.hero.ctaGetInvolved}
-              </Button>
+            <Link
+              href="/get-involved"
+              className="btn-outline text-lg px-10 py-5 min-w-[200px]"
+            >
+              Get Involved
             </Link>
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Scroll Indicator */}
+      
+      {/* Elegant Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
+        className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-10"
       >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center"
-        >
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-1 h-3 bg-white/50 rounded-full mt-2"
-          />
-        </motion.div>
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-white/70 text-xs font-medium tracking-wider uppercase">Scroll</span>
+          <div className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center p-2 backdrop-blur-sm bg-white/5">
+            <motion.div
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+              className="w-1.5 h-1.5 bg-white rounded-full"
+            />
+          </div>
+        </div>
       </motion.div>
     </section>
-  );
-};
-
+  )
+}

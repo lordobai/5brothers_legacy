@@ -1,117 +1,58 @@
-'use client';
+import Image from 'next/image'
+import Link from 'next/link'
+import { client } from '@/lib/sanity/client'
+import { partnersQuery } from '@/lib/sanity/queries/partners'
+import { urlFor } from '@/lib/sanity/client'
+import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
+import { HeroSectionClient } from '@/components/pages/HeroSectionClient'
+import { PartnersListClient } from '@/components/pages/PartnersListClient'
 
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import { useTranslations } from '@/contexts/LanguageContext';
-
-const partners = [
-  { 
-    name: 'House of Renaissance for Health Initiative', 
-    logo: '/images/bb3a945c-355f-4ff6-91cb-646e9dd7f91d.JPG', 
-    description: 'Partnering to improve health outcomes in underserved communities' 
-  },
-  { 
-    name: 'Biomec Nigeria Limited', 
-    logo: '/images/95e8571a-ca74-44c7-8191-f14ee2b0a12c.JPG', 
-    description: 'Supporting sustainable development and community initiatives' 
-  },
-];
-
-export default function OurPartnersPage() {
-  const t = useTranslations();
-  return (
-    <main className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0B334A] via-[#0F4A6A] to-[#0B334A]">
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto"
-          >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-              {t.ourPartners.hero.title}
-            </h1>
-            <p className="text-xl md:text-2xl text-slate-100 max-w-3xl mx-auto">
-              {t.ourPartners.hero.subtitle}
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Partners Grid */}
-      <section className="section-padding bg-white">
-        <div className="container mx-auto container-padding">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
-              {t.ourPartners.trustedPartnerships.title}
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {t.ourPartners.trustedPartnerships.subtitle}
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-16">
-            {partners.map((partner, index) => (
-              <motion.div
-                key={partner.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
-              >
-                <div className="relative h-32 mb-6 grayscale hover:grayscale-0 transition-all">
-                  <Image
-                    src={partner.logo}
-                    alt={partner.name}
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{partner.name}</h3>
-                <p className="text-gray-600">{partner.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Partnership Opportunities */}
-      <section className="section-padding bg-gradient-to-br from-slate-100 via-slate-50 to-slate-100">
-        <div className="container mx-auto container-padding">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                {t.ourPartners.becomePartner.title}
-              </h2>
-              <p className="text-xl text-gray-600 mb-8">
-                {t.ourPartners.becomePartner.subtitle}
-              </p>
-              <a
-                href="/get-involved"
-                className="inline-block px-8 py-4 bg-gradient-to-r from-[#0B334A] to-[#0F4A6A] text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
-              >
-                {t.ourPartners.becomePartner.button}
-              </a>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-    </main>
-  );
+interface Partner {
+  _id: string
+  organizationName: string
+  logo: SanityImageSource
+  website: string
+  partnerType?: string
+  description?: any
+  displayOrder?: number
 }
 
+export default async function OurPartnersPage() {
+  // Fetch partners from CMS
+  let partners: Partner[] = []
+  try {
+    partners = await client.fetch(partnersQuery) || []
+  } catch (error) {
+    console.error('Error fetching partners:', error)
+  }
 
+  // Fallback data
+  const fallbackPartners = [
+    { name: 'Partner Organization 1', type: 'Corporate', description: 'Supporting education initiatives' },
+    { name: 'Partner Organization 2', type: 'NGO', description: 'Healthcare program collaboration' },
+    { name: 'Partner Organization 3', type: 'Foundation', description: 'WASH infrastructure development' },
+  ]
+
+  const displayPartners = partners.length > 0
+    ? partners
+    : fallbackPartners.map((p, i) => ({
+        _id: `fallback-${i}`,
+        organizationName: p.name,
+        logo: null,
+        website: '#',
+        partnerType: p.type,
+        description: p.description,
+      }))
+
+  return (
+    <main className="min-h-screen">
+      <HeroSectionClient
+        title="Our Trusted Partners"
+        subtitle="Together, we're creating lasting impact in communities across Africa"
+        backgroundImage="/images/e4bad332-757a-43e8-8ebf-5b74f1d12d42.JPG"
+        alt="Our Partners"
+      />
+      <PartnersListClient partners={displayPartners} />
+    </main>
+  )
+}

@@ -1,129 +1,108 @@
-'use client';
+'use client'
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { Button } from '@/components/ui/Button';
-import { Icon } from '@/components/ui/Icon';
-import { LanguageSelector } from '@/components/ui/LanguageSelector';
-import { useTranslations } from '@/contexts/LanguageContext';
+import { useState } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import { Menu, X } from 'lucide-react'
+import { motion } from 'framer-motion'
 
-export const Header: React.FC = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const t = useTranslations();
+const navigation = [
+  { name: 'Home', href: '/' },
+  { name: 'Who We Are', href: '/who-we-are' },
+  { name: 'Our Team', href: '/our-team' },
+  { name: 'Initiatives', href: '/our-initiatives' },
+  { name: 'Get Involved', href: '/get-involved' },
+  { name: 'Help', href: '/help' },
+]
+
+export const Header = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur-md supports-[backdrop-filter]:bg-white/80 shadow-sm">
-      <div className="container mx-auto px-4">
-        <div className="flex h-20 items-center justify-between">
-          <Link href="/" className="flex items-center space-x-3 group">
-            <div className="relative w-12 h-12 flex items-center justify-center transform group-hover:scale-105 transition-transform">
-              <Image
-                src="/images/Original Logo Symbol.png"
-                alt="5Brothers Legacy Logo"
-                width={48}
-                height={48}
-                className="object-contain"
-                priority
-              />
-            </div>
-            <div>
-              <span className="text-2xl font-bold text-gray-900">5Brothers</span>
-              <span className="text-sm text-gray-600 block -mt-1">Legacy</span>
-            </div>
-          </Link>
-          
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-6">
-            <Link href="/" className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium">
-              {t.nav.home}
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-lg shadow-elegant border-b border-neutral-100">
+      <nav className="container mx-auto container-padding">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <Link href="/" className="flex items-center space-x-3 group">
+              <div className="relative">
+                <Image
+                  src="/images/Original Logo Symbol.png"
+                  alt="5Brothers Legacy Logo"
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 object-contain transition-transform duration-300 group-hover:scale-110"
+                />
+              </div>
+              <span className="text-xl lg:text-2xl font-bold text-primary-700 font-display">
+                5Brothers Legacy
+              </span>
             </Link>
-            <Link href="/who-we-are" className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium">
-              {t.nav.whoWeAre}
-            </Link>
-            <Link href="/our-team" className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium">
-              {t.nav.ourTeam}
-            </Link>
-            <Link href="/our-programs" className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium">
-              {t.nav.initiatives}
-            </Link>
-            <Link href="/get-involved" className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium">
-              {t.nav.getInvolved}
-            </Link>
-            <LanguageSelector />
-            <Link href="/make-a-gift">
-              <Button variant="primary" size="sm" className="shadow-md hover:shadow-lg">
-                {t.nav.donate}
-              </Button>
-            </Link>
-          </nav>
+          </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? (
-              <Icon name="x" size={24} />
-            ) : (
-              <Icon name="menu" size={24} />
-            )}
-          </button>
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex lg:items-center lg:space-x-2">
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="px-4 py-2 text-sm text-neutral-700 hover:text-primary-600 font-medium transition-all duration-300 rounded-lg hover:bg-primary-50"
+              >
+                {item.name}
+              </Link>
+            ))}
+            <Link
+              href="/make-a-gift"
+              className="ml-4 px-6 py-2.5 text-sm bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold rounded-xl shadow-elegant hover:shadow-elegant-lg transform hover:scale-105 transition-all duration-300"
+            >
+              Donate Now
+            </Link>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="lg:hidden">
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 text-neutral-700 hover:text-primary-600 focus:outline-none rounded-lg hover:bg-primary-50 transition-colors"
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+            </button>
+          </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <nav className="lg:hidden py-4 border-t">
-            <div className="flex flex-col space-y-4">
-              <Link 
-                href="/" 
-                className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium py-2"
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="lg:hidden py-4 space-y-1 border-t border-neutral-200"
+          >
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="block px-4 py-3 text-sm text-neutral-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-all duration-300 font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                {t.nav.home}
+                {item.name}
               </Link>
-              <Link 
-                href="/who-we-are" 
-                className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {t.nav.whoWeAre}
-              </Link>
-              <Link 
-                href="/our-team" 
-                className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {t.nav.ourTeam}
-              </Link>
-              <Link 
-                href="/our-programs" 
-                className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {t.nav.initiatives}
-              </Link>
-              <Link 
-                href="/get-involved" 
-                className="text-gray-700 hover:text-[#0B334A] transition-colors font-medium py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {t.nav.getInvolved}
-              </Link>
-              <div className="py-2">
-                <LanguageSelector />
-              </div>
-              <Link href="/make-a-gift" onClick={() => setMobileMenuOpen(false)}>
-                <Button variant="primary" size="sm" className="w-full">
-                  {t.nav.donate}
-                </Button>
-              </Link>
-            </div>
-          </nav>
+            ))}
+            <Link
+              href="/make-a-gift"
+              className="block mx-4 mt-4 px-6 py-3 text-sm bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold rounded-xl shadow-elegant text-center hover:shadow-elegant-lg transition-all duration-300"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Donate Now
+            </Link>
+          </motion.div>
         )}
-      </div>
+      </nav>
     </header>
-  );
-};
-
+  )
+}

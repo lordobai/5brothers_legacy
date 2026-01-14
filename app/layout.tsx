@@ -1,43 +1,38 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { LanguageProvider } from "@/contexts/LanguageContext";
-import { LanguagePrompt } from "@/components/ui/LanguagePrompt";
-import { DEFAULT_LANGUAGE, Language } from "@/lib/i18n";
-import { cookies } from "next/headers";
-import "./globals.css";
+import type { Metadata } from 'next'
+import { Inter, Playfair_Display } from 'next/font/google'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
+import './globals.css'
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ 
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+})
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-playfair',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
-  title: "5Brothers Legacy Initiative - Empowering Communities, Changing Lives",
-  description: "Advancing education, healthcare, and equality across underserved regions in Africa",
-};
+  title: '5Brothers Legacy Initiative',
+  description: 'Empowering vulnerable communities through education, healthcare, and sustainable development',
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  // Get language from cookie on server side to match client
-  const cookieStore = cookies();
-  const preferredLang = cookieStore.get('preferred-language');
-  const initialLanguage = (preferredLang?.value && ['en', 'es', 'fr', 'pt', 'ar', 'zh'].includes(preferredLang.value))
-    ? preferredLang.value as Language
-    : DEFAULT_LANGUAGE;
-
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang={initialLanguage} dir={initialLanguage === 'ar' ? 'rtl' : 'ltr'} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <body className={inter.className}>
-        <LanguageProvider initialLanguage={initialLanguage}>
-          <LanguagePrompt />
-          <Header />
-          {children}
-          <Footer />
-        </LanguageProvider>
+        <Header />
+        {children}
+        <Footer />
       </body>
     </html>
-  );
+  )
 }
-

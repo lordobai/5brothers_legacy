@@ -1,118 +1,146 @@
-'use client';
+'use client'
 
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useTranslations } from '@/contexts/LanguageContext';
+import { motion } from 'framer-motion'
+import Image from 'next/image'
+import Link from 'next/link'
+import { urlFor } from '@/lib/sanity/client'
+import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 
-export const LatestUpdates = () => {
-  const t = useTranslations();
-  
-  const updates = [
-    {
-      title: t.home.updates.newSchoolTitle,
-      excerpt: t.home.updates.newSchoolExcerpt,
-      image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&q=80',
-      date: 'March 15, 2024',
-      category: t.home.updates.categoryEducation,
-      link: '/updates/new-school-opens',
-    },
-    {
-      title: t.home.updates.healthClinicTitle,
-      excerpt: t.home.updates.healthClinicExcerpt,
-      image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80',
-      date: 'March 10, 2024',
-      category: t.home.updates.categoryHealth,
-      link: '/updates/health-clinic-expansion',
-    },
-    {
-      title: t.home.updates.cleanWaterTitle,
-      excerpt: t.home.updates.cleanWaterExcerpt,
-      image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
-      date: 'March 5, 2024',
-      category: t.home.updates.categoryWash,
-      link: '/updates/clean-water-initiative',
-    },
-  ];
+interface Post {
+  _id: string
+  title: string
+  subtitle?: string
+  excerpt?: string
+  slug: { current: string }
+  featuredImage?: SanityImageSource
+  publishedAt: string
+  category?: string
+}
+
+interface LatestUpdatesProps {
+  posts?: Post[]
+}
+
+// Fallback placeholder data
+const fallbackUpdates = [
+  {
+    title: 'Community Impact Story',
+    excerpt: 'Learn how our programs are making a difference in local communities across Africa. Read about the transformative journey of families and children.',
+    date: '2025-01-10',
+    href: '/updates-events',
+    image: '/images/95e8571a-ca74-44c7-8191-f14ee2b0a12c.JPG',
+  },
+  {
+    title: 'New Initiative Launch',
+    excerpt: 'We\'re excited to announce our latest program focusing on education and youth empowerment. Join us in this mission.',
+    date: '2025-01-05',
+    href: '/updates-events',
+    image: '/images/bb3a945c-355f-4ff6-91cb-646e9dd7f91d.JPG',
+  },
+  {
+    title: 'Upcoming Community Event',
+    excerpt: 'Join us for our upcoming community event where we\'ll celebrate our achievements and share plans for the future.',
+    date: '2025-01-15',
+    href: '/updates-events',
+    image: '/images/95e8571a-ca74-44c7-8191-f14ee2b0a12c.JPG',
+  },
+]
+
+export const LatestUpdates = ({ posts = [] }: LatestUpdatesProps) => {
+  // Use CMS data if available, otherwise use fallback
+  const updates = posts.length > 0
+    ? posts.slice(0, 3).map((post) => ({
+        title: post.title,
+        excerpt: post.excerpt || post.subtitle || '',
+        date: post.publishedAt,
+        href: `/updates-events/${post.slug?.current || '#'}`,
+        image: post.featuredImage
+          ? urlFor(post.featuredImage).width(800).height(600).auto('format').url()
+          : '/images/95e8571a-ca74-44c7-8191-f14ee2b0a12c.JPG',
+      }))
+    : fallbackUpdates
   return (
-    <section className="section-padding bg-slate-100">
+    <section className="section-padding bg-gradient-to-b from-slate-50 to-white">
       <div className="container mx-auto container-padding">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16 lg:mb-20"
+          className="max-w-7xl mx-auto"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold text-slate-900 mb-4">
-            {t.home.updates.title}
-          </h2>
-          <p className="text-xl lg:text-2xl text-slate-700 max-w-3xl xl:max-w-4xl mx-auto">
-            {t.home.updates.subtitle}
-          </p>
-        </motion.div>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-4">
+              Latest Updates & Events
+            </h2>
+            <p className="text-xl text-slate-700 max-w-3xl mx-auto">
+              Stay informed about our latest projects and community impact
+            </p>
+          </div>
 
-        <div className="grid md:grid-cols-3 gap-8 lg:gap-10 xl:gap-12 max-w-7xl xl:max-w-8xl 2xl:max-w-9xl mx-auto">
-          {updates.map((update, index) => (
-            <motion.div
-              key={update.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group"
-            >
-              <Link href={update.link}>
-                <article className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 h-full flex flex-col">
-                  <div className="relative h-48 overflow-hidden">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            {updates.map((update, index) => (
+              <motion.div
+                key={update.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group"
+              >
+                <Link
+                  href={update.href}
+                  className="block overflow-hidden bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full"
+                >
+                  <div className="relative h-64 overflow-hidden">
                     <Image
                       src={update.image}
                       alt={update.title}
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-500"
                     />
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-[#0B334A] text-white px-3 py-1 rounded-full text-sm font-semibold">
-                        {update.category}
-                      </span>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <div className="text-xs text-white/90 mb-2 font-medium">
+                        {new Date(update.date).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                        })}
+                      </div>
+                      <h3 className="text-2xl font-bold text-white drop-shadow-lg mb-2">
+                        {update.title}
+                      </h3>
                     </div>
                   </div>
-                  <div className="p-6 flex-1 flex flex-col">
-                    <div className="text-sm text-slate-600 mb-2">{update.date}</div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#0B334A] transition-colors line-clamp-2">
-                      {update.title}
-                    </h3>
-                    <p className="text-slate-700 leading-relaxed mb-4 flex-1 line-clamp-3">
-                      {update.excerpt}
-                    </p>
-                    <span className="text-[#0B334A] font-semibold group-hover:underline inline-flex items-center">
-                      {t.home.updates.readMore}
-                      <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </span>
+                  <div className="p-6">
+                    <p className="text-slate-600 leading-relaxed mb-4">{update.excerpt}</p>
+                    <div className="text-[#0B334A] font-semibold group-hover:underline inline-flex items-center">
+                      Read More
+                      <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
+                    </div>
                   </div>
-                </article>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center mt-12"
-        >
-          <Link href="/updates-events">
-            <button className="px-8 py-3 bg-white text-[#0B334A] font-semibold rounded-lg border-2 border-[#0B334A] hover:bg-slate-50 transition-all">
-              {t.home.updates.viewAll}
-            </button>
-          </Link>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-center"
+          >
+            <Link
+              href="/updates-events"
+              className="inline-flex items-center px-8 py-4 bg-[#0B334A] text-white font-semibold rounded-lg hover:bg-[#082530] transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+            >
+              View All Updates & Events
+            </Link>
+          </motion.div>
         </motion.div>
       </div>
     </section>
-  );
-};
-
+  )
+}

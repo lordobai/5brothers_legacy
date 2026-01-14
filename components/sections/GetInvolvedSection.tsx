@@ -1,91 +1,83 @@
-'use client';
+'use client'
 
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { Button } from '@/components/ui/Button';
-import { Icon } from '@/components/ui/Icon';
-import { useTranslations } from '@/contexts/LanguageContext';
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { Icon } from '@/components/ui/Icon'
+
+const involvementOptions = [
+  {
+    title: 'Donate',
+    description: 'Your contribution helps us reach more communities and create lasting impact',
+    icon: 'gift',
+    href: '/make-a-gift',
+    color: 'from-red-500 to-red-600',
+  },
+  {
+    title: 'Volunteer',
+    description: 'Join our team of dedicated volunteers and make a difference on the ground',
+    icon: 'userPlus',
+    href: '/get-involved',
+    color: 'from-blue-500 to-blue-600',
+  },
+  {
+    title: 'Partner',
+    description: 'Collaborate with us to amplify our impact and reach more communities',
+    icon: 'handshake',
+    href: '/get-involved',
+    color: 'from-emerald-500 to-emerald-600',
+  },
+]
 
 export const GetInvolvedSection = () => {
-  const t = useTranslations();
-  
-  const actions = [
-    {
-      title: t.home.getInvolved.donateTitle,
-      description: t.home.getInvolved.donateDescription,
-      icon: 'gift' as const,
-      link: '/make-a-gift',
-      color: 'from-rose-500 to-pink-600',
-      bgColor: 'bg-white/10',
-    },
-    {
-      title: t.home.getInvolved.volunteerTitle,
-      description: t.home.getInvolved.volunteerDescription,
-      icon: 'users' as const,
-      link: '/get-involved',
-      color: 'from-[#0B334A] to-[#0F4A6A]',
-      bgColor: 'bg-white/10',
-    },
-    {
-      title: t.home.getInvolved.partnerTitle,
-      description: t.home.getInvolved.partnerDescription,
-      icon: 'handshake' as const,
-      link: '/get-involved',
-      color: 'from-[#0B334A] to-[#0F4A6A]',
-      bgColor: 'bg-white/10',
-    },
-  ];
   return (
-    <section className="section-padding bg-gradient-to-br from-[#0B334A] via-[#0F4A6A] to-[#0B334A] text-white">
+    <section className="section-padding bg-white">
       <div className="container mx-auto container-padding">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16 lg:mb-20"
+          className="max-w-7xl mx-auto"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold mb-4">
-            {t.home.getInvolved.title}
-          </h2>
-          <p className="text-xl lg:text-2xl text-slate-100 max-w-3xl xl:max-w-4xl mx-auto">
-            {t.home.getInvolved.subtitle}
-          </p>
-        </motion.div>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+              Get Involved
+            </h2>
+            <p className="text-xl text-slate-700 max-w-3xl mx-auto">
+              Join us in creating positive change. Every action counts.
+            </p>
+          </div>
 
-        <div className="grid md:grid-cols-3 gap-8 lg:gap-10 xl:gap-12 max-w-7xl xl:max-w-8xl 2xl:max-w-9xl mx-auto">
-          {actions.map((action, index) => (
-            <motion.div
-              key={action.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="text-center"
-            >
-              <div className={`${action.bgColor} backdrop-blur-sm rounded-2xl p-8 hover:bg-white/20 transition-all duration-300 transform hover:-translate-y-2 h-full border border-white/20 hover:border-white/30`}>
-                <div className={`w-20 h-20 rounded-xl bg-gradient-to-br ${action.color} flex items-center justify-center mb-6 shadow-lg mx-auto`}>
-                  <Icon name={action.icon} size={40} className="text-white" strokeWidth={2.5} />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-white">{action.title}</h3>
-                <p className="text-slate-100 mb-6 leading-relaxed">
-                  {action.description}
-                </p>
-                <Link href={action.link}>
-                  <Button
-                    variant="secondary"
-                    size="md"
-                    className="w-full shadow-md hover:shadow-lg"
-                  >
-                    {t.home.getInvolved.getStarted}
-                  </Button>
+          <div className="grid md:grid-cols-3 gap-8">
+            {involvementOptions.map((option, index) => (
+              <motion.div
+                key={option.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <Link
+                  href={option.href}
+                  className="block p-8 bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl hover:shadow-elegant-lg transition-all group h-full border border-neutral-100 hover:border-neutral-200"
+                >
+                  <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${option.color} flex items-center justify-center mb-6 shadow-elegant transform group-hover:scale-110 transition-transform duration-300`}>
+                    <Icon name={option.icon} size={40} className="text-white" strokeWidth={2.5} />
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-primary-600 transition-colors">
+                    {option.title}
+                  </h3>
+                  <p className="text-slate-700 mb-4 leading-relaxed">{option.description}</p>
+                  <span className="text-primary-600 font-semibold group-hover:underline inline-flex items-center">
+                    Get Started
+                    <Icon name="arrowRight" size={16} className="ml-2 transform group-hover:translate-x-1 transition-transform" />
+                  </span>
                 </Link>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
-  );
-};
-
+  )
+}

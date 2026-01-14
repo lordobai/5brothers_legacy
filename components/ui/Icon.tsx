@@ -1,130 +1,61 @@
-import React from 'react';
-import {
-  Target,
-  Sparkles,
-  TrendingUp,
-  Users,
+import { 
+  Target, 
+  Sparkles, 
+  TrendingUp, 
+  ArrowRight,
   Heart,
-  Droplets,
-  Shield,
-  Lightbulb,
-  Handshake,
-  BarChart3,
+  Users,
   GraduationCap,
   Stethoscope,
-  Wrench,
-  AlertCircle,
-  Mail,
-  Phone,
-  MapPin,
-  Clock,
-  ArrowRight,
-  Download,
-  CheckCircle2,
-  ChevronDown,
-  X,
-  Menu,
-  DollarSign,
+  Droplet,
+  Shield,
+  Lightbulb,
+  HandHeart,
+  Building2,
+  UserCheck,
+  Handshake,
+  Network,
   Gift,
-  ShoppingBag,
-  Megaphone,
-  FileText,
-  Calendar,
-  Search,
-  ExternalLink,
-  Info,
-  Check,
-  Loader2,
-  Plus,
-  Globe,
-  Star,
-  Video,
-  Building,
-  Send,
-  Youtube,
-  Linkedin,
-} from 'lucide-react';
-import { cn } from '@/lib/utils';
+  UserPlus,
+  type LucideIcon,
+} from 'lucide-react'
 
-const iconMap = {
+interface IconProps {
+  name: string
+  size?: number
+  className?: string
+  strokeWidth?: number
+}
+
+const iconMap: Record<string, LucideIcon> = {
   target: Target,
   sparkles: Sparkles,
   trendingUp: TrendingUp,
-  users: Users,
+  arrowRight: ArrowRight,
   heart: Heart,
-  droplets: Droplets,
+  users: Users,
+  graduation: GraduationCap,
+  health: Stethoscope,
+  water: Droplet,
   shield: Shield,
   lightbulb: Lightbulb,
+  handHeart: HandHeart,
+  building: Building2,
+  userCheck: UserCheck,
   handshake: Handshake,
-  barChart3: BarChart3,
-  graduationCap: GraduationCap,
-  stethoscope: Stethoscope,
-  wrench: Wrench,
-  alertCircle: AlertCircle,
-  mail: Mail,
-  phone: Phone,
-  mapPin: MapPin,
-  clock: Clock,
-  arrowRight: ArrowRight,
-  download: Download,
-  checkCircle2: CheckCircle2,
-  chevronDown: ChevronDown,
-  x: X,
-  menu: Menu,
-  // Social icons
-  facebook: Users, // Replace with actual Facebook icon if needed
-  twitter: X, // Using X icon for Twitter/X
-  instagram: Users, // Replace with actual Instagram icon if needed
-  linkedin: Linkedin,
-  dollarSign: DollarSign,
+  network: Network,
   gift: Gift,
-  shoppingBag: ShoppingBag,
-  megaphone: Megaphone,
-  fileText: FileText,
-  calendar: Calendar,
-  search: Search,
-  externalLink: ExternalLink,
-  info: Info,
-  check: Check,
-  loader: Loader2,
-  plus: Plus,
-  checkCircle: CheckCircle2,
-  globe: Globe,
-  star: Star,
-  video: Video,
-  building: Building,
-  send: Send,
-  youtube: Youtube,
-};
-
-export type IconName = keyof typeof iconMap;
-
-interface IconProps {
-  name: IconName;
-  size?: number | string;
-  className?: string;
-  strokeWidth?: number;
+  userPlus: UserPlus,
 }
 
-export const Icon: React.FC<IconProps> = ({
-  name,
-  size = 24,
-  className,
-  strokeWidth = 2,
-}) => {
-  const IconComponent = iconMap[name];
-  
-  if (!IconComponent) {
-    console.warn(`Icon "${name}" not found`);
-    return null;
-  }
+export const Icon = ({ name, size = 24, className = '', strokeWidth = 2 }: IconProps) => {
+  const IconComponent = iconMap[name.toLowerCase()] || Target
 
   return (
-    <IconComponent
-      size={size}
-      className={cn(className)}
+    <IconComponent 
+      size={size} 
+      className={className}
       strokeWidth={strokeWidth}
     />
-  );
-};
-
+  )
+}
