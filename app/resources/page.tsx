@@ -1,7 +1,7 @@
 import { client } from '@/lib/sanity/client'
 import { resourcesQuery } from '@/lib/sanity/queries/resources'
 import { HeroSectionClient } from '@/components/pages/HeroSectionClient'
-import { HelpResourcesClient } from '@/components/pages/HelpResourcesClient'
+import { ResourcesListClient } from '@/components/pages/ResourcesListClient'
 
 interface Resource {
   _id: string
@@ -19,7 +19,7 @@ interface Resource {
   displayOrder?: number
 }
 
-export default async function HelpPage() {
+export default async function ResourcesPage() {
   // Fetch resources from CMS
   let resources: Resource[] = []
   try {
@@ -40,6 +40,7 @@ export default async function HelpPage() {
       contactInformation: {
         address: 'Owerri, Imo State',
       },
+      eligibility: 'Low-income families',
     },
     {
       _id: 'fallback-2',
@@ -72,12 +73,13 @@ export default async function HelpPage() {
   return (
     <main className="min-h-screen">
       <HeroSectionClient
-        title="Help"
-        subtitle="Explore trusted community resources beyond our organization. Use keywords and filters to find services that fit your needs."
+        title="Resources"
+        subtitle="Find trusted community resources and services"
         backgroundImage="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1920&q=80"
-        alt="Help"
+        alt="Resources"
       />
-      <HelpResourcesClient resources={displayResources} />
+      <ResourcesListClient resources={displayResources} />
     </main>
   )
 }
+

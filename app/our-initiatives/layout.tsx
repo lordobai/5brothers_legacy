@@ -9,3 +9,4 @@ export default function OurInitiativesLayout({ children }: { children: React.Rea
   return <>{children}</>;
 }
 
+

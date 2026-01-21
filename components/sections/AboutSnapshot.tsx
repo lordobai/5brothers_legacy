@@ -9,28 +9,28 @@ import { ElegantDivider, DecorativeGrid } from '@/components/ui/DecorativeElemen
 
 const values = [
   {
-    icon: 'target' as const,
+    icon: 'shield' as const,
     title: 'Our Mission',
-    description: 'We believe in empowering communities to become self-sufficient and sustainable.',
-    gradient: 'from-primary-600 to-primary-700',
-    bgGradient: 'from-white to-primary-50',
-    iconShadow: 'shadow-[0_8px_24px_rgba(11,51,74,0.25)]',
+    description: 'Promoting a self-sufficient and sustainable Africa.',
+    gradient: 'from-emerald-600 to-emerald-700',
+    bgGradient: 'from-white to-emerald-50',
+    iconShadow: 'shadow-[0_8px_24px_rgba(5,150,105,0.3)]',
   },
   {
     icon: 'sparkles' as const,
     title: 'Our Vision',
     description: 'To see thriving communities across Africa built on safety, equality, and opportunity for all.',
-    gradient: 'from-accent-600 to-accent-700',
-    bgGradient: 'from-white to-accent-50',
-    iconShadow: 'shadow-[0_8px_24px_rgba(15,74,106,0.25)]',
+    gradient: 'from-indigo-600 to-indigo-700',
+    bgGradient: 'from-white to-indigo-50',
+    iconShadow: 'shadow-[0_8px_24px_rgba(79,70,229,0.3)]',
   },
   {
-    icon: 'trendingUp' as const,
+    icon: 'users' as const,
     title: 'Our Impact',
     description: 'We measure success by the lasting positive change we create in communities.',
-    gradient: 'from-gold-500 to-gold-600',
-    bgGradient: 'from-white to-gold-50',
-    iconShadow: 'shadow-[0_8px_24px_rgba(212,175,55,0.3)]',
+    gradient: 'from-orange-600 to-orange-700',
+    bgGradient: 'from-white to-orange-50',
+    iconShadow: 'shadow-[0_8px_24px_rgba(234,88,12,0.3)]',
   },
 ]
 
@@ -40,7 +40,7 @@ export const AboutSnapshot = () => {
       {/* Elegant Background Pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <Image
-          src="/images/f18963a1-eae1-47af-ab06-d71c636d170a.JPG"
+          src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1920&q=80"
           alt="Background"
           fill
           className="object-cover"

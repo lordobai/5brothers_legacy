@@ -15,7 +15,7 @@ const involvementOptions = [
   {
     title: 'Volunteer',
     description: 'Join our team of dedicated volunteers and make a difference on the ground',
-    icon: 'userPlus',
+    icon: 'handHeart',
     href: '/get-involved',
     color: 'from-blue-500 to-blue-600',
   },

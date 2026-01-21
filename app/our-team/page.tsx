@@ -2,6 +2,7 @@ import { client } from '@/lib/sanity/client'
 import { teamMembersQuery } from '@/lib/sanity/queries/team'
 import { HeroSectionClient } from '@/components/pages/HeroSectionClient'
 import { TeamListClient } from '@/components/pages/TeamListClient'
+import { TeamStructureSection } from '@/components/pages/TeamStructureSection'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 
 interface TeamMember {
@@ -66,10 +67,11 @@ export default async function OurTeamPage() {
     <main className="min-h-screen">
       <HeroSectionClient
         title="Our Team"
-        subtitle="Meet the dedicated individuals driving our mission forward"
-        backgroundImage="/images/f18963a1-eae1-47af-ab06-d71c636d170a.JPG"
+        subtitle="Meet the dedicated professionals working tirelessly to create positive change"
+        backgroundImage="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1920&q=80"
         alt="Our Team"
       />
+      <TeamStructureSection />
       <TeamListClient teamMembers={displayTeam} />
     </main>
   )

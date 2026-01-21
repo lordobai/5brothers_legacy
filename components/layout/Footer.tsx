@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { DecorativePattern } from '@/components/ui/DecorativeElements'
+import { Mail, Phone, MapPin } from 'lucide-react'
 
 export const Footer = () => {
   return (
@@ -8,9 +9,9 @@ export const Footer = () => {
       <DecorativePattern className="text-white" opacity={0.05} />
       
       <div className="relative z-10 container mx-auto container-padding py-16 lg:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-16">
           {/* Brand Column */}
-          <div className="lg:col-span-1">
+          <div>
             <Link href="/" className="flex items-center space-x-3 mb-6 group">
               <Image
                 src="/images/Original Logo Symbol.png"
@@ -26,9 +27,9 @@ export const Footer = () => {
             </p>
           </div>
 
-          {/* Quick Links Column */}
+          {/* About Us Column */}
           <div>
-            <h4 className="text-heading-4 font-bold mb-6 text-white">Quick Links</h4>
+            <h4 className="text-heading-4 font-bold mb-6 text-white">About Us</h4>
             <ul className="space-y-3">
               <li>
                 <Link href="/who-we-are" className="text-white/80 hover:text-white transition-colors text-body-sm inline-block hover:translate-x-1 transform duration-300">
@@ -36,10 +37,22 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/our-initiatives" className="text-white/80 hover:text-white transition-colors text-body-sm inline-block hover:translate-x-1 transform duration-300">
-                  Initiatives
+                <Link href="/our-team" className="text-white/80 hover:text-white transition-colors text-body-sm inline-block hover:translate-x-1 transform duration-300">
+                  Our Team
                 </Link>
               </li>
+              <li>
+                <Link href="/our-initiatives" className="text-white/80 hover:text-white transition-colors text-body-sm inline-block hover:translate-x-1 transform duration-300">
+                  Programs
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Resources Column */}
+          <div>
+            <h4 className="text-heading-4 font-bold mb-6 text-white">Resources</h4>
+            <ul className="space-y-3">
               <li>
                 <Link href="/our-partners" className="text-white/80 hover:text-white transition-colors text-body-sm inline-block hover:translate-x-1 transform duration-300">
                   Our Partners
@@ -55,6 +68,16 @@ export const Footer = () => {
                   Updates & Events
                 </Link>
               </li>
+              <li>
+                <Link href="/help" className="text-white/80 hover:text-white transition-colors text-body-sm inline-block hover:translate-x-1 transform duration-300">
+                  Help
+                </Link>
+              </li>
+              <li>
+                <Link href="/find-support" className="text-white/80 hover:text-white transition-colors text-body-sm inline-block hover:translate-x-1 transform duration-300">
+                  Find Support
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -64,17 +87,7 @@ export const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <Link href="/get-involved" className="text-white/80 hover:text-white transition-colors text-body-sm inline-block hover:translate-x-1 transform duration-300">
-                  Volunteer
-                </Link>
-              </li>
-              <li>
-                <Link href="/get-involved" className="text-white/80 hover:text-white transition-colors text-body-sm inline-block hover:translate-x-1 transform duration-300">
-                  Partner
-                </Link>
-              </li>
-              <li>
-                <Link href="/get-involved" className="text-white/80 hover:text-white transition-colors text-body-sm inline-block hover:translate-x-1 transform duration-300">
-                  Advocate
+                  Get Involved
                 </Link>
               </li>
               <li>
@@ -87,6 +100,11 @@ export const Footer = () => {
                   Make a Gift
                 </Link>
               </li>
+              <li>
+                <Link href="/career" className="text-white/80 hover:text-white transition-colors text-body-sm inline-block hover:translate-x-1 transform duration-300">
+                  Career
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -95,17 +113,20 @@ export const Footer = () => {
             <h4 className="text-heading-4 font-bold mb-6 text-white">Contact</h4>
             <ul className="space-y-4">
               <li>
-                <a href="mailto:info@5brotherslegacy.org" className="text-white/80 hover:text-white transition-colors text-body-sm inline-block">
-                  info@5brotherslegacy.org
+                <a href="mailto:info@5brotherslegacy.org" className="text-white/80 hover:text-white transition-colors text-body-sm inline-flex items-center gap-3 group">
+                  <Mail size={18} className="flex-shrink-0 group-hover:scale-110 transition-transform" />
+                  <span>info@5brotherslegacy.org</span>
                 </a>
               </li>
               <li>
-                <a href="tel:+2348036775776" className="text-white/80 hover:text-white transition-colors text-body-sm inline-block">
-                  +234 803 677 5776
+                <a href="tel:+2348036775776" className="text-white/80 hover:text-white transition-colors text-body-sm inline-flex items-center gap-3 group">
+                  <Phone size={18} className="flex-shrink-0 group-hover:scale-110 transition-transform" />
+                  <span>+234 803 677 5776</span>
                 </a>
               </li>
-              <li className="text-white/80 text-body-sm">
-                Owerri, Nigeria
+              <li className="text-white/80 text-body-sm inline-flex items-start gap-3">
+                <MapPin size={18} className="flex-shrink-0 mt-0.5" />
+                <span>Owerri, Nigeria</span>
               </li>
             </ul>
           </div>
@@ -118,12 +139,12 @@ export const Footer = () => {
               © {new Date().getFullYear()} 5Brothers Legacy Initiative. All rights reserved.
             </p>
             <div className="flex space-x-6">
-              <a href="#" className="text-white/60 hover:text-white transition-colors text-body-sm">
+              <Link href="/privacy-policy" className="text-white/60 hover:text-white transition-colors text-body-sm">
                 Privacy Policy
-              </a>
-              <a href="#" className="text-white/60 hover:text-white transition-colors text-body-sm">
+              </Link>
+              <Link href="/terms-of-service" className="text-white/60 hover:text-white transition-colors text-body-sm">
                 Terms of Service
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -21,12 +21,12 @@ interface SponsorLogosProps {
 
 // Fallback placeholder sponsors if no CMS data
 const fallbackSponsors = [
-  { name: 'Partner 1', logo: 'https://placehold.co/200x100/0B334A/FFFFFF?text=Partner+1', url: '#' },
-  { name: 'Partner 2', logo: 'https://placehold.co/200x100/0F4A6A/FFFFFF?text=Partner+2', url: '#' },
-  { name: 'Partner 3', logo: 'https://placehold.co/200x100/0B334A/FFFFFF?text=Partner+3', url: '#' },
-  { name: 'Partner 4', logo: 'https://placehold.co/200x100/0F4A6A/FFFFFF?text=Partner+4', url: '#' },
-  { name: 'Partner 5', logo: 'https://placehold.co/200x100/0B334A/FFFFFF?text=Partner+5', url: '#' },
-  { name: 'Partner 6', logo: 'https://placehold.co/200x100/0F4A6A/FFFFFF?text=Partner+6', url: '#' },
+  { name: 'Partner 1', logo: 'https://via.placeholder.com/200x100/0B334A/FFFFFF?text=Partner+1', url: '#' },
+  { name: 'Partner 2', logo: 'https://via.placeholder.com/200x100/0F4A6A/FFFFFF?text=Partner+2', url: '#' },
+  { name: 'Partner 3', logo: 'https://via.placeholder.com/200x100/0B334A/FFFFFF?text=Partner+3', url: '#' },
+  { name: 'Partner 4', logo: 'https://via.placeholder.com/200x100/0F4A6A/FFFFFF?text=Partner+4', url: '#' },
+  { name: 'Partner 5', logo: 'https://via.placeholder.com/200x100/0B334A/FFFFFF?text=Partner+5', url: '#' },
+  { name: 'Partner 6', logo: 'https://via.placeholder.com/200x100/0F4A6A/FFFFFF?text=Partner+6', url: '#' },
 ]
 
 export const SponsorLogos = ({ partners = [] }: SponsorLogosProps) => {

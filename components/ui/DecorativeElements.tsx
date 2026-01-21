@@ -102,3 +102,4 @@ export function FloatingShape({ className = '', delay = 0, duration = 6 }: Float
   )
 }
 
+

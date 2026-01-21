@@ -28,21 +28,21 @@ const fallbackUpdates = [
     excerpt: 'Learn how our programs are making a difference in local communities across Africa. Read about the transformative journey of families and children.',
     date: '2025-01-10',
     href: '/updates-events',
-    image: '/images/95e8571a-ca74-44c7-8191-f14ee2b0a12c.JPG',
+    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80',
   },
   {
     title: 'New Initiative Launch',
     excerpt: 'We\'re excited to announce our latest program focusing on education and youth empowerment. Join us in this mission.',
     date: '2025-01-05',
     href: '/updates-events',
-    image: '/images/bb3a945c-355f-4ff6-91cb-646e9dd7f91d.JPG',
+    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80',
   },
   {
     title: 'Upcoming Community Event',
     excerpt: 'Join us for our upcoming community event where we\'ll celebrate our achievements and share plans for the future.',
     date: '2025-01-15',
     href: '/updates-events',
-    image: '/images/95e8571a-ca74-44c7-8191-f14ee2b0a12c.JPG',
+    image: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&q=80',
   },
 ]
 
@@ -56,7 +56,7 @@ export const LatestUpdates = ({ posts = [] }: LatestUpdatesProps) => {
         href: `/updates-events/${post.slug?.current || '#'}`,
         image: post.featuredImage
           ? urlFor(post.featuredImage).width(800).height(600).auto('format').url()
-          : '/images/95e8571a-ca74-44c7-8191-f14ee2b0a12c.JPG',
+          : 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80',
       }))
     : fallbackUpdates
   return (

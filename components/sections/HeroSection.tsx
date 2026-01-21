@@ -11,7 +11,7 @@ export const HeroSection = () => {
       {/* Background Image with Elegant Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/01ba7ad0-1e18-4c30-818d-60445cce4c60.JPG"
+          src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1920&q=80"
           alt="Community Impact"
           fill
           className="object-cover"
@@ -52,7 +52,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-display-1 md:text-display-2 lg:text-display-1 font-bold text-white mb-8 leading-tight drop-shadow-2xl"
+            className="text-display-1 md:text-display-2 lg:text-display-1 font-bold text-white mb-8 leading-tight drop-shadow-2xl text-center"
           >
             Empowering Communities,<br />
             <span className="text-gradient-gold">Changing Lives</span>
@@ -62,7 +62,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-body-lg md:text-xl lg:text-2xl text-white/90 mb-12 max-w-4xl mx-auto leading-relaxed font-light"
+            className="text-body-lg md:text-xl lg:text-2xl text-white/90 mb-12 max-w-4xl mx-auto leading-relaxed font-light text-center"
           >
             Advancing education, healthcare, and equality across underserved regions in Africa
           </motion.p>

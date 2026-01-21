@@ -24,6 +24,7 @@ export default defineType({
       options: {
         list: [
           { title: 'Leadership', value: 'leadership' },
+          { title: 'Management', value: 'management' },
           { title: 'Programs', value: 'programs' },
           { title: 'Operations', value: 'operations' },
           { title: 'Communications', value: 'communications' },
@@ -110,5 +111,6 @@ export default defineType({
     },
   ],
 })
+
 
 

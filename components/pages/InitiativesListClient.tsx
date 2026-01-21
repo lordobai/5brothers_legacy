@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
+import { ChevronDown, ChevronUp } from 'lucide-react'
 
 interface Initiative {
   id: string
@@ -19,6 +21,14 @@ interface InitiativesListClientProps {
 }
 
 export function InitiativesListClient({ initiatives }: InitiativesListClientProps) {
+  const [expandedPrograms, setExpandedPrograms] = useState<Record<string, boolean>>({})
+
+  const togglePrograms = (id: string) => {
+    setExpandedPrograms((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }))
+  }
   return (
     <>
       {/* Initiatives List */}
@@ -55,15 +65,36 @@ export function InitiativesListClient({ initiatives }: InitiativesListClientProp
                     </div>
                     {initiative.programs.length > 0 && (
                       <div className="mb-6">
-                        <h3 className="text-xl font-semibold text-gray-900 mb-4">Programs:</h3>
-                        <ul className="space-y-2">
-                          {initiative.programs.map((program, idx) => (
-                            <li key={idx} className="flex items-start">
-                              <span className="text-[#0B334A] mr-2">✓</span>
-                              <span className="text-gray-700">{program}</span>
-                            </li>
-                          ))}
-                        </ul>
+                        <button
+                          onClick={() => togglePrograms(initiative.id)}
+                          className="flex items-center justify-between w-full text-xl font-semibold text-gray-900 mb-4 hover:text-[#0B334A] transition-colors"
+                        >
+                          <span>Programs:</span>
+                          <span className="text-sm font-normal text-gray-600 flex items-center gap-1">
+                            {expandedPrograms[initiative.id] ? 'Hide Programs' : 'Show Programs'}
+                            {expandedPrograms[initiative.id] ? (
+                              <ChevronUp size={20} />
+                            ) : (
+                              <ChevronDown size={20} />
+                            )}
+                          </span>
+                        </button>
+                        {expandedPrograms[initiative.id] && (
+                          <motion.ul
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="space-y-2"
+                          >
+                            {initiative.programs.map((program, idx) => (
+                              <li key={idx} className="flex items-start">
+                                <span className="text-[#0B334A] mr-2">✓</span>
+                                <span className="text-gray-700">{program}</span>
+                              </li>
+                            ))}
+                          </motion.ul>
+                        )}
                       </div>
                     )}
                   </div>
@@ -74,8 +105,8 @@ export function InitiativesListClient({ initiatives }: InitiativesListClientProp
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="section-padding bg-gradient-to-br from-[#0B334A] via-[#0F4A6A] to-[#0B334A] text-white">
+      {/* Support Our Initiatives Section */}
+      <section className="section-padding bg-gradient-to-br from-primary-100 to-accent-100">
         <div className="container mx-auto container-padding text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -84,22 +115,22 @@ export function InitiativesListClient({ initiatives }: InitiativesListClientProp
             transition={{ duration: 0.6 }}
             className="max-w-3xl mx-auto"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Join Us in Making a Difference
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Support Our Initiatives
             </h2>
-            <p className="text-xl text-slate-100 mb-8">
-              Your support helps us reach more communities and create lasting change
+            <p className="text-xl text-gray-700 mb-8">
+              Your support helps us expand our programs and reach more communities in need
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/make-a-gift"
-                className="px-8 py-4 bg-white text-[#0B334A] font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
+                className="px-8 py-4 bg-[#0B334A] text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
               >
                 Donate Now
               </Link>
               <Link
                 href="/get-involved"
-                className="px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-all"
+                className="px-8 py-4 bg-[#0F4A6A] text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
               >
                 Get Involved
               </Link>

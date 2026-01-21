@@ -43,6 +43,9 @@ export default defineType({
           { title: 'Financial Support', value: 'financial' },
           { title: 'Emergency Services', value: 'emergency' },
           { title: 'Counseling', value: 'counseling' },
+          { title: 'Community Support', value: 'community' },
+          { title: 'Food Assistance', value: 'food' },
+          { title: 'Housing', value: 'housing' },
           { title: 'Other', value: 'other' },
         ],
       },
@@ -124,5 +127,6 @@ export default defineType({
     },
   ],
 })
+
 
 

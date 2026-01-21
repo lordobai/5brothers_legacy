@@ -47,7 +47,7 @@ export function HeroSectionClient({ title, subtitle, backgroundImage, alt = 'Her
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-display-2 md:text-display-1 font-bold text-white mb-6 leading-tight drop-shadow-2xl"
+            className="text-display-2 md:text-display-1 font-bold text-white mb-6 leading-tight drop-shadow-2xl text-center"
           >
             {title}
           </motion.h1>
@@ -55,7 +55,7 @@ export function HeroSectionClient({ title, subtitle, backgroundImage, alt = 'Her
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed font-light"
+            className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed font-light text-center"
           >
             {subtitle}
           </motion.p>

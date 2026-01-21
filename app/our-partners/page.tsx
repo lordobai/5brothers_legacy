@@ -47,9 +47,9 @@ export default async function OurPartnersPage() {
   return (
     <main className="min-h-screen">
       <HeroSectionClient
-        title="Our Trusted Partners"
+        title="Our Partners"
         subtitle="Together, we're creating lasting impact in communities across Africa"
-        backgroundImage="/images/e4bad332-757a-43e8-8ebf-5b74f1d12d42.JPG"
+        backgroundImage="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1920&q=80"
         alt="Our Partners"
       />
       <PartnersListClient partners={displayPartners} />

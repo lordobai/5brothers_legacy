@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 
 interface Report {
   _id: string
@@ -21,6 +22,15 @@ interface ReportsListClientProps {
 }
 
 export function ReportsListClient({ reports }: ReportsListClientProps) {
+  const [visibleCount, setVisibleCount] = useState(6) // Show 6 reports initially
+  const itemsPerPage = 6
+
+  const visibleReports = reports.slice(0, visibleCount)
+  const hasMore = reports.length > visibleCount
+
+  const loadMore = () => {
+    setVisibleCount((prev) => Math.min(prev + itemsPerPage, reports.length))
+  }
   return (
     <section className="section-padding bg-white">
       <div className="container mx-auto container-padding">
@@ -33,15 +43,15 @@ export function ReportsListClient({ reports }: ReportsListClientProps) {
             className="text-center mb-12"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-              Impact & Accountability
+              Our Commitment to Transparency
             </h2>
-            <p className="text-xl text-slate-700 max-w-3xl mx-auto">
-              We believe in transparency. Our reports document our progress, impact, and the stories of communities we serve.
+            <p className="text-xl text-slate-700 max-w-4xl mx-auto leading-relaxed">
+              At 5Brothers Legacy Initiative, we believe in complete transparency and accountability. We regularly publish detailed reports on our activities, financial performance, and impact. These reports demonstrate our commitment to responsible stewardship of resources and our dedication to creating measurable, lasting change.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {reports.map((report, index) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+            {visibleReports.map((report, index) => (
               <motion.div
                 key={report._id}
                 initial={{ opacity: 0, y: 30 }}
@@ -79,6 +89,23 @@ export function ReportsListClient({ reports }: ReportsListClientProps) {
               </motion.div>
             ))}
           </div>
+
+          {hasMore && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mt-12"
+            >
+              <button
+                onClick={loadMore}
+                className="px-8 py-4 bg-[#0B334A] text-white font-semibold rounded-lg hover:bg-[#07202C] transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+              >
+                Load More
+              </button>
+            </motion.div>
+          )}
         </div>
       </div>
     </section>

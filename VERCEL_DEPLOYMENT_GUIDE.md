@@ -231,3 +231,4 @@ You can manage all your content directly from the web, no local setup needed!
 
 **Note:** The Studio is embedded in your Next.js app, so it deploys automatically with your site. Just make sure environment variables and CORS are configured correctly.
 
+

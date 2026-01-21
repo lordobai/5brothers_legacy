@@ -59,3 +59,4 @@ export const latestEventsQuery = groq`*[_type == "event" && status == "upcoming"
 }`
 
 
+

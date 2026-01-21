@@ -1,8 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { DecorativePattern, DecorativeCircle } from '@/components/ui/DecorativeElements'
 import { Icon } from '@/components/ui/Icon'
 
@@ -26,7 +26,7 @@ const metrics = [
     suffix: '+', 
     label: 'Volunteers Engaged', 
     gradient: 'from-purple-400 to-purple-500',
-    icon: 'userCheck' 
+    icon: 'handHeart' 
   },
   { 
     value: 6, 
@@ -40,11 +40,13 @@ const metrics = [
 export const ImpactMetrics = () => {
   const [counts, setCounts] = useState([0, 0, 0, 0])
   const [hasAnimated, setHasAnimated] = useState(false)
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   useEffect(() => {
-    if (hasAnimated) return
+    if (!isInView || hasAnimated) return
     
-    const duration = 2000
+    const duration = 1000
     const steps = 60
     const targetValues = metrics.map(m => m.value)
     const stepValues = targetValues.map(v => v / steps)
@@ -62,14 +64,14 @@ export const ImpactMetrics = () => {
     }, duration / steps)
 
     return () => clearInterval(timer)
-  }, [hasAnimated])
+  }, [isInView, hasAnimated])
 
   return (
     <section className="relative section-padding bg-gradient-primary text-white overflow-hidden">
       {/* Elegant Background Elements */}
       <div className="absolute inset-0 opacity-15">
         <Image
-          src="/images/e4bad332-757a-43e8-8ebf-5b74f1d12d42.JPG"
+          src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1920&q=80"
           alt="Community Impact"
           fill
           className="object-cover"
@@ -81,6 +83,7 @@ export const ImpactMetrics = () => {
 
       <div className="relative z-10 container mx-auto container-padding">
         <motion.div
+          ref={ref}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -124,9 +127,13 @@ export const ImpactMetrics = () => {
                       <Icon name={metric.icon} size={32} className="text-white" strokeWidth={2.5} />
                     </div>
                   </div>
-                  <div className={`text-5xl md:text-6xl font-bold mb-3 bg-gradient-to-r ${metric.gradient} bg-clip-text text-transparent`}>
+                  <motion.div 
+                    className={`text-5xl md:text-6xl font-bold mb-3 bg-gradient-to-r ${metric.gradient} bg-clip-text text-transparent`}
+                    animate={hasAnimated ? { scale: [1, 1.1, 1] } : {}}
+                    transition={{ duration: 0.5, delay: index * 0.1 + 2 }}
+                  >
                     {counts[index]?.toLocaleString()}{metric.suffix}
-                  </div>
+                  </motion.div>
                   <div className="text-lg text-white font-semibold drop-shadow-md">
                     {metric.label}
                   </div>

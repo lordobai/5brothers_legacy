@@ -25,19 +25,19 @@ const fallbackInitiatives = [
     title: 'Education Programs',
     description: 'Empowering children and youth through quality education and skill development',
     href: '/our-initiatives',
-    image: '/images/0ea2b0a7-24f7-41d0-a0b9-d90f846495bc.JPG',
+    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80',
   },
   {
     title: 'Health & Nutrition',
     description: 'Improving healthcare access and nutrition for vulnerable communities',
     href: '/our-initiatives',
-    image: '/images/1b36139e-8638-46b1-8024-110cadd97814.JPG',
+    image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&q=80',
   },
   {
     title: 'WASH Programs',
     description: 'Providing clean water, sanitation, and hygiene solutions',
     href: '/our-initiatives',
-    image: '/images/61c635a0-5f6a-41aa-ab9f-bc8c6d2d8ab9.JPG',
+    image: 'https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?w=800&q=80',
   },
 ]
 
@@ -50,7 +50,7 @@ export const InitiativesOverview = ({ programs = [] }: InitiativesOverviewProps)
         href: `/our-initiatives/${program.slug?.current || '#'}`,
         image: program.featuredImage
           ? urlFor(program.featuredImage).width(800).height(600).auto('format').url()
-          : '/images/0ea2b0a7-24f7-41d0-a0b9-d90f846495bc.JPG',
+          : 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80',
       }))
     : fallbackInitiatives
   return (

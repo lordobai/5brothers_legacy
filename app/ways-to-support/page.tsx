@@ -7,34 +7,39 @@ import Link from 'next/link'
 export default function WaysToSupportPage() {
   const ways = [
     {
-      title: 'Financial Donations',
-      description: 'Your monetary contribution directly supports our programs and helps us reach more communities.',
-      icon: '💝',
+      title: 'Make a Financial Donation',
+      description: 'Your financial donation directly supports our programs and operations, allowing us to serve communities, expand access to essential resources, and sustain long-term impact. Every gift—large or small—helps us continue this work with accountability and purpose.',
+      icon: '📢',
+      buttonText: 'Donate Now',
+      buttonLink: '/make-a-gift',
     },
     {
-      title: 'In-Kind Donations',
-      description: 'Donate supplies, equipment, or resources that can support our programs on the ground.',
-      icon: '📦',
-    },
-    {
-      title: 'Corporate Partnerships',
-      description: 'Partner with us through corporate social responsibility initiatives and employee engagement programs.',
-      icon: '🏢',
-    },
-    {
-      title: 'Fundraising Events',
-      description: 'Organize or participate in fundraising events to raise awareness and support for our cause.',
-      icon: '🎉',
-    },
-    {
-      title: 'Sponsor a Program',
-      description: 'Directly sponsor a specific program or initiative and see the impact of your support.',
+      title: 'Lend Your Voice',
+      description: 'Advocate for our cause and help raise awareness about the challenges facing vulnerable communities.',
       icon: '🎯',
+      buttonText: 'Become an Advocate',
+      buttonLink: '/get-involved',
     },
     {
-      title: 'Legacy Giving',
-      description: 'Include us in your estate planning to create a lasting legacy of positive change.',
-      icon: '📜',
+      title: 'Support Our Project',
+      description: 'Choose a specific project or program to support and see your impact in action.',
+      icon: '🤝',
+      buttonText: 'View Projects',
+      buttonLink: '/our-initiatives',
+    },
+    {
+      title: 'Collaborate',
+      description: 'Partner with us to amplify our impact through organizational partnerships and collaborations.',
+      icon: '🛍️',
+      buttonText: 'Partner With Us',
+      buttonLink: '/get-involved',
+    },
+    {
+      title: 'Support Our Mission',
+      description: 'Support our work by purchasing our branded items. Each item represents a contribution toward our programs, and 100% of net proceeds directly fund our community initiatives.',
+      icon: '💝',
+      buttonText: 'Learn More',
+      buttonLink: '/make-a-gift',
     },
   ]
 
@@ -44,7 +49,7 @@ export default function WaysToSupportPage() {
       <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0B334A] via-[#0F4A6A] to-[#0B334A]">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/f18963a1-eae1-47af-ab06-d71c636d170a.JPG"
+            src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1920&q=80"
             alt="Ways to Support"
             fill
             className="object-cover opacity-20"
@@ -80,39 +85,83 @@ export default function WaysToSupportPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all border border-gray-100"
+                  className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all border border-gray-100 flex flex-col"
                 >
                   <div className="text-5xl mb-4">{way.icon}</div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-3">{way.title}</h3>
-                  <p className="text-slate-600">{way.description}</p>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-4">{way.title}</h3>
+                  <p className="text-slate-600 mb-6 flex-grow leading-relaxed">{way.description}</p>
+                  <Link
+                    href={way.buttonLink}
+                    className="inline-flex items-center justify-center px-6 py-3 bg-[#0B334A] text-white font-semibold rounded-lg hover:bg-[#07202C] transition-all shadow-md hover:shadow-lg transform hover:scale-105 mt-auto"
+                  >
+                    {way.buttonText}
+                  </Link>
                 </motion.div>
               ))}
             </div>
 
+            {/* Testimonials Section */}
             <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-center bg-gradient-to-br from-[#0B334A] to-[#0F4A6A] rounded-2xl p-12 text-white"
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="mb-12"
             >
-              <h3 className="text-3xl font-bold mb-4">Ready to Make a Difference?</h3>
-              <p className="text-xl text-slate-100 mb-8 max-w-2xl mx-auto">
-                Every contribution, no matter the size, helps us create lasting change in communities across Africa.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="/make-a-gift"
-                  className="px-8 py-4 bg-white text-[#0B334A] font-semibold rounded-lg hover:bg-slate-100 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+              <div className="text-center mb-12">
+                <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+                  Your Support Makes a Difference
+                </h2>
+                <p className="text-xl text-slate-700 max-w-3xl mx-auto">
+                  See how your contributions are transforming lives in communities across Africa
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-8">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                  className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
                 >
-                  Donate Now
-                </Link>
-                <Link
-                  href="/contact-us"
-                  className="px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-all"
+                  <p className="text-slate-700 text-lg leading-relaxed mb-6 italic">
+                    "Your donations helped build our new school. Our children now have access to quality education."
+                  </p>
+                  <p className="text-slate-600 font-semibold">
+                    — Community Leader, Imo State
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                  className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
                 >
-                  Contact Us
-                </Link>
+                  <p className="text-slate-700 text-lg leading-relaxed mb-6 italic">
+                    "The health clinic you supported saved my daughter's life. Thank you for making healthcare accessible."
+                  </p>
+                  <p className="text-slate-600 font-semibold">
+                    — Mother, Rural Community
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.7 }}
+                  className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+                >
+                  <p className="text-slate-700 text-lg leading-relaxed mb-6 italic">
+                    "Clean water changed everything for our village. We're healthier and more productive now."
+                  </p>
+                  <p className="text-slate-600 font-semibold">
+                    — Village Elder, Enugu State
+                  </p>
+                </motion.div>
               </div>
             </motion.div>
           </div>

@@ -38,3 +38,4 @@ export const teamMembersByDepartmentQuery = groq`*[_type == "teamMember" && disp
 }`
 
 
+

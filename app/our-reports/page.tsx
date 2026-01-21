@@ -65,8 +65,8 @@ export default async function OurReportsPage() {
     <main className="min-h-screen">
       <HeroSectionClient
         title="Our Reports"
-        subtitle="Transparency and accountability through comprehensive reporting"
-        backgroundImage="/images/f18963a1-eae1-47af-ab06-d71c636d170a.JPG"
+        subtitle="Transparency and accountability in everything we do"
+        backgroundImage="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1920&q=80"
         alt="Our Reports"
       />
       <ReportsListClient reports={displayReports} />
