@@ -166,11 +166,11 @@ export default function CareerPage() {
                       </p>
                       <div>
                         <h4 className="text-lg font-semibold text-slate-900 mb-3">Requirements:</h4>
-                        <ul className="space-y-2">
+                        <ul className="space-y-2 pl-0">
                           {job.requirements.map((req, reqIndex) => (
-                            <li key={reqIndex} className="flex items-start gap-2 text-slate-700">
-                              <span className="text-[#0B334A] mt-1.5">•</span>
-                              <span>{req}</span>
+                            <li key={reqIndex} className="flex items-start gap-3 text-slate-700">
+                              <span className="text-[#0B334A] font-bold text-lg leading-none mt-0.5 flex-shrink-0">•</span>
+                              <span className="flex-1 leading-relaxed">{req}</span>
                             </li>
                           ))}
                         </ul>

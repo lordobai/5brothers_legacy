@@ -53,6 +53,72 @@ export default function MakeAGiftPage() {
         alt="Make a Gift"
       />
 
+      {/* Impact Examples Section */}
+      <section className="section-padding bg-white">
+        <div className="container mx-auto container-padding">
+          <div className="max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-8">
+                Your Gift Makes a Difference
+              </h2>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-2xl p-8 text-center border border-emerald-200"
+              >
+                <div className="text-4xl font-bold text-emerald-700 mb-4">
+                  ₦5,000
+                </div>
+                <p className="text-slate-700 text-lg leading-relaxed">
+                  Provides school supplies for 5 children
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 text-center border border-blue-200"
+              >
+                <div className="text-4xl font-bold text-blue-700 mb-4">
+                  ₦25,000
+                </div>
+                <p className="text-slate-700 text-lg leading-relaxed">
+                  Supports a family with clean water for a month
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 text-center border border-purple-200"
+              >
+                <div className="text-4xl font-bold text-purple-700 mb-4">
+                  ₦100,000
+                </div>
+                <p className="text-slate-700 text-lg leading-relaxed">
+                  Funds healthcare services for 50 people
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Donation Form Section */}
       <section className="section-padding bg-gray-50">
         <div className="container mx-auto container-padding">

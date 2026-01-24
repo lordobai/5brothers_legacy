@@ -99,6 +99,38 @@ export default defineType({
       description: 'Show this resource on the Find Support page',
       initialValue: true,
     }),
+    defineField({
+      name: 'status',
+      title: 'Status',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Pending Review', value: 'pending' },
+          { title: 'Approved', value: 'approved' },
+          { title: 'Rejected', value: 'rejected' },
+        ],
+      },
+      initialValue: 'pending',
+      description: 'Submission status for user-submitted resources',
+    }),
+    defineField({
+      name: 'submittedBy',
+      title: 'Submitted By',
+      type: 'object',
+      fields: [
+        {
+          name: 'name',
+          title: 'Name',
+          type: 'string',
+        },
+        {
+          name: 'email',
+          title: 'Email',
+          type: 'email',
+        },
+      ],
+      description: 'Information about who submitted this resource',
+    }),
   ],
   preview: {
     select: {

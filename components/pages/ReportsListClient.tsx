@@ -22,8 +22,8 @@ interface ReportsListClientProps {
 }
 
 export function ReportsListClient({ reports }: ReportsListClientProps) {
-  const [visibleCount, setVisibleCount] = useState(6) // Show 6 reports initially
-  const itemsPerPage = 6
+  const [visibleCount, setVisibleCount] = useState(3) // Show 3 reports initially
+  const itemsPerPage = 3
 
   const visibleReports = reports.slice(0, visibleCount)
   const hasMore = reports.length > visibleCount

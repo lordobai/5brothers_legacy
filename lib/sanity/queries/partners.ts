@@ -24,3 +24,4 @@ export const partnersByTypeQuery = groq`*[_type == "partner" && isActive == true
 
 
 
+

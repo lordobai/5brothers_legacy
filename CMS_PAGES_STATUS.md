@@ -100,3 +100,4 @@
 **Not all pages are fully set up for CMS yet.** The infrastructure is there (schemas, queries, client), but most pages are still using placeholder/static data. The pages are structured to easily accept CMS data - they just need to be connected.
 
 
+

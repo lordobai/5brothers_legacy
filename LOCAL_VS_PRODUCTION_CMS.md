@@ -158,3 +158,4 @@
 **Quick Answer:** Use local now for development, switch to production after you deploy. Both work the same since they connect to the same Sanity project!
 
 
+

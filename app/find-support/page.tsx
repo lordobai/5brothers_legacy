@@ -1,5 +1,5 @@
 import { client } from '@/lib/sanity/client'
-import { resourcesQuery } from '@/lib/sanity/queries/resources'
+import { supportResourcesQuery } from '@/lib/sanity/queries/resources'
 import { HeroSectionClient } from '@/components/pages/HeroSectionClient'
 import { FindSupportClient } from '@/components/pages/FindSupportClient'
 
@@ -20,10 +20,10 @@ interface Resource {
 }
 
 export default async function FindSupportPage() {
-  // Fetch resources from CMS
+  // Fetch internal, partner, and emergency resources from CMS
   let resources: Resource[] = []
   try {
-    resources = await client.fetch(resourcesQuery) || []
+    resources = await client.fetch(supportResourcesQuery) || []
   } catch (error) {
     console.error('Error fetching resources:', error)
   }
@@ -101,7 +101,7 @@ export default async function FindSupportPage() {
     <main className="min-h-screen">
       <HeroSectionClient
         title="Find Support"
-        subtitle="Resources and services to help you and your community"
+        subtitle="Access our internal services, partner organizations, and emergency support resources"
         backgroundImage="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1920&q=80"
         alt="Find Support"
       />

@@ -54,6 +54,9 @@ export function HelpResourcesClient({ resources }: HelpResourcesClientProps) {
     serviceArea: '',
     eligibility: '',
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState('')
+  const [submitSuccess, setSubmitSuccess] = useState(false)
 
   // Filter resources based on search and filters
   const filteredResources = useMemo(() => {
@@ -95,21 +98,65 @@ export function HelpResourcesClient({ resources }: HelpResourcesClientProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Submitting resource:', formData)
-    setFormData({
-      title: '',
-      description: '',
-      category: '',
-      resourceType: 'external',
-      url: '',
-      phone: '',
-      email: '',
-      address: '',
-      serviceArea: '',
-      eligibility: '',
-    })
-    setShowSubmitForm(false)
-    alert('Thank you for submitting a resource! We will review it before publishing.')
+    setIsSubmitting(true)
+    setSubmitError('')
+    setSubmitSuccess(false)
+
+    try {
+      const response = await fetch('/api/resources/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: formData.title,
+          description: formData.description,
+          category: formData.category,
+          resourceType: formData.resourceType,
+          url: formData.url,
+          phone: formData.phone,
+          email: formData.email,
+          address: formData.address,
+          serviceArea: formData.serviceArea,
+          eligibility: formData.eligibility,
+          // You can add user info if you have authentication
+          // submittedByName: user?.name,
+          // submittedByEmail: user?.email,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to submit resource')
+      }
+
+      // Success
+      setSubmitSuccess(true)
+      setFormData({
+        title: '',
+        description: '',
+        category: '',
+        resourceType: 'external',
+        url: '',
+        phone: '',
+        email: '',
+        address: '',
+        serviceArea: '',
+        eligibility: '',
+      })
+
+      // Close modal after 2 seconds
+      setTimeout(() => {
+        setShowSubmitForm(false)
+        setSubmitSuccess(false)
+      }, 2000)
+    } catch (error: any) {
+      console.error('Error submitting resource:', error)
+      setSubmitError(error.message || 'Failed to submit resource. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const getInitials = (title: string) => {
@@ -553,19 +600,41 @@ export function HelpResourcesClient({ resources }: HelpResourcesClientProps) {
                     />
                   </div>
 
+                  {/* Success Message */}
+                  {submitSuccess && (
+                    <div className="bg-green-50 border-2 border-green-200 rounded-lg p-4">
+                      <p className="text-green-800 font-semibold">
+                        ✓ Resource submitted successfully! It will be reviewed before being published.
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Error Message */}
+                  {submitError && (
+                    <div className="bg-red-50 border-2 border-red-200 rounded-lg p-4">
+                      <p className="text-red-800 font-semibold">{submitError}</p>
+                    </div>
+                  )}
+
                   <div className="flex gap-4 pt-4">
                     <button
                       type="button"
-                      onClick={() => setShowSubmitForm(false)}
-                      className="flex-1 px-6 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-all"
+                      onClick={() => {
+                        setShowSubmitForm(false)
+                        setSubmitError('')
+                        setSubmitSuccess(false)
+                      }}
+                      disabled={isSubmitting}
+                      className="flex-1 px-6 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      Cancel
+                      {submitSuccess ? 'Close' : 'Cancel'}
                     </button>
                     <button
                       type="submit"
-                      className="flex-1 px-6 py-3 bg-[#0B334A] text-white font-semibold rounded-lg hover:bg-[#07202C] transition-all shadow-lg hover:shadow-xl"
+                      disabled={isSubmitting || submitSuccess}
+                      className="flex-1 px-6 py-3 bg-[#0B334A] text-white font-semibold rounded-lg hover:bg-[#07202C] transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      Submit Resource
+                      {isSubmitting ? 'Submitting...' : submitSuccess ? 'Submitted!' : 'Submit Resource'}
                     </button>
                   </div>
                 </form>
