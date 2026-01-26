@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { urlFor } from '@/lib/sanity/client'
 import { blocksToText } from '@/lib/utils'
-import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
+import type { SanityImageSource } from '@/lib/sanity/client'
 
 interface Program {
   _id: string

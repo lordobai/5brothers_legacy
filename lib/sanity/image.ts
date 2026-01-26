@@ -1,5 +1,5 @@
 import { urlFor } from './client'
-import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
+import type { SanityImageSource } from '@/lib/sanity/client'
 
 /**
  * Get optimized image URL from Sanity

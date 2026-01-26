@@ -2,7 +2,7 @@ import { client } from '@/lib/sanity/client'
 import { postsQuery } from '@/lib/sanity/queries/posts'
 import { allEventsQuery } from '@/lib/sanity/queries/events'
 import { urlFor } from '@/lib/sanity/client'
-import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
+import type { SanityImageSource } from '@/lib/sanity/client'
 import { HeroSectionClient } from '@/components/pages/HeroSectionClient'
 import { UpdatesEventsListClient } from '@/components/pages/UpdatesEventsListClient'
 

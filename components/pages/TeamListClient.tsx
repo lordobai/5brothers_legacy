@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { urlFor } from '@/lib/sanity/client'
 import { blocksToText } from '@/lib/utils'
-import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
+import type { SanityImageSource } from '@/lib/sanity/client'
 
 interface TeamMember {
   _id: string

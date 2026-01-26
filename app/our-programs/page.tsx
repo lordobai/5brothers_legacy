@@ -1,7 +1,7 @@
 import { client } from '@/lib/sanity/client'
 import { activeProgramsQuery } from '@/lib/sanity/queries/programs'
 import { urlFor } from '@/lib/sanity/client'
-import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
+import type { SanityImageSource } from '@/lib/sanity/client'
 import { InitiativesListClient } from '@/components/pages/InitiativesListClient'
 import { HeroSectionClient } from '@/components/pages/HeroSectionClient'
 

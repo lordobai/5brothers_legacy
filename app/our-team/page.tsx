@@ -4,7 +4,7 @@ import { HeroSectionClient } from '@/components/pages/HeroSectionClient'
 import { TeamListClient } from '@/components/pages/TeamListClient'
 import { LeadershipTeamTitle } from '@/components/pages/LeadershipTeamTitle'
 import { JoinOurTeamSection } from '@/components/pages/JoinOurTeamSection'
-import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
+import type { SanityImageSource } from '@/lib/sanity/client'
 
 interface TeamMember {
   _id: string
