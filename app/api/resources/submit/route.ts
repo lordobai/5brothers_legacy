@@ -45,10 +45,13 @@ export async function POST(request: NextRequest) {
       displayOrder: 999, // Default to end of list
     }
 
-    // Remove undefined fields
-    const cleanResource = Object.fromEntries(
-      Object.entries(resource).filter(([_, v]) => v !== undefined)
-    )
+    // Remove undefined fields, but ensure _type is always present
+    const cleanResource = {
+      _type: 'resource' as const,
+      ...Object.fromEntries(
+        Object.entries(resource).filter(([_, v]) => v !== undefined)
+      ),
+    }
 
     // Create the document in Sanity
     const created = await writeClient.create(cleanResource)
