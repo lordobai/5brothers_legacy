@@ -4,7 +4,7 @@ import { client } from '@/lib/sanity/client'
 import { partnersQuery } from '@/lib/sanity/queries/partners'
 import { urlFor } from '@/lib/sanity/client'
 import { blocksToText } from '@/lib/utils'
-import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
+import type { SanityImageSource } from '@/lib/sanity/client'
 import { HeroSectionClient } from '@/components/pages/HeroSectionClient'
 import { PartnersListClient } from '@/components/pages/PartnersListClient'
 

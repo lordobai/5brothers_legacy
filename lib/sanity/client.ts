@@ -2,6 +2,9 @@ import { createClient } from 'next-sanity'
 import { createImageUrlBuilder } from '@sanity/image-url'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 
+// Export the type for use in other files
+export type { SanityImageSource }
+
 export const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'u1tu4f9f',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
