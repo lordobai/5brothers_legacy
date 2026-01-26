@@ -115,6 +115,13 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'isInternal',
+      title: 'Internal Event',
+      type: 'boolean',
+      description: 'Check if this is an internal event (organized by 5Brothers Legacy). Uncheck for external events.',
+      initialValue: true,
+    }),
+    defineField({
       name: 'registrationLink',
       title: 'Registration Link',
       type: 'url',

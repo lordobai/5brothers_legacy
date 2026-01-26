@@ -152,7 +152,7 @@ export default function TermsOfServicePage() {
                   </p>
                   <div className="text-slate-700">
                     <p><strong>5Brothers Legacy Initiative</strong></p>
-                    <p>Email: <a href="mailto:info@5brotherslegacy.org" className="text-[#0B334A] hover:underline">info@5brotherslegacy.org</a></p>
+                    <p>Email: <a href="mailto:info@fivebrotherslegacy.org" className="text-[#0B334A] hover:underline">info@fivebrotherslegacy.org</a></p>
                     <p>Phone: <a href="tel:+2348036775776" className="text-[#0B334A] hover:underline">+234 803 677 5776</a></p>
                     <p>Address: Owerri, Nigeria</p>
                   </div>

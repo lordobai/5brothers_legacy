@@ -41,7 +41,7 @@ export default async function WaysToSupportPage() {
       description: 'Choose a specific project or program to support and see your impact in action.',
       icon: '🤝',
       buttonText: 'View Projects',
-      buttonLink: '/our-initiatives',
+      buttonLink: '/our-programs',
     },
     {
       title: 'Collaborate',

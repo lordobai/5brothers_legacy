@@ -46,6 +46,7 @@ export function HelpResourcesClient({ resources }: HelpResourcesClientProps) {
     title: '',
     description: '',
     category: '',
+    customCategory: '',
     resourceType: 'external',
     url: '',
     phone: '',
@@ -102,6 +103,13 @@ export function HelpResourcesClient({ resources }: HelpResourcesClientProps) {
     setSubmitError('')
     setSubmitSuccess(false)
 
+    // Validate custom category if "Other" is selected
+    if (formData.category === 'Other' && !formData.customCategory.trim()) {
+      setSubmitError('Please specify the category name')
+      setIsSubmitting(false)
+      return
+    }
+
     try {
       const response = await fetch('/api/resources/submit', {
         method: 'POST',
@@ -111,7 +119,7 @@ export function HelpResourcesClient({ resources }: HelpResourcesClientProps) {
         body: JSON.stringify({
           title: formData.title,
           description: formData.description,
-          category: formData.category,
+          category: formData.category === 'Other' ? formData.customCategory : formData.category,
           resourceType: formData.resourceType,
           url: formData.url,
           phone: formData.phone,
@@ -137,6 +145,7 @@ export function HelpResourcesClient({ resources }: HelpResourcesClientProps) {
         title: '',
         description: '',
         category: '',
+        customCategory: '',
         resourceType: 'external',
         url: '',
         phone: '',
@@ -483,7 +492,7 @@ export function HelpResourcesClient({ resources }: HelpResourcesClientProps) {
                         id="category"
                         required
                         value={formData.category}
-                        onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                        onChange={(e) => setFormData({ ...formData, category: e.target.value, customCategory: e.target.value !== 'Other' ? '' : formData.customCategory })}
                         className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A] focus:border-[#0B334A] transition-all"
                       >
                         <option value="">Select Category</option>
@@ -497,6 +506,22 @@ export function HelpResourcesClient({ resources }: HelpResourcesClientProps) {
                         <option value="Counseling">Counseling</option>
                         <option value="Other">Other</option>
                       </select>
+                      {formData.category === 'Other' && (
+                        <div className="mt-3">
+                          <label htmlFor="customCategory" className="block text-sm font-semibold text-slate-900 mb-2">
+                            Specify Category <span className="text-red-500">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            id="customCategory"
+                            required={formData.category === 'Other'}
+                            value={formData.customCategory}
+                            onChange={(e) => setFormData({ ...formData, customCategory: e.target.value })}
+                            className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A] focus:border-[#0B334A] transition-all"
+                            placeholder="Enter category name"
+                          />
+                        </div>
+                      )}
                     </div>
 
                     <div>
@@ -575,11 +600,12 @@ export function HelpResourcesClient({ resources }: HelpResourcesClientProps) {
 
                     <div>
                       <label htmlFor="email" className="block text-sm font-semibold text-slate-900 mb-2">
-                        Email
+                        Email <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="email"
                         id="email"
+                        required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A] focus:border-[#0B334A] transition-all"
@@ -623,6 +649,19 @@ export function HelpResourcesClient({ resources }: HelpResourcesClientProps) {
                         setShowSubmitForm(false)
                         setSubmitError('')
                         setSubmitSuccess(false)
+                        setFormData({
+                          title: '',
+                          description: '',
+                          category: '',
+                          customCategory: '',
+                          resourceType: 'external',
+                          url: '',
+                          phone: '',
+                          email: '',
+                          address: '',
+                          serviceArea: '',
+                          eligibility: '',
+                        })
                       }}
                       disabled={isSubmitting}
                       className="flex-1 px-6 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"

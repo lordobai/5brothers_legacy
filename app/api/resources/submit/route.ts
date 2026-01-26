@@ -6,9 +6,18 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
 
     // Validate required fields
-    if (!body.title || !body.description || !body.category) {
+    if (!body.title || !body.description || !body.category || !body.email) {
       return NextResponse.json(
-        { error: 'Missing required fields: title, description, and category are required' },
+        { error: 'Missing required fields: title, description, category, and email are required' },
+        { status: 400 }
+      )
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(body.email)) {
+      return NextResponse.json(
+        { error: 'Invalid email format' },
         { status: 400 }
       )
     }
@@ -31,7 +40,7 @@ export async function POST(request: NextRequest) {
       status: 'pending', // Set to pending for moderation
       submittedBy: {
         name: body.submittedByName || 'Anonymous',
-        email: body.submittedByEmail || undefined,
+        email: body.submittedByEmail || body.email,
       },
       displayOrder: 999, // Default to end of list
     }

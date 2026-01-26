@@ -29,6 +29,7 @@ export function InitiativesListClient({ initiatives }: InitiativesListClientProp
       [id]: !prev[id],
     }))
   }
+
   return (
     <>
       {/* Initiatives List */}

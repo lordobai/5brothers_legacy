@@ -4,12 +4,13 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { urlFor } from '@/lib/sanity/client'
+import { blocksToText } from '@/lib/utils'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 
 interface Program {
   _id: string
   title: string
-  description?: string
+  description?: any // Portable Text
   slug: { current: string }
   featuredImage?: SanityImageSource
   category?: string
@@ -24,19 +25,19 @@ const fallbackInitiatives = [
   {
     title: 'Education Programs',
     description: 'Empowering children and youth through quality education and skill development',
-    href: '/our-initiatives',
+    href: '/our-programs',
     image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80',
   },
   {
     title: 'Health & Nutrition',
     description: 'Improving healthcare access and nutrition for vulnerable communities',
-    href: '/our-initiatives',
+    href: '/our-programs',
     image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&q=80',
   },
   {
     title: 'WASH Programs',
     description: 'Providing clean water, sanitation, and hygiene solutions',
-    href: '/our-initiatives',
+    href: '/our-programs',
     image: 'https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?w=800&q=80',
   },
 ]
@@ -44,14 +45,21 @@ const fallbackInitiatives = [
 export const InitiativesOverview = ({ programs = [] }: InitiativesOverviewProps) => {
   // Use CMS data if available, otherwise use fallback
   const initiatives = programs.length > 0
-    ? programs.slice(0, 3).map((program) => ({
-        title: program.title,
-        description: program.description || '',
-        href: `/our-initiatives/${program.slug?.current || '#'}`,
-        image: program.featuredImage
-          ? urlFor(program.featuredImage).width(800).height(600).auto('format').url()
-          : 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80',
-      }))
+    ? programs.slice(0, 3).map((program) => {
+        // Convert Portable Text description to plain text
+        const description = typeof program.description === 'string' 
+          ? program.description 
+          : blocksToText(program.description || [])
+        
+        return {
+          title: program.title,
+          description: description || 'Comprehensive program designed to create sustainable impact.',
+          href: `/our-programs/${program.slug?.current || '#'}`,
+          image: program.featuredImage
+            ? urlFor(program.featuredImage).width(800).height(600).auto('format').url()
+            : 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80',
+        }
+      })
     : fallbackInitiatives
   return (
     <section className="section-padding bg-white">
@@ -65,7 +73,7 @@ export const InitiativesOverview = ({ programs = [] }: InitiativesOverviewProps)
         >
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-4">
-              Our Initiatives
+              Our Programs
             </h2>
             <p className="text-xl text-slate-700 max-w-3xl mx-auto">
               Comprehensive programs designed to create sustainable impact
@@ -120,10 +128,10 @@ export const InitiativesOverview = ({ programs = [] }: InitiativesOverviewProps)
             className="text-center mt-12"
           >
             <Link
-              href="/our-initiatives"
+              href="/our-programs"
               className="inline-flex items-center px-8 py-4 bg-[#0B334A] text-white font-semibold rounded-lg hover:bg-[#082530] transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
             >
-              View All Initiatives
+              View All Programs
             </Link>
           </motion.div>
         </motion.div>

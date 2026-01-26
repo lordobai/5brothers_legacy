@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { client } from '@/lib/sanity/client'
 import { partnersQuery } from '@/lib/sanity/queries/partners'
 import { urlFor } from '@/lib/sanity/client'
+import { blocksToText } from '@/lib/utils'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 import { HeroSectionClient } from '@/components/pages/HeroSectionClient'
 import { PartnersListClient } from '@/components/pages/PartnersListClient'
@@ -21,7 +22,25 @@ export default async function OurPartnersPage() {
   // Fetch partners from CMS
   let partners: Partner[] = []
   try {
+    // First, let's check all partners (for debugging)
+    const allPartners = await client.fetch(`*[_type == "partner"] { _id, organizationName, isActive }`) || []
+    console.log(`[Our Partners Page] Total partners in CMS: ${allPartners.length}`)
+    if (allPartners.length > 0) {
+      console.log('[Our Partners Page] Partners found:', allPartners.map((p: any) => ({
+        name: p.organizationName,
+        isActive: p.isActive
+      })))
+    }
+    
+    // Now fetch the filtered list
     partners = await client.fetch(partnersQuery) || []
+    console.log(`[Our Partners Page] Fetched ${partners.length} partners matching query`)
+    
+    if (allPartners.length > 0 && partners.length === 0) {
+      console.warn('[Our Partners Page] Partners exist but none match the query. Check:')
+      console.warn('1. Are they published? (not just saved as drafts)')
+      console.warn('2. Is "Active Partner" set to true?')
+    }
   } catch (error) {
     console.error('Error fetching partners:', error)
   }
@@ -34,7 +53,14 @@ export default async function OurPartnersPage() {
   ]
 
   const displayPartners = partners.length > 0
-    ? partners
+    ? partners.map((p) => ({
+        ...p,
+        description: p.description 
+          ? (typeof p.description === 'string' 
+              ? p.description 
+              : blocksToText(p.description))
+          : undefined,
+      }))
     : fallbackPartners.map((p, i) => ({
         _id: `fallback-${i}`,
         organizationName: p.name,

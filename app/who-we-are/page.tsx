@@ -129,43 +129,58 @@ export default function WhoWeArePage() {
         </div>
       </section>
 
-      {/* Mission, Goals, Impact Section */}
+      {/* Mission, Vision & Goals Section */}
       <section className="section-padding bg-white">
         <div className="container mx-auto container-padding">
           <div className="max-w-7xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-8 lg:gap-12 mb-16">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="bg-indigo-50 p-8 lg:p-10 rounded-2xl shadow-lg"
-              >
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center mb-6">
-                  <span className="text-3xl">🎯</span>
-                </div>
-                <h3 className="text-2xl lg:text-3xl font-bold text-slate-900 mb-3">Our Mission</h3>
-                <p className="text-slate-700 leading-relaxed text-lg">
-                  To provide hope for sustainable lives by empowering vulnerable communities with equal opportunities, safe lives, quality education, better health, and clean water. We strive to create lasting positive change that transforms lives and builds thriving communities across Africa.
-                </p>
-              </motion.div>
+            {/* Our Mission, Vision & Goals Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mb-16"
+            >
+              <div className="text-center mb-12">
+                <h2 className="text-display-3 md:text-display-2 font-bold text-primary-900 mb-4">
+                  Our Mission & Vision
+                </h2>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="bg-emerald-50 p-8 lg:p-10 rounded-2xl shadow-lg"
-              >
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center mb-6">
-                  <span className="text-3xl">📈</span>
-                </div>
-                <h3 className="text-2xl lg:text-3xl font-bold text-slate-900 mb-3">Our Impact</h3>
-                <p className="text-slate-700 leading-relaxed text-lg">
-                  We measure success by the lasting positive change we create in communities.
-                </p>
-              </motion.div>
-            </div>
+              <div className="grid md:grid-cols-2 gap-8 lg:gap-12 mb-16">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="bg-indigo-50 p-8 lg:p-10 rounded-2xl shadow-lg"
+                >
+                  <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center mb-6">
+                    <span className="text-3xl">🎯</span>
+                  </div>
+                  <h3 className="text-2xl lg:text-3xl font-bold text-slate-900 mb-3">Our Mission</h3>
+                  <p className="text-slate-700 leading-relaxed text-lg">
+                    To provide hope for sustainable lives by empowering vulnerable communities with equal opportunities, safe lives, quality education, better health, and clean water. We strive to create lasting positive change that transforms lives and builds thriving communities across Africa.
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="bg-emerald-50 p-8 lg:p-10 rounded-2xl shadow-lg"
+                >
+                  <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center mb-6">
+                    <span className="text-3xl">👁️</span>
+                  </div>
+                  <h3 className="text-2xl lg:text-3xl font-bold text-slate-900 mb-3">Our Vision</h3>
+                  <p className="text-slate-700 leading-relaxed text-lg">
+                    To see thriving communities across Africa built on safety, equality, and opportunity for all. We envision a future where every individual has access to quality education, healthcare, clean water, and the resources needed to reach their full potential, regardless of their circumstances.
+                  </p>
+                </motion.div>
+              </div>
+            </motion.div>
 
             {/* Our Goals Section */}
             <motion.div
@@ -202,6 +217,147 @@ export default function WhoWeArePage() {
               </div>
             </motion.div>
 
+            {/* Alignment with UN Sustainable Development Goals Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.25 }}
+              className="mb-16"
+            >
+              <div className="text-center mb-12">
+                <h2 className="text-display-3 md:text-display-2 font-bold text-primary-900 mb-4">
+                  Alignment with UN Sustainable Development Goals
+                </h2>
+                <p className="text-body-lg text-neutral-700 max-w-3xl mx-auto mb-8">
+                  Our programs directly contribute to achieving the United Nations Sustainable Development Goals by 2030
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12">
+                {[
+                  {
+                    number: '4',
+                    title: 'Quality Education',
+                    programs: [
+                      'Scholarship programs',
+                      'School infrastructure',
+                      'Teacher training',
+                      'Digital learning',
+                      'Vocational training',
+                    ],
+                    gradient: 'from-blue-500 to-blue-600',
+                    bgGradient: 'from-blue-50 to-blue-100/50',
+                  },
+                  {
+                    number: '3',
+                    title: 'Good Health & Well-being',
+                    programs: [
+                      'Health clinics',
+                      'Nutrition programs',
+                      'Maternal & child health',
+                      'Health education',
+                    ],
+                    gradient: 'from-emerald-500 to-emerald-600',
+                    bgGradient: 'from-emerald-50 to-emerald-100/50',
+                  },
+                  {
+                    number: '6',
+                    title: 'Clean Water & Sanitation',
+                    programs: [
+                      'Water well installation',
+                      'Sanitation facilities',
+                      'Hygiene education',
+                      'Water quality monitoring',
+                    ],
+                    gradient: 'from-cyan-500 to-cyan-600',
+                    bgGradient: 'from-cyan-50 to-cyan-100/50',
+                  },
+                  {
+                    number: '8',
+                    title: 'Decent Work & Economic Growth',
+                    programs: [
+                      'Leadership training',
+                      'Entrepreneurship programs',
+                      'Career development',
+                      'Mentorship opportunities',
+                    ],
+                    gradient: 'from-purple-500 to-purple-600',
+                    bgGradient: 'from-purple-50 to-purple-100/50',
+                  },
+                  {
+                    number: '1',
+                    title: 'No Poverty',
+                    programs: [
+                      'Emergency relief',
+                      'Shelter provision',
+                      'Food assistance',
+                      'Recovery support',
+                    ],
+                    gradient: 'from-red-500 to-red-600',
+                    bgGradient: 'from-red-50 to-red-100/50',
+                  },
+                  {
+                    number: '16',
+                    title: 'Peace, Justice & Strong Institutions',
+                    programs: [
+                      'Policy Research',
+                      'Community Mobilization',
+                      'Stakeholder Engagement',
+                      'Awareness Campaigns',
+                      'Legal Support',
+                      'Rights Education',
+                    ],
+                    gradient: 'from-indigo-500 to-indigo-600',
+                    bgGradient: 'from-indigo-50 to-indigo-100/50',
+                  },
+                ].map((sdg, index) => (
+                  <ElegantCard key={sdg.number} hover delay={index * 0.1}>
+                    <div className={`p-8 bg-gradient-to-br ${sdg.bgGradient} h-full rounded-3xl border border-neutral-100`}>
+                      <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${sdg.gradient} flex items-center justify-center mb-6 shadow-elegant`}>
+                        <span className="text-2xl font-bold text-white">{sdg.number}</span>
+                      </div>
+                      <h3 className="text-heading-4 font-bold text-primary-900 mb-4">{sdg.title}</h3>
+                      <p className="text-body-sm font-semibold text-neutral-700 mb-3">
+                        {sdg.number === '4' ? 'Our Education Programs:' :
+                         sdg.number === '3' ? 'Our Health Programs:' :
+                         sdg.number === '6' ? 'Our WASH Programs:' :
+                         sdg.number === '8' ? 'Our Youth Programs:' :
+                         sdg.number === '1' ? 'Our Disaster Response:' :
+                         'Our Advocacy Programs:'}
+                      </p>
+                      <ul className="space-y-2">
+                        {sdg.programs.map((program, idx) => (
+                          <li key={idx} className="flex items-start text-body-sm text-neutral-700">
+                            <span className="text-[#0B334A] mr-2 mt-1.5 font-bold leading-none flex-shrink-0">•</span>
+                            <span className="leading-relaxed">{program}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </ElegantCard>
+                ))}
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-center mb-8"
+              >
+                <p className="text-body-lg text-neutral-700 max-w-3xl mx-auto mb-6">
+                  Through our comprehensive programs, we contribute to 6 of the 17 UN Sustainable Development Goals, working towards a more equitable and sustainable future for communities across Africa.
+                </p>
+                <Link
+                  href="/our-programs"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-[#0B334A] text-white font-semibold rounded-lg hover:bg-[#07202C] transition-all shadow-elegant hover:shadow-elegant-lg transform hover:-translate-y-1"
+                >
+                  Explore Our Programs
+                </Link>
+              </motion.div>
+            </motion.div>
+
             {/* Our Core Values Section */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -223,7 +379,7 @@ export default function WhoWeArePage() {
                 {[
                   {
                     title: 'Empowerment',
-                    description: 'We believe in empowering communities to become self-sufficient and sustainable.',
+                    description: 'Promoting a self-sufficient and sustainable Africa',
                     icon: 'lightbulb',
                     gradient: 'from-primary-700 to-primary-800',
                     bgGradient: 'from-primary-50 to-primary-100/50',

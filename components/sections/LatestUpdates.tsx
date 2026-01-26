@@ -15,6 +15,8 @@ interface Post {
   featuredImage?: SanityImageSource
   publishedAt: string
   category?: string
+  ctaLink?: string
+  ctaText?: string
 }
 
 interface LatestUpdatesProps {
@@ -53,10 +55,11 @@ export const LatestUpdates = ({ posts = [] }: LatestUpdatesProps) => {
         title: post.title,
         excerpt: post.excerpt || post.subtitle || '',
         date: post.publishedAt,
-        href: `/updates-events/${post.slug?.current || '#'}`,
+        href: post.ctaLink || `/updates-events/${post.slug?.current || '#'}`,
         image: post.featuredImage
           ? urlFor(post.featuredImage).width(800).height(600).auto('format').url()
           : 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80',
+        ctaText: post.ctaText,
       }))
     : fallbackUpdates
   return (
@@ -79,19 +82,11 @@ export const LatestUpdates = ({ posts = [] }: LatestUpdatesProps) => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 mb-8">
-            {updates.map((update, index) => (
-              <motion.div
-                key={update.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group"
-              >
-                <Link
-                  href={update.href}
-                  className="block overflow-hidden bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full"
-                >
+            {updates.map((update, index) => {
+              const isExternalLink = update.href.startsWith('http')
+              
+              const cardContent = (
+                <>
                   <div className="relative h-64 overflow-hidden">
                     <Image
                       src={update.image}
@@ -114,15 +109,50 @@ export const LatestUpdates = ({ posts = [] }: LatestUpdatesProps) => {
                     </div>
                   </div>
                   <div className="p-6">
-                    <p className="text-slate-600 leading-relaxed mb-4">{update.excerpt}</p>
+                    {update.excerpt && update.excerpt.trim() && (
+                      <p className="text-slate-600 leading-relaxed mb-4">
+                        {update.excerpt.length > 100 
+                          ? `${update.excerpt.substring(0, 100).trim()}...` 
+                          : update.excerpt}
+                      </p>
+                    )}
                     <div className="text-[#0B334A] font-semibold group-hover:underline inline-flex items-center">
-                      Read More
+                      {update.ctaText || 'Read More'}
                       <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
                     </div>
                   </div>
-                </Link>
-              </motion.div>
-            ))}
+                </>
+              )
+              
+              return (
+                <motion.div
+                  key={update.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="group"
+                >
+                  {isExternalLink ? (
+                    <a
+                      href={update.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block overflow-hidden bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full"
+                    >
+                      {cardContent}
+                    </a>
+                  ) : (
+                    <Link
+                      href={update.href}
+                      className="block overflow-hidden bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full"
+                    >
+                      {cardContent}
+                    </Link>
+                  )}
+                </motion.div>
+              )
+            })}
           </div>
 
           <motion.div

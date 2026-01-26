@@ -1,6 +1,6 @@
 import { client } from '@/lib/sanity/client'
 import { postsQuery } from '@/lib/sanity/queries/posts'
-import { upcomingEventsQuery } from '@/lib/sanity/queries/events'
+import { allEventsQuery } from '@/lib/sanity/queries/events'
 import { urlFor } from '@/lib/sanity/client'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 import { HeroSectionClient } from '@/components/pages/HeroSectionClient'
@@ -10,10 +10,13 @@ interface Post {
   _id: string
   title: string
   slug: { current: string }
+  subtitle?: string
   excerpt?: string
   featuredImage?: SanityImageSource
   publishedAt: string
   category?: string
+  ctaLink?: string
+  ctaText?: string
 }
 
 interface Event {
@@ -25,6 +28,8 @@ interface Event {
   eventStart?: string
   location?: string
   eventType?: string
+  status?: string
+  isInternal?: boolean
 }
 
 export default async function UpdatesEventsPage() {
@@ -34,77 +39,83 @@ export default async function UpdatesEventsPage() {
   
   try {
     const now = new Date().toISOString()
-    [posts, events] = await Promise.all([
-      client.fetch(postsQuery).catch(() => []),
-      client.fetch(upcomingEventsQuery, { now }).catch(() => []),
-    ])
+    
+    // Fetch posts with better error handling
+    try {
+      posts = await client.fetch(postsQuery) || []
+      console.log(`[Updates Events Page] Fetched ${posts.length} posts from Sanity`)
+      if (posts.length > 0) {
+        console.log('[Updates Events Page] Sample post:', {
+          title: posts[0].title,
+          status: 'published',
+          category: posts[0].category,
+        })
+      } else {
+        // Check if there are any posts at all (including drafts)
+        const allPosts = await client.fetch(`*[_type == "post"] { _id, title, status }`) || []
+        console.log(`[Updates Events Page] Total posts in CMS: ${allPosts.length}`)
+        if (allPosts.length > 0) {
+          console.log('[Updates Events Page] Posts found:', allPosts.map((p: any) => ({
+            title: p.title,
+            status: p.status
+          })))
+          console.warn('[Updates Events Page] No published posts found. Make sure posts have status="published"')
+        }
+      }
+    } catch (postError) {
+      console.error('[Updates Events Page] Error fetching posts:', postError)
+    }
+    
+    // Fetch events with better error handling
+    try {
+      events = await client.fetch(allEventsQuery) || []
+      console.log(`[Updates Events Page] Fetched ${events.length} events from Sanity`)
+    } catch (eventError) {
+      console.error('[Updates Events Page] Error fetching events:', eventError)
+    }
   } catch (error) {
-    console.error('Error fetching updates and events:', error)
+    console.error('[Updates Events Page] General error:', error)
   }
 
-  // Fallback data for posts
-  const fallbackPosts = [
-    {
-      title: 'Community Impact Story',
-      date: '2025-01-10',
-      excerpt: 'Learn how our programs are making a difference in local communities across Africa.',
-      image: '/images/95e8571a-ca74-44c7-8191-f14ee2b0a12c.JPG',
-    },
-    {
-      title: 'New Initiative Launch',
-      date: '2025-01-05',
-      excerpt: 'We\'re excited to announce our latest program focusing on education and youth empowerment.',
-      image: '/images/bb3a945c-355f-4ff6-91cb-646e9dd7f91d.JPG',
-    },
-  ]
-
-  // Fallback data for events
-  const fallbackEvents = [
-    {
-      title: 'Upcoming Community Event',
-      date: '2025-01-15',
-      excerpt: 'Join us for our upcoming community event where we\'ll celebrate our achievements.',
-      image: '/images/95e8571a-ca74-44c7-8191-f14ee2b0a12c.JPG',
-    },
-  ]
-
   // Transform posts
-  const displayPosts = posts.length > 0
-    ? posts.map((post) => ({
-        id: post._id,
-        title: post.title,
-        excerpt: post.excerpt || '',
-        date: post.publishedAt,
-        image: post.featuredImage
-          ? urlFor(post.featuredImage).width(800).height(600).auto('format').url()
-          : '/images/95e8571a-ca74-44c7-8191-f14ee2b0a12c.JPG',
-        href: `/updates-events/${post.slug?.current || '#'}`,
-      }))
-    : fallbackPosts.map((p, i) => ({
-        id: `fallback-post-${i}`,
-        ...p,
-        href: '/updates-events',
-      }))
+  const displayPosts = posts.map((post) => ({
+    id: post._id,
+    title: post.title,
+    excerpt: post.excerpt || post.subtitle || '',
+    date: post.publishedAt,
+    image: post.featuredImage
+      ? urlFor(post.featuredImage).width(800).height(600).auto('format').url()
+      : '/images/95e8571a-ca74-44c7-8191-f14ee2b0a12c.JPG',
+    href: post.ctaLink || `/updates-events/${post.slug?.current || '#'}`,
+    category: post.category,
+    ctaText: post.ctaText,
+  }))
 
   // Transform events
-  const displayEvents = events.length > 0
-    ? events.map((event) => ({
-        id: event._id,
-        title: event.title,
-        excerpt: typeof event.description === 'string' ? event.description : '',
-        date: event.eventStart || '',
-        location: event.location || '',
-        image: event.featuredImage
-          ? urlFor(event.featuredImage).width(800).height(600).auto('format').url()
-          : '/images/95e8571a-ca74-44c7-8191-f14ee2b0a12c.JPG',
-        href: `/updates-events/${event.slug?.current || '#'}`,
-      }))
-    : fallbackEvents.map((e, i) => ({
-        id: `fallback-event-${i}`,
-        ...e,
-        location: '',
-        href: '/updates-events',
-      }))
+  const displayEvents = events.map((event) => {
+    // Handle location - it can be an object or string
+    let locationStr = ''
+    if (typeof event.location === 'string') {
+      locationStr = event.location
+    } else if (event.location && typeof event.location === 'object') {
+      locationStr = event.location.venue || event.location.address || event.location.city || ''
+    }
+    
+    return {
+      id: event._id,
+      title: event.title,
+      excerpt: typeof event.description === 'string' ? event.description : '',
+      date: event.eventStart || '',
+      location: locationStr,
+      image: event.featuredImage
+        ? urlFor(event.featuredImage).width(800).height(600).auto('format').url()
+        : '/images/95e8571a-ca74-44c7-8191-f14ee2b0a12c.JPG',
+      href: `/updates-events/${event.slug?.current || '#'}`,
+      eventType: event.eventType,
+      status: event.status,
+      isInternal: event.isInternal || false,
+    }
+  })
 
   return (
     <main className="min-h-screen">

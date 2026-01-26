@@ -9,7 +9,7 @@
 
 ## ⚠️ Partially Ready (Schemas & Queries Exist, But Not Connected)
 
-### 2. `/our-initiatives` (Our Initiatives Page)
+### 2. `/our-programs` (Our Programs Page)
 - ❌ Currently: Static hardcoded data
 - ✅ CMS Schema: `program.ts` exists
 - ✅ Query: `activeProgramsQuery` exists
@@ -80,7 +80,7 @@
 3. Fetch posts and programs in `app/page.tsx`
 
 ### Priority 2: Dynamic Content Pages
-1. `/our-initiatives` - Fetch programs from CMS
+1. `/our-programs` - Fetch programs from CMS
 2. `/our-partners` - Fetch partners from CMS
 3. `/our-reports` - Fetch reports from CMS
 4. `/updates-events` - Fetch posts and events from CMS

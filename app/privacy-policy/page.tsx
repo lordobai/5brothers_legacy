@@ -109,7 +109,7 @@ export default function PrivacyPolicyPage() {
                     <li>Withdraw consent where we rely on consent to process your information</li>
                   </ul>
                   <p className="mt-4 text-slate-700 leading-relaxed">
-                    To exercise these rights, please contact us at <a href="mailto:info@5brotherslegacy.org" className="text-[#0B334A] hover:underline">info@5brotherslegacy.org</a>.
+                    To exercise these rights, please contact us at <a href="mailto:info@fivebrotherslegacy.org" className="text-[#0B334A] hover:underline">info@fivebrotherslegacy.org</a>.
                   </p>
                 </div>
 
@@ -141,7 +141,7 @@ export default function PrivacyPolicyPage() {
                   </p>
                   <div className="mt-4 text-slate-700">
                     <p><strong>5Brothers Legacy Initiative</strong></p>
-                    <p>Email: <a href="mailto:info@5brotherslegacy.org" className="text-[#0B334A] hover:underline">info@5brotherslegacy.org</a></p>
+                    <p>Email: <a href="mailto:info@fivebrotherslegacy.org" className="text-[#0B334A] hover:underline">info@fivebrotherslegacy.org</a></p>
                     <p>Phone: <a href="tel:+2348036775776" className="text-[#0B334A] hover:underline">+234 803 677 5776</a></p>
                     <p>Address: Owerri, Nigeria</p>
                   </div>

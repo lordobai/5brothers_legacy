@@ -1,7 +1,8 @@
 import { groq } from 'next-sanity'
 
 // Get all active partners
-export const partnersQuery = groq`*[_type == "partner" && isActive == true] | order(displayOrder asc, organizationName asc) {
+// Includes partners where isActive is true or undefined (for backward compatibility)
+export const partnersQuery = groq`*[_type == "partner" && (!defined(isActive) || isActive == true)] | order(displayOrder asc, organizationName asc) {
   _id,
   organizationName,
   logo,
@@ -13,7 +14,8 @@ export const partnersQuery = groq`*[_type == "partner" && isActive == true] | or
 }`
 
 // Get partners by type
-export const partnersByTypeQuery = groq`*[_type == "partner" && isActive == true && partnerType == $type] | order(displayOrder asc, organizationName asc) {
+// Includes partners where isActive is true or undefined (for backward compatibility)
+export const partnersByTypeQuery = groq`*[_type == "partner" && (!defined(isActive) || isActive == true) && partnerType == $type] | order(displayOrder asc, organizationName asc) {
   _id,
   organizationName,
   logo,

@@ -119,13 +119,15 @@ export default defineType({
       type: 'string',
       options: {
         list: [
-          { title: 'News', value: 'news' },
-          { title: 'Program Update', value: 'program-update' },
-          { title: 'Impact Story', value: 'impact-story' },
-          { title: 'Announcement', value: 'announcement' },
-          { title: 'Event Recap', value: 'event-recap' },
+          { title: 'Education', value: 'Education' },
+          { title: 'Health', value: 'Health' },
+          { title: 'WASH', value: 'WASH' },
+          { title: 'Disaster', value: 'Disaster' },
+          { title: 'Youth', value: 'Youth' },
+          { title: 'Advocacy', value: 'Advocacy' },
         ],
       },
+      description: 'Select the program area this update relates to',
     }),
     defineField({
       name: 'tags',

@@ -2,7 +2,8 @@ import { client } from '@/lib/sanity/client'
 import { teamMembersQuery } from '@/lib/sanity/queries/team'
 import { HeroSectionClient } from '@/components/pages/HeroSectionClient'
 import { TeamListClient } from '@/components/pages/TeamListClient'
-import { TeamStructureSection } from '@/components/pages/TeamStructureSection'
+import { LeadershipTeamTitle } from '@/components/pages/LeadershipTeamTitle'
+import { JoinOurTeamSection } from '@/components/pages/JoinOurTeamSection'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 
 interface TeamMember {
@@ -71,8 +72,9 @@ export default async function OurTeamPage() {
         backgroundImage="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1920&q=80"
         alt="Our Team"
       />
-      <TeamStructureSection />
+      <LeadershipTeamTitle />
       <TeamListClient teamMembers={displayTeam} />
+      <JoinOurTeamSection />
     </main>
   )
 }

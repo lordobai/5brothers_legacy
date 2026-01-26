@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { urlFor } from '@/lib/sanity/client'
+import { blocksToText } from '@/lib/utils'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 
 interface Partner {
@@ -12,7 +13,7 @@ interface Partner {
   logo: SanityImageSource | null
   website: string
   partnerType?: string
-  description?: string
+  description?: any // Portable Text from Sanity
 }
 
 interface PartnersListClientProps {
@@ -47,29 +48,35 @@ export function PartnersListClient({ partners }: PartnersListClientProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all border border-gray-100"
+                className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all border border-gray-100 overflow-hidden"
               >
                 {partner.logo ? (
-                  <div className="w-20 h-20 mb-6 relative">
+                  <div className="relative w-full aspect-[4/3] overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
                     <Image
-                      src={urlFor(partner.logo).width(200).height(200).auto('format').url()}
+                      src={urlFor(partner.logo).width(600).height(450).auto('format').url()}
                       alt={partner.organizationName}
                       fill
-                      className="object-contain"
+                      className="object-cover"
                     />
                   </div>
                 ) : (
-                  <div className="w-20 h-20 bg-gradient-to-br from-[#0B334A] to-[#0F4A6A] rounded-xl flex items-center justify-center mb-6">
-                    <span className="text-4xl">🤝</span>
+                  <div className="relative w-full aspect-[4/3] bg-gradient-to-br from-[#0B334A] to-[#0F4A6A] flex items-center justify-center">
+                    <span className="text-6xl">🤝</span>
                   </div>
                 )}
-                <h3 className="text-2xl font-bold text-slate-900 mb-2">{partner.organizationName}</h3>
-                {partner.partnerType && (
-                  <p className="text-[#0B334A] font-semibold mb-3 capitalize">{partner.partnerType}</p>
-                )}
-                {partner.description && (
-                  <p className="text-slate-600">{partner.description}</p>
-                )}
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-slate-900 mb-2">{partner.organizationName}</h3>
+                  {partner.partnerType && (
+                    <p className="text-[#0B334A] font-semibold mb-3 capitalize">{partner.partnerType}</p>
+                  )}
+                  {partner.description && (
+                    <p className="text-slate-600">
+                      {typeof partner.description === 'string' 
+                        ? partner.description 
+                        : blocksToText(partner.description)}
+                    </p>
+                  )}
+                </div>
               </motion.div>
             ))}
           </div>

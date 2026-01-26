@@ -69,11 +69,6 @@ export default defineConfig({
               .child(S.documentTypeList('testimonial').title('Testimonials')),
             
             S.listItem()
-              .title('Support Methods')
-              .schemaType('supportMethod')
-              .child(S.documentTypeList('supportMethod').title('Support Methods')),
-            
-            S.listItem()
               .title('Resources')
               .schemaType('resource')
               .child(S.documentTypeList('resource').title('Resources')),

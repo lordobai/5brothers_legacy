@@ -27,40 +27,6 @@ export default async function OurReportsPage() {
     console.error('Error fetching reports:', error)
   }
 
-  // Fallback data
-  const fallbackReports = [
-    {
-      title: 'Annual Impact Report 2024',
-      year: '2024',
-      description: 'Comprehensive overview of our programs, impact, and achievements throughout the year.',
-      type: 'Annual Report',
-    },
-    {
-      title: 'Education Program Evaluation',
-      year: '2024',
-      description: 'Detailed analysis of our education initiatives and their outcomes in communities across Africa.',
-      type: 'Program Report',
-    },
-    {
-      title: 'Health & Nutrition Impact Study',
-      year: '2023',
-      description: 'Assessment of healthcare access improvements and nutrition program effectiveness.',
-      type: 'Impact Report',
-    },
-  ]
-
-  const displayReports = reports.length > 0
-    ? reports
-    : fallbackReports.map((r, i) => ({
-        _id: `fallback-${i}`,
-        title: r.title,
-        reportType: r.type,
-        publicationDate: r.year,
-        executiveSummary: r.description,
-        thumbnail: null,
-        pdfFile: null,
-      }))
-
   return (
     <main className="min-h-screen">
       <HeroSectionClient
@@ -69,7 +35,7 @@ export default async function OurReportsPage() {
         backgroundImage="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1920&q=80"
         alt="Our Reports"
       />
-      <ReportsListClient reports={displayReports} />
+      <ReportsListClient reports={reports} />
     </main>
   )
 }

@@ -6,7 +6,6 @@ import program from './documents/program'
 import report from './documents/report'
 import page from './documents/page'
 import testimonial from './documents/testimonial'
-import supportMethod from './documents/supportMethod'
 import resource from './documents/resource'
 
 // Objects
@@ -27,7 +26,6 @@ export const schemaTypes = [
   report,
   page,
   testimonial,
-  supportMethod,
   resource,
   
   // Objects

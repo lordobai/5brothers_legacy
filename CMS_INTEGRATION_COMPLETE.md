@@ -11,7 +11,7 @@ All pages are now fully integrated with Sanity CMS!
 
 ### Dynamic Content Pages
 
-1. **`/our-initiatives`** ✅
+1. **`/our-programs`** ✅
    - Fetches active programs from CMS
    - Displays program details, sub-programs, and impact metrics
    - Fallback to placeholder data if no CMS content

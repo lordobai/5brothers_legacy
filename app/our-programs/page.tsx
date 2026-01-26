@@ -22,7 +22,7 @@ interface Program {
   }[]
 }
 
-export default async function OurInitiativesPage() {
+export default async function OurProgramsPage() {
   // Fetch programs from CMS
   let programs: Program[] = []
   try {
@@ -45,7 +45,7 @@ export default async function OurInitiativesPage() {
         'Digital Learning Initiatives',
         'Vocational Skills Training',
       ],
-      impact: '12,500+ students supported',
+      impact: '2,500+ students supported',
     },
     {
       id: 'health',
@@ -71,7 +71,7 @@ export default async function OurInitiativesPage() {
         'Hygiene Education',
         'Water Quality Monitoring',
       ],
-      impact: '50,000+ people with clean water access',
+      impact: '5,000+ people with clean water access',
     },
     {
       id: 'disaster-response',
@@ -84,7 +84,7 @@ export default async function OurInitiativesPage() {
         'Food Security',
         'Recovery & Rebuilding',
       ],
-      impact: '15,000+ families assisted',
+      impact: '1,500+ families assisted',
     },
     {
       id: 'youth-empowerment',
@@ -135,10 +135,10 @@ export default async function OurInitiativesPage() {
   return (
     <main className="min-h-screen">
       <HeroSectionClient
-        title="Our Initiatives"
+        title="Our Programs"
         subtitle="Comprehensive programs designed to create sustainable impact"
         backgroundImage="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1920&q=80"
-        alt="Initiatives"
+        alt="Programs"
       />
       <InitiativesListClient initiatives={initiatives} />
     </main>

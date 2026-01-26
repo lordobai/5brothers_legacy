@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { urlFor } from '@/lib/sanity/client'
+import { blocksToText } from '@/lib/utils'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 
 interface TeamMember {
@@ -11,7 +12,7 @@ interface TeamMember {
   role: string
   department?: string
   photo?: SanityImageSource
-  bio?: string
+  bio?: any // Portable Text from Sanity
   email?: string
 }
 
@@ -32,37 +33,44 @@ export function TeamListClient({ teamMembers }: TeamListClientProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all border border-gray-100 text-center"
+                className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all border border-gray-100 text-center overflow-hidden"
               >
                 {member.photo ? (
-                  <div className="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden">
+                  <div className="relative w-full aspect-[4/3] overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
                     <Image
-                      src={urlFor(member.photo).width(300).height(300).auto('format').url()}
+                      src={urlFor(member.photo).width(600).height(450).auto('format').url()}
                       alt={member.name}
                       fill
                       className="object-cover"
+                      style={{ objectPosition: 'center 20%' }}
                     />
                   </div>
                 ) : (
-                  <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-[#0B334A] to-[#0F4A6A] flex items-center justify-center">
-                    <span className="text-5xl text-white">
+                  <div className="w-full aspect-[4/3] bg-gradient-to-br from-[#0B334A] to-[#0F4A6A] flex items-center justify-center">
+                    <span className="text-6xl text-white font-bold">
                       {member.name.charAt(0).toUpperCase()}
                     </span>
                   </div>
                 )}
-                <h3 className="text-2xl font-bold text-slate-900 mb-2">{member.name}</h3>
-                <p className="text-[#0B334A] font-semibold mb-4">{member.role}</p>
-                {member.bio && (
-                  <p className="text-slate-600 text-sm mb-4">{member.bio}</p>
-                )}
-                {member.email && (
-                  <a
-                    href={`mailto:${member.email}`}
-                    className="text-sm text-[#0B334A] hover:underline"
-                  >
-                    {member.email}
-                  </a>
-                )}
+                <div className="p-8">
+                  <h3 className="text-2xl font-bold text-slate-900 mb-2">{member.name}</h3>
+                  <p className="text-[#0B334A] font-semibold mb-4">{member.role}</p>
+                  {member.bio && (
+                    <p className="text-slate-600 text-sm mb-4">
+                      {typeof member.bio === 'string' 
+                        ? member.bio 
+                        : blocksToText(member.bio)}
+                    </p>
+                  )}
+                  {member.email && (
+                    <a
+                      href={`mailto:${member.email}`}
+                      className="text-sm text-[#0B334A] hover:underline"
+                    >
+                      {member.email}
+                    </a>
+                  )}
+                </div>
               </motion.div>
             ))}
           </div>

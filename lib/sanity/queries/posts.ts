@@ -1,7 +1,7 @@
 import { groq } from 'next-sanity'
 
-// Get all published posts
-export const postsQuery = groq`*[_type == "post" && status == "published"] | order(publishedAt desc) {
+// Get all published posts (or posts without status field for backward compatibility)
+export const postsQuery = groq`*[_type == "post" && (!defined(status) || status == "published")] | order(publishedAt desc) {
   _id,
   title,
   subtitle,
@@ -17,6 +17,9 @@ export const postsQuery = groq`*[_type == "post" && status == "published"] | ord
   },
   category,
   tags,
+  status,
+  ctaLink,
+  ctaText,
   "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180)
 }`
 
@@ -47,7 +50,7 @@ export const postBySlugQuery = groq`*[_type == "post" && slug.current == $slug][
 }`
 
 // Get latest posts (for homepage)
-export const latestPostsQuery = groq`*[_type == "post" && status == "published"] | order(publishedAt desc)[0...$limit] {
+export const latestPostsQuery = groq`*[_type == "post" && (!defined(status) || status == "published")] | order(publishedAt desc)[0...$limit] {
   _id,
   title,
   subtitle,
@@ -55,7 +58,9 @@ export const latestPostsQuery = groq`*[_type == "post" && status == "published"]
   excerpt,
   featuredImage,
   publishedAt,
-  category
+  category,
+  ctaLink,
+  ctaText
 }`
 
 // Get posts by category

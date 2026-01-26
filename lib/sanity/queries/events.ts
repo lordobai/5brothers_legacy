@@ -16,6 +16,24 @@ export const upcomingEventsQuery = groq`*[_type == "event" && status == "upcomin
   organizer
 }`
 
+// Get all events (upcoming and past)
+export const allEventsQuery = groq`*[_type == "event" && (!defined(status) || status in ["upcoming", "past"])] | order(eventStart desc) {
+  _id,
+  title,
+  slug,
+  description,
+  featuredImage,
+  eventStart,
+  eventEnd,
+  timezone,
+  location,
+  eventType,
+  registrationLink,
+  organizer,
+  status,
+  isInternal
+}`
+
 // Get all past events
 export const pastEventsQuery = groq`*[_type == "event" && status == "past"] | order(eventStart desc) {
   _id,
