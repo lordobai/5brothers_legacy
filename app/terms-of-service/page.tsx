@@ -43,14 +43,14 @@ export default function TermsOfServicePage() {
                 <div>
                   <h2 className="text-3xl font-bold text-slate-900 mb-4">2. Use License</h2>
                   <p className="text-slate-700 leading-relaxed mb-4">
-                    Permission is granted to temporarily access the materials on 5Brothers Legacy Initiative's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
+                    Permission is granted to temporarily access the materials on 5Brothers Legacy Initiative&apos;s website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
                   </p>
                   <ul className="list-disc list-inside ml-4 space-y-2 text-slate-700">
                     <li>Modify or copy the materials</li>
                     <li>Use the materials for any commercial purpose or for any public display</li>
                     <li>Attempt to reverse engineer any software contained on the website</li>
                     <li>Remove any copyright or other proprietary notations from the materials</li>
-                    <li>Transfer the materials to another person or "mirror" the materials on any other server</li>
+                    <li>Transfer the materials to another person or &quot;mirror&quot; the materials on any other server</li>
                   </ul>
                 </div>
 
@@ -90,7 +90,7 @@ export default function TermsOfServicePage() {
                     <li>In any way that violates any applicable law or regulation</li>
                     <li>To transmit any malicious code, viruses, or harmful materials</li>
                     <li>To impersonate or attempt to impersonate the organization or any other person</li>
-                    <li>To engage in any conduct that restricts or inhibits anyone's use of the website</li>
+                    <li>To engage in any conduct that restricts or inhibits anyone&apos;s use of the website</li>
                     <li>To collect or track personal information of others</li>
                     <li>For any fraudulent or illegal purpose</li>
                   </ul>
@@ -106,14 +106,14 @@ export default function TermsOfServicePage() {
                 <div>
                   <h2 className="text-3xl font-bold text-slate-900 mb-4">7. Disclaimer</h2>
                   <p className="text-slate-700 leading-relaxed mb-4">
-                    The materials on 5Brothers Legacy Initiative's website are provided on an 'as is' basis. 5Brothers Legacy Initiative makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
+                    The materials on 5Brothers Legacy Initiative&apos;s website are provided on an &apos;as is&apos; basis. 5Brothers Legacy Initiative makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
                   </p>
                 </div>
 
                 <div>
                   <h2 className="text-3xl font-bold text-slate-900 mb-4">8. Limitations</h2>
                   <p className="text-slate-700 leading-relaxed">
-                    In no event shall 5Brothers Legacy Initiative or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on 5Brothers Legacy Initiative's website, even if 5Brothers Legacy Initiative or an authorized representative has been notified orally or in writing of the possibility of such damage.
+                    In no event shall 5Brothers Legacy Initiative or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on 5Brothers Legacy Initiative&apos;s website, even if 5Brothers Legacy Initiative or an authorized representative has been notified orally or in writing of the possibility of such damage.
                   </p>
                 </div>
 

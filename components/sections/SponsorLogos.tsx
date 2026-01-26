@@ -65,7 +65,7 @@ export const SponsorLogos = ({ partners = [] }: SponsorLogosProps) => {
               Our Trusted Partners
             </h2>
             <p className="text-lg text-slate-700 max-w-2xl mx-auto">
-              Together, we're creating lasting impact in communities across Africa
+              Together, we&apos;re creating lasting impact in communities across Africa
             </p>
           </div>
 

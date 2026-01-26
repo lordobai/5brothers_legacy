@@ -147,7 +147,7 @@ export function FindSupportClient({ resources }: FindSupportClientProps) {
                       Emergency Help
                     </h2>
                     <p className="text-red-700 text-lg">
-                      If you're in immediate danger or need urgent assistance, contact us right away.
+                      If you&apos;re in immediate danger or need urgent assistance, contact us right away.
                     </p>
                   </div>
                 </div>

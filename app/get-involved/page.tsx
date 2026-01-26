@@ -189,7 +189,7 @@ export default function GetInvolvedPage() {
                           <label htmlFor="message" className="block text-sm font-semibold text-slate-900 mb-2">
                             Message
                           </label>
-                          <p className="text-sm text-slate-600 mb-2">Tell us more about how you'd like to get involved</p>
+                          <p className="text-sm text-slate-600 mb-2">Tell us more about how you&apos;d like to get involved</p>
                           <textarea
                             id="message"
                             name="message"
@@ -275,7 +275,7 @@ export default function GetInvolvedPage() {
                           <label htmlFor="partner-message" className="block text-sm font-semibold text-slate-900 mb-2">
                             Message
                           </label>
-                          <p className="text-sm text-slate-600 mb-2">Tell us more about how you'd like to get involved</p>
+                          <p className="text-sm text-slate-600 mb-2">Tell us more about how you&apos;d like to get involved</p>
                           <textarea
                             id="partner-message"
                             name="message"
@@ -345,7 +345,7 @@ export default function GetInvolvedPage() {
                           <label htmlFor="advocate-message" className="block text-sm font-semibold text-slate-900 mb-2">
                             Message
                           </label>
-                          <p className="text-sm text-slate-600 mb-2">Tell us more about how you'd like to get involved</p>
+                          <p className="text-sm text-slate-600 mb-2">Tell us more about how you&apos;d like to get involved</p>
                           <textarea
                             id="advocate-message"
                             name="message"

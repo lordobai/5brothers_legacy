@@ -18,7 +18,7 @@ export function JoinOurTeamSection() {
               Join Our Team
             </h2>
             <p className="text-xl text-slate-700 mb-8 leading-relaxed">
-              We're always looking for passionate individuals who share our vision of creating lasting change
+              We&apos;re always looking for passionate individuals who share our vision of creating lasting change
             </p>
             <Link
               href="/career"

@@ -77,7 +77,7 @@ export default function ContactUsPage() {
                   Get in Touch
                 </h2>
                 <p className="text-xl text-slate-700 mb-8 leading-relaxed">
-                  Have a question or want to learn more about our work? We're here to help. Reach out to us through any of the channels below.
+                  Have a question or want to learn more about our work? We&apos;re here to help. Reach out to us through any of the channels below.
                 </p>
 
                 <div className="space-y-6">
@@ -225,7 +225,7 @@ export default function ContactUsPage() {
                     <div className="bg-green-50 border-2 border-green-200 rounded-lg p-4 flex items-center gap-3">
                       <CheckCircle size={20} className="text-green-600 flex-shrink-0" />
                       <p className="text-green-800 font-semibold">
-                        Thank you! Your message has been sent. We'll get back to you soon.
+                        Thank you! Your message has been sent. We&apos;ll get back to you soon.
                       </p>
                     </div>
                   )}

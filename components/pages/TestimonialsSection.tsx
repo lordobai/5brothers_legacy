@@ -86,7 +86,7 @@ export function TestimonialsSection({ testimonials }: TestimonialsSectionProps) 
               className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
             >
               <p className="text-slate-700 text-lg leading-relaxed mb-6 italic">
-                "{quoteText}"
+                &quot;{quoteText}&quot;
               </p>
               <p className="text-slate-600 font-semibold">
                 — {attribution}
