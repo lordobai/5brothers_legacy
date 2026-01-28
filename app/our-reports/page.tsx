@@ -1,4 +1,5 @@
 import { client } from '@/lib/sanity/client'
+import type { SanityImageSource } from '@/lib/sanity/client'
 import { reportsQuery } from '@/lib/sanity/queries/reports'
 import { HeroSectionClient } from '@/components/pages/HeroSectionClient'
 import { ReportsListClient } from '@/components/pages/ReportsListClient'

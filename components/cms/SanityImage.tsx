@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { getSanityImageUrl } from '@/lib/sanity/image'
-import type { SanityImageSource } from '@/lib/sanity/client'
+import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 
 interface SanityImageProps {
   image: SanityImageSource | null | undefined
