@@ -66,7 +66,7 @@ export const eventBySlugQuery = groq`*[_type == "event" && slug.current == $slug
 }`
 
 // Get latest events (for homepage)
-export const latestEventsQuery = groq`*[_type == "event" && status == "upcoming" && eventStart >= $now] | order(eventStart asc)[0...$limit] {
+export const latestEventsQuery = groq`*[_type == "event" && status == "upcoming" && eventStart >= $now] | order(eventStart asc)[0...coalesce($limit, 3)] {
   _id,
   title,
   slug,

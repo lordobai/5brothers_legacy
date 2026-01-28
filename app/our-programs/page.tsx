@@ -12,14 +12,8 @@ interface Program {
   category?: string
   description?: any // Portable Text
   featuredImage?: SanityImageSource
-  impactMetrics?: {
-    label: string
-    value: string
-  }[]
-  subPrograms?: {
-    title: string
-    description?: any
-  }[]
+  impactMetrics?: string // Text field, not array
+  subPrograms?: string[] // Array of strings, not objects
 }
 
 export default async function OurProgramsPage() {
@@ -126,8 +120,8 @@ export default async function OurProgramsPage() {
         image: program.featuredImage
           ? urlFor(program.featuredImage).width(800).height(600).auto('format').url()
           : 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80',
-        programs: program.subPrograms?.map((sp) => sp.title) || [],
-        impact: program.impactMetrics?.[0]?.value || 'Creating lasting positive change',
+        programs: program.subPrograms || [],
+        impact: program.impactMetrics || 'Creating lasting positive change',
         slug: program.slug?.current,
       }))
     : fallbackInitiatives

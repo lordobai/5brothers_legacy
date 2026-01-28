@@ -50,7 +50,7 @@ export const postBySlugQuery = groq`*[_type == "post" && slug.current == $slug][
 }`
 
 // Get latest posts (for homepage)
-export const latestPostsQuery = groq`*[_type == "post" && (!defined(status) || status == "published")] | order(publishedAt desc)[0...$limit] {
+export const latestPostsQuery = groq`*[_type == "post" && (!defined(status) || status == "published")] | order(publishedAt desc)[0...coalesce($limit, 3)] {
   _id,
   title,
   subtitle,

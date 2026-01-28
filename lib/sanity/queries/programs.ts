@@ -56,7 +56,8 @@ export const activeProgramsQuery = groq`*[_type == "program" && status == "activ
   category,
   description,
   featuredImage,
-  impactMetrics
+  impactMetrics,
+  subPrograms
 }`
 
 
