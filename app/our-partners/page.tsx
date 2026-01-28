@@ -11,7 +11,7 @@ import { PartnersListClient } from '@/components/pages/PartnersListClient'
 interface Partner {
   _id: string
   organizationName: string
-  logo: SanityImageSource
+  logo: SanityImageSource | null
   website: string
   partnerType?: string
   description?: any

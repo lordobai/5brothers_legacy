@@ -24,13 +24,21 @@ interface LatestUpdatesProps {
 }
 
 // Fallback placeholder data
-const fallbackUpdates = [
+const fallbackUpdates: Array<{
+  title: string
+  excerpt: string
+  date: string
+  href: string
+  image: string
+  ctaText?: string
+}> = [
   {
     title: 'Community Impact Story',
     excerpt: 'Learn how our programs are making a difference in local communities across Africa. Read about the transformative journey of families and children.',
     date: '2025-01-10',
     href: '/updates-events',
     image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80',
+    ctaText: 'Read More',
   },
   {
     title: 'New Initiative Launch',
@@ -38,6 +46,7 @@ const fallbackUpdates = [
     date: '2025-01-05',
     href: '/updates-events',
     image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80',
+    ctaText: 'Read More',
   },
   {
     title: 'Upcoming Community Event',
@@ -45,6 +54,7 @@ const fallbackUpdates = [
     date: '2025-01-15',
     href: '/updates-events',
     image: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&q=80',
+    ctaText: 'Read More',
   },
 ]
 

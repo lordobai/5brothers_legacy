@@ -26,7 +26,14 @@ interface Event {
   description?: any
   featuredImage?: SanityImageSource
   eventStart?: string
-  location?: string
+  location?: string | {
+    venue?: string
+    address?: string
+    city?: string
+    country?: string
+    isOnline?: boolean
+    onlineLink?: string
+  }
   eventType?: string
   status?: string
   isInternal?: boolean
@@ -97,8 +104,9 @@ export default async function UpdatesEventsPage() {
     let locationStr = ''
     if (typeof event.location === 'string') {
       locationStr = event.location
-    } else if (event.location && typeof event.location === 'object') {
-      locationStr = event.location.venue || event.location.address || event.location.city || ''
+    } else if (event.location && typeof event.location === 'object' && !Array.isArray(event.location)) {
+      const loc = event.location as { venue?: string; address?: string; city?: string }
+      locationStr = loc.venue || loc.address || loc.city || ''
     }
     
     return {
