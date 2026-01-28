@@ -59,9 +59,9 @@ export default async function OurTeamPage() {
         role: m.role,
         department: m.department,
         bio: m.bio,
-        photo: null,
-        email: null,
-        socialLinks: null,
+        photo: undefined,
+        email: undefined,
+        socialLinks: undefined,
       }))
 
   return (
