@@ -184,6 +184,11 @@ export const Footer = () => {
             <h4 className="text-heading-4 font-bold mb-6 text-white">Contact</h4>
             <ul className="space-y-4">
               <li>
+                <Link href="/contact-us" className="text-white/80 hover:text-white transition-colors text-body-sm inline-block hover:translate-x-1 transform duration-300">
+                  Contact Us
+                </Link>
+              </li>
+              <li>
                 <a href="mailto:info@fivebrotherslegacy.org" className="text-white/80 hover:text-white transition-colors text-body-sm inline-flex items-center gap-3 group">
                   <Mail size={18} className="flex-shrink-0 group-hover:scale-110 transition-transform" />
                   <span>info@fivebrotherslegacy.org</span>

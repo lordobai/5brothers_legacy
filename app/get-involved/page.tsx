@@ -7,6 +7,9 @@ import { useState } from 'react'
 
 export default function GetInvolvedPage() {
   const [activeForm, setActiveForm] = useState<string | null>('volunteer')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [submitError, setSubmitError] = useState('')
 
   const options = [
     {
@@ -39,11 +42,85 @@ export default function GetInvolvedPage() {
     setActiveForm(activeForm === id ? null : id)
   }
 
-  const handleSubmit = (e: React.FormEvent, formType: string) => {
+  const handleSubmit = async (e: React.FormEvent, formType: string) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log(`Submitting ${formType} form`)
-    // You can add API call here
+    setIsSubmitting(true)
+    setSubmitError('')
+    setSubmitSuccess(false)
+
+    try {
+      const form = e.currentTarget as HTMLFormElement
+      const formData = new FormData(form)
+      
+      // Convert FormData to object
+      const data: Record<string, string> = {}
+      formData.forEach((value, key) => {
+        data[key] = value.toString()
+      })
+
+      // Map form fields to API format
+      let apiData: any = {}
+      let apiEndpoint = ''
+
+      if (formType === 'volunteer') {
+        apiEndpoint = '/api/volunteer'
+        apiData = {
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          availability: data.availability,
+          skills: data.skills,
+          interests: data.message,
+          additionalInfo: data.message,
+        }
+      } else if (formType === 'partner') {
+        apiEndpoint = '/api/partner'
+        apiData = {
+          organizationName: data.organization || data.name,
+          contactName: data.name,
+          email: data.email,
+          phone: data.phone,
+          organizationType: data.partnershipType,
+          partnershipInterest: data.message,
+          website: data.website,
+          additionalInfo: data.message,
+        }
+      } else if (formType === 'advocate') {
+        apiEndpoint = '/api/advocate'
+        apiData = {
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          platform: data.platform,
+          advocacyInterest: data.message,
+          additionalInfo: data.message,
+        }
+      }
+
+      const response = await fetch(apiEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(apiData),
+      })
+
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.error || result.message || 'Failed to submit form')
+      }
+
+      setSubmitSuccess(true)
+      form.reset()
+
+      // Reset success message after 5 seconds
+      setTimeout(() => {
+        setSubmitSuccess(false)
+      }, 5000)
+    } catch (error: any) {
+      setSubmitError(error.message || 'Failed to submit form. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -197,11 +274,29 @@ export default function GetInvolvedPage() {
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A] focus:border-transparent"
                           />
                         </div>
+                        {submitSuccess && (
+                          <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                            <p className="text-green-800 font-semibold">Thank you! Your application has been submitted successfully.</p>
+                          </div>
+                        )}
+                        {submitError && (
+                          <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+                            <p className="text-red-800 font-semibold">{submitError}</p>
+                          </div>
+                        )}
                         <button
                           type="submit"
-                          className="w-full px-8 py-4 bg-[#0B334A] text-white font-semibold rounded-lg hover:bg-[#07202C] transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+                          disabled={isSubmitting}
+                          className="w-full px-8 py-4 bg-[#0B334A] text-white font-semibold rounded-lg hover:bg-[#07202C] transition-all shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
                         >
-                          Submit
+                          {isSubmitting ? (
+                            <>
+                              <Spinner size="sm" className="text-white" />
+                              Submitting...
+                            </>
+                          ) : (
+                            'Submit'
+                          )}
                         </button>
                       </form>
                         )}
@@ -283,11 +378,29 @@ export default function GetInvolvedPage() {
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A] focus:border-transparent"
                           />
                         </div>
+                        {submitSuccess && (
+                          <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                            <p className="text-green-800 font-semibold">Thank you! Your application has been submitted successfully.</p>
+                          </div>
+                        )}
+                        {submitError && (
+                          <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+                            <p className="text-red-800 font-semibold">{submitError}</p>
+                          </div>
+                        )}
                         <button
                           type="submit"
-                          className="w-full px-8 py-4 bg-[#0B334A] text-white font-semibold rounded-lg hover:bg-[#07202C] transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+                          disabled={isSubmitting}
+                          className="w-full px-8 py-4 bg-[#0B334A] text-white font-semibold rounded-lg hover:bg-[#07202C] transition-all shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
                         >
-                          Submit
+                          {isSubmitting ? (
+                            <>
+                              <Spinner size="sm" className="text-white" />
+                              Submitting...
+                            </>
+                          ) : (
+                            'Submit'
+                          )}
                         </button>
                       </form>
                         )}
@@ -353,11 +466,29 @@ export default function GetInvolvedPage() {
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A] focus:border-transparent"
                           />
                         </div>
+                        {submitSuccess && (
+                          <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                            <p className="text-green-800 font-semibold">Thank you! Your application has been submitted successfully.</p>
+                          </div>
+                        )}
+                        {submitError && (
+                          <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+                            <p className="text-red-800 font-semibold">{submitError}</p>
+                          </div>
+                        )}
                         <button
                           type="submit"
-                          className="w-full px-8 py-4 bg-[#0B334A] text-white font-semibold rounded-lg hover:bg-[#07202C] transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+                          disabled={isSubmitting}
+                          className="w-full px-8 py-4 bg-[#0B334A] text-white font-semibold rounded-lg hover:bg-[#07202C] transition-all shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
                         >
-                          Submit
+                          {isSubmitting ? (
+                            <>
+                              <Spinner size="sm" className="text-white" />
+                              Submitting...
+                            </>
+                          ) : (
+                            'Submit'
+                          )}
                         </button>
                       </form>
                         )}

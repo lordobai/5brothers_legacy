@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { HeroSectionClient } from '@/components/pages/HeroSectionClient'
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from 'lucide-react'
+import { Spinner } from '@/components/ui/Spinner'
 
 export default function ContactUsPage() {
   const [formData, setFormData] = useState({
@@ -23,15 +24,17 @@ export default function ContactUsPage() {
     setSubmitSuccess(false)
 
     try {
-      // TODO: Connect to API endpoint when available
-      // const response = await fetch('/api/contact', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData),
-      // })
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
 
-      // Simulate API call for now
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || data.message || 'Failed to send message')
+      }
 
       setSubmitSuccess(true)
       setFormData({
@@ -245,7 +248,7 @@ export default function ContactUsPage() {
                   >
                     {isSubmitting ? (
                       <>
-                        <span className="animate-spin">⏳</span>
+                        <Spinner size="sm" className="text-white" />
                         Sending...
                       </>
                     ) : submitSuccess ? (

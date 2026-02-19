@@ -1,0 +1,147 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Contact Form Submissions
+model ContactSubmission {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  subject   String
+  message   String   @db.Text
+  status    String   @default("pending") // pending, read, replied
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("contact_submissions")
+  @@index([email])
+  @@index([status])
+}
+
+// Volunteer Applications
+model VolunteerApplication {
+  id          String   @id @default(uuid())
+  name        String
+  email       String
+  phone       String?
+  availability String? @db.Text
+  skills      String?  @db.Text
+  interests   String?  @db.Text
+  additionalInfo String? @db.Text @map("additional_info")
+  status      String   @default("pending") // pending, approved, rejected
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("volunteer_applications")
+  @@index([email])
+  @@index([status])
+}
+
+// Partner Applications
+model PartnerApplication {
+  id                String   @id @default(uuid())
+  organizationName  String   @map("organization_name")
+  contactName       String   @map("contact_name")
+  email             String
+  phone             String?
+  organizationType  String?  @map("organization_type")
+  partnershipInterest String? @db.Text @map("partnership_interest")
+  website           String?
+  additionalInfo    String?  @db.Text @map("additional_info")
+  status            String   @default("pending") // pending, approved, rejected
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  @@map("partner_applications")
+  @@index([email])
+  @@index([status])
+}
+
+// Advocate Signups
+model AdvocateSignup {
+  id              String   @id @default(uuid())
+  name            String
+  email           String
+  phone           String?
+  platform        String?  // Social media platform
+  advocacyInterest String? @db.Text @map("advocacy_interest")
+  additionalInfo  String?  @db.Text @map("additional_info")
+  status          String   @default("pending") // pending, active
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@map("advocate_signups")
+  @@index([email])
+  @@index([status])
+}
+
+// Career Applications
+model CareerApplication {
+  id              String   @id @default(uuid())
+  name            String
+  email           String
+  phone           String?
+  address         String?  @db.Text
+  position        String
+  coverLetter     String?  @db.Text @map("cover_letter") // Text cover letter (typed)
+  resumeUrl       String?  @map("resume_url")
+  coverLetterUrl  String?  @map("cover_letter_url") // File upload cover letter
+  additionalDocs  Json?    @map("additional_docs") // Array of file URLs
+  status          String   @default("pending") // pending, reviewing, accepted, rejected
+  notes           String?  @db.Text
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@map("career_applications")
+  @@index([email])
+  @@index([position])
+  @@index([status])
+}
+
+// Donations
+model Donation {
+  id              String   @id @default(uuid())
+  donorName       String   @map("donor_name")
+  email           String
+  phone           String?
+  amount          Decimal  @db.Decimal(10, 2)
+  currency        String   @default("NGN") // NGN, USD
+  paymentMethod   String?  @map("payment_method")
+  paymentReference String? @unique @map("payment_reference") // Paystack reference
+  status          String   @default("pending") // pending, completed, failed
+  receiptSent     Boolean  @default(false) @map("receipt_sent")
+  receiptUrl      String?  @map("receipt_url")
+  metadata        Json?    // Additional payment data
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@map("donations")
+  @@index([email])
+  @@index([status])
+  @@index([paymentReference])
+  @@index([createdAt])
+}
+
+// Newsletter Subscriptions
+model NewsletterSubscription {
+  id          String   @id @default(uuid())
+  email       String   @unique
+  name        String?
+  status      String   @default("active") // active, unsubscribed
+  source      String?  // Where they signed up (homepage, footer, etc.)
+  subscribedAt DateTime @default(now()) @map("subscribed_at")
+  unsubscribedAt DateTime? @map("unsubscribed_at")
+
+  @@map("newsletter_subscriptions")
+  @@index([status])
+  @@index([subscribedAt])
+}
+

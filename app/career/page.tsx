@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { HeroSectionClient } from '@/components/pages/HeroSectionClient'
 import { useState } from 'react'
 import { X, Upload, FileText } from 'lucide-react'
+import { Spinner } from '@/components/ui/Spinner'
 
 interface Job {
   id: string
@@ -27,6 +28,9 @@ export default function CareerPage() {
   const [resume, setResume] = useState<File | null>(null)
   const [coverLetterFile, setCoverLetterFile] = useState<File | null>(null)
   const [additionalDocs, setAdditionalDocs] = useState<File[]>([])
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [submitError, setSubmitError] = useState('')
 
   const jobs: Job[] = [
     {
@@ -91,19 +95,124 @@ export default function CareerPage() {
     }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission here
-    console.log('Application submitted:', {
-      job: selectedJob?.title,
-      ...formData,
-      resume: resume?.name,
-      coverLetterFile: coverLetterFile?.name,
-      additionalDocs: additionalDocs.map((f) => f.name),
+  const uploadFile = async (file: File): Promise<string> => {
+    const uploadFormData = new FormData()
+    uploadFormData.append('file', file)
+
+    const response = await fetch('/api/career/upload', {
+      method: 'POST',
+      body: uploadFormData,
     })
-    // Close modal and show success message
-    alert('Thank you for your application! We will review it and get back to you soon.')
-    setSelectedJob(null)
+
+    if (!response.ok) {
+      const error = await response.json()
+      throw new Error(error.error || 'Failed to upload file')
+    }
+
+    const data = await response.json()
+    return data.url
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitError('')
+    setSubmitSuccess(false)
+
+    try {
+      if (!selectedJob) {
+        throw new Error('No job selected')
+      }
+
+      // Upload files and get URLs
+      let resumeUrl: string | undefined
+      let coverLetterUrl: string | undefined
+      const additionalDocUrls: string[] = []
+
+      // Upload resume (optional - continue if upload fails)
+      if (resume) {
+        try {
+          resumeUrl = await uploadFile(resume)
+        } catch (error: any) {
+          console.warn('Resume upload failed:', error)
+          // Continue without file - user can still submit application
+          if (error.message?.includes('not configured') || error.message?.includes('Cloudinary')) {
+            // Show warning but allow submission
+            console.warn('File upload not available - continuing without file')
+          }
+        }
+      }
+
+      // Upload cover letter file (if uploaded, not typed)
+      if (coverLetterFile) {
+        try {
+          coverLetterUrl = await uploadFile(coverLetterFile)
+        } catch (error: any) {
+          console.warn('Cover letter upload failed:', error)
+          // Continue without file
+        }
+      }
+
+      // Upload additional documents
+      if (additionalDocs.length > 0) {
+        for (const doc of additionalDocs) {
+          try {
+            const url = await uploadFile(doc)
+            additionalDocUrls.push(url)
+          } catch (error: any) {
+            console.warn('Additional document upload failed:', error)
+            // Continue without this file
+          }
+        }
+      }
+
+      // Submit application data
+      const response = await fetch('/api/career', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          address: formData.address,
+          position: selectedJob.title,
+          coverLetter: formData.coverLetter || undefined, // Text cover letter
+          resumeUrl: resumeUrl,
+          coverLetterUrl: coverLetterUrl,
+          additionalDocs: additionalDocUrls.length > 0 ? additionalDocUrls : undefined,
+        }),
+      })
+
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.error || result.message || 'Failed to submit application')
+      }
+
+      setSubmitSuccess(true)
+
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        address: '',
+        coverLetter: '',
+      })
+      setResume(null)
+      setCoverLetterFile(null)
+      setAdditionalDocs([])
+
+      // Close modal after 3 seconds
+      setTimeout(() => {
+        setSelectedJob(null)
+        setSubmitSuccess(false)
+      }, 3000)
+    } catch (error: any) {
+      setSubmitError(error.message || 'Failed to submit application. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const formatFileSize = (bytes: number) => {
@@ -305,14 +414,13 @@ export default function CareerPage() {
                     {/* Resume/CV */}
                     <div>
                       <label htmlFor="resume" className="block text-sm font-semibold text-slate-900 mb-2">
-                        Resume/CV <span className="text-red-500">*</span>
-                        <span className="text-xs font-normal text-slate-500 ml-2">(PDF, DOC, DOCX, max 5MB)</span>
+                        Resume/CV
+                        <span className="text-xs font-normal text-slate-500 ml-2">(PDF, DOC, DOCX, max 5MB) - Optional if file upload unavailable</span>
                       </label>
                       <div className="relative">
                         <input
                           type="file"
                           id="resume"
-                          required
                           accept=".pdf,.doc,.docx"
                           onChange={(e) => handleFileChange(e, setResume)}
                           className="hidden"
@@ -423,20 +531,44 @@ export default function CareerPage() {
                     </div>
                   </div>
 
+                  {/* Success/Error Messages */}
+                  {submitSuccess && (
+                    <div className="bg-green-50 border-2 border-green-200 rounded-lg p-4">
+                      <p className="text-green-800 font-semibold">
+                        Thank you! Your application has been submitted successfully. We will review it and get back to you soon.
+                      </p>
+                    </div>
+                  )}
+
+                  {submitError && (
+                    <div className="bg-red-50 border-2 border-red-200 rounded-lg p-4">
+                      <p className="text-red-800 font-semibold">{submitError}</p>
+                    </div>
+                  )}
+
                   {/* Submit Button */}
                   <div className="flex gap-4 pt-4">
                     <button
                       type="button"
                       onClick={() => setSelectedJob(null)}
-                      className="flex-1 px-6 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-all"
+                      disabled={isSubmitting}
+                      className="flex-1 px-6 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       Cancel
                     </button>
                     <button
                       type="submit"
-                      className="flex-1 px-6 py-3 bg-[#0B334A] text-white font-semibold rounded-lg hover:bg-[#07202C] transition-all shadow-lg hover:shadow-xl"
+                      disabled={isSubmitting || submitSuccess}
+                      className="flex-1 px-6 py-3 bg-[#0B334A] text-white font-semibold rounded-lg hover:bg-[#07202C] transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
-                      Submit Application
+                      {isSubmitting ? (
+                        <>
+                          <Spinner size="sm" className="text-white" />
+                          Submitting...
+                        </>
+                      ) : (
+                        'Submit Application'
+                      )}
                     </button>
                   </div>
                 </form>
