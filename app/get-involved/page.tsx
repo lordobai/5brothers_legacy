@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
+import { Spinner } from '@/components/ui/Spinner'
 
 export default function GetInvolvedPage() {
   const [activeForm, setActiveForm] = useState<string | null>('volunteer')
