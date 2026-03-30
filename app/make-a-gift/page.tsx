@@ -4,12 +4,15 @@ import { motion } from 'framer-motion'
 import { HeroSectionClient } from '@/components/pages/HeroSectionClient'
 import { useState } from 'react'
 import { Check, Shield } from 'lucide-react'
+import { Spinner } from '@/components/ui/Spinner'
 
 export default function MakeAGiftPage() {
   const [donationType, setDonationType] = useState<'one-time' | 'monthly'>('one-time')
-  const [currency, setCurrency] = useState('NGN')
+  const [currency, setCurrency] = useState('USD')
   const [selectedAmount, setSelectedAmount] = useState<string | null>(null)
   const [customAmount, setCustomAmount] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -28,20 +31,65 @@ export default function MakeAGiftPage() {
     setSelectedAmount(null)
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle donation submission here
-    console.log('Donation submitted:', {
-      donationType,
-      currency,
-      amount: selectedAmount || customAmount,
-      ...formData,
-    })
-    // Redirect to payment processing
+    setError(null)
+    setIsSubmitting(true)
+
+    try {
+      // Validate amount
+      const amountValue = selectedAmount || customAmount
+      if (!amountValue || parseFloat(amountValue) <= 0) {
+        setError('Please select or enter a valid donation amount')
+        setIsSubmitting(false)
+        return
+      }
+
+      const amount = parseFloat(amountValue)
+
+      // Call payment API
+      const response = await fetch('/api/donations/pay', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          donorName: formData.name,
+          email: formData.email,
+          phone: formData.phone || undefined,
+          amount,
+          currency,
+          donationType,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        const message =
+          typeof data.details === 'string' ? data.details : data.error || data.details || 'Failed to initialize payment'
+        throw new Error(message)
+      }
+
+      if (data.authorizationUrl) {
+        // Redirect to Flutterwave payment page
+        window.location.href = data.authorizationUrl
+      } else {
+        throw new Error('Payment URL not received')
+      }
+    } catch (err: any) {
+      console.error('Payment error:', err)
+      setError(err.message || 'An error occurred. Please try again.')
+      setIsSubmitting(false)
+    }
   }
 
   const formatCurrency = (amount: string) => {
-    return `₦${parseInt(amount).toLocaleString()}`
+    const numAmount = parseFloat(amount)
+    if (currency === 'USD') {
+      return `$${numAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+    }
+    return `₦${numAmount.toLocaleString('en-US')}`
   }
 
   return (
@@ -78,10 +126,10 @@ export default function MakeAGiftPage() {
                 className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-2xl p-8 text-center border border-emerald-200"
               >
                 <div className="text-4xl font-bold text-emerald-700 mb-4">
-                  ₦5,000
+                  25 - 50 USD
                 </div>
                 <p className="text-slate-700 text-lg leading-relaxed">
-                  Provides school supplies for 5 children
+                  Provides school supplies for 1 child
                 </p>
               </motion.div>
 
@@ -93,10 +141,10 @@ export default function MakeAGiftPage() {
                 className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 text-center border border-blue-200"
               >
                 <div className="text-4xl font-bold text-blue-700 mb-4">
-                  ₦25,000
+                  20 USD
                 </div>
                 <p className="text-slate-700 text-lg leading-relaxed">
-                  Supports a family with clean water for a month
+                  Supports a family with clean drinking water for a month
                 </p>
               </motion.div>
 
@@ -108,10 +156,10 @@ export default function MakeAGiftPage() {
                 className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 text-center border border-purple-200"
               >
                 <div className="text-4xl font-bold text-purple-700 mb-4">
-                  ₦100,000
+                  18 - 50 USD
                 </div>
                 <p className="text-slate-700 text-lg leading-relaxed">
-                  Funds healthcare services for 50 people
+                  Supports a mother with primary healthcare costs
                 </p>
               </motion.div>
             </div>
@@ -178,11 +226,11 @@ export default function MakeAGiftPage() {
                         <select
                           id="currency"
                           value={currency}
-                          onChange={(e) => setCurrency(e.target.value)}
+                          onChange={(e) => { setCurrency(e.target.value); setSelectedAmount(null); setCustomAmount(''); }}
                           className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A] focus:border-[#0B334A] transition-all appearance-none bg-white cursor-pointer"
                         >
-                          <option value="NGN">NGN - Nigerian Naira</option>
                           <option value="USD">USD - US Dollar</option>
+                          <option value="NGN">NGN - Nigerian Naira</option>
                         </select>
                         <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
                           <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -190,6 +238,9 @@ export default function MakeAGiftPage() {
                           </svg>
                         </div>
                       </div>
+                      <p className="mt-1.5 text-xs text-slate-500">
+                        Donations are accepted in USD and Nigerian Naira (NGN).
+                      </p>
                     </div>
 
                     {/* Amount Selection */}
@@ -198,7 +249,7 @@ export default function MakeAGiftPage() {
                         Amount
                       </label>
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4">
-                        {presetAmounts.map((amount) => (
+                        {(currency === 'NGN' ? presetAmounts : ['50', '100', '200', '500', '1000']).map((amount) => (
                           <button
                             key={amount}
                             type="button"
@@ -215,8 +266,10 @@ export default function MakeAGiftPage() {
                       </div>
                       <div>
                         <input
-                          type="text"
-                          placeholder="Or enter custom amount"
+                          type="number"
+                          step="0.01"
+                          min="0"
+                          placeholder={`Or enter custom amount (${currency})`}
                           value={customAmount}
                           onChange={(e) => handleCustomAmountChange(e.target.value)}
                           className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0B334A] focus:border-[#0B334A] transition-all"
@@ -273,12 +326,27 @@ export default function MakeAGiftPage() {
                       </div>
                     </div>
 
+                    {/* Error Message */}
+                    {error && (
+                      <div className="bg-red-50 border-2 border-red-200 rounded-lg p-4">
+                        <p className="text-red-700 text-sm font-medium">{error}</p>
+                      </div>
+                    )}
+
                     {/* Submit Button */}
                     <button
                       type="submit"
-                      className="w-full px-8 py-4 bg-[#0B334A] text-white font-semibold rounded-lg hover:bg-[#07202C] transition-all shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
+                      disabled={isSubmitting}
+                      className="w-full px-8 py-4 bg-[#0B334A] text-white font-semibold rounded-lg hover:bg-[#07202C] transition-all shadow-lg hover:shadow-xl transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
                     >
-                      Proceed to Payment
+                      {isSubmitting ? (
+                        <>
+                          <Spinner size="sm" className="text-white" />
+                          <span>Processing...</span>
+                        </>
+                      ) : (
+                        'Proceed to Payment'
+                      )}
                     </button>
                   </form>
                 </motion.div>

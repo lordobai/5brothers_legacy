@@ -36,13 +36,12 @@ export function TeamListClient({ teamMembers }: TeamListClientProps) {
                 className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all border border-gray-100 text-center overflow-hidden"
               >
                 {member.photo ? (
-                  <div className="relative w-full aspect-[4/3] overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+                  <div className="relative w-full aspect-[4/3] overflow-hidden bg-white">
                     <Image
-                      src={urlFor(member.photo).width(600).height(450).auto('format').url()}
+                      src={urlFor(member.photo).width(600).fit('max').auto('format').url()}
                       alt={member.name}
                       fill
-                      className="object-cover"
-                      style={{ objectPosition: 'center 20%' }}
+                      className="object-contain"
                     />
                   </div>
                 ) : (

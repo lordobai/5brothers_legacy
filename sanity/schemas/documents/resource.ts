@@ -82,7 +82,7 @@ export default defineType({
       name: 'isEmergencyContact',
       title: 'Emergency Contact',
       type: 'boolean',
-      description: 'Highlight this as an emergency contact on the Find Support page',
+      description: 'Highlight this as an emergency contact on the Find Help page',
       initialValue: false,
     }),
     defineField({
@@ -96,7 +96,7 @@ export default defineType({
       name: 'isActive',
       title: 'Active',
       type: 'boolean',
-      description: 'Show this resource on the Find Support page',
+      description: 'Show this resource on the Find Help page',
       initialValue: true,
     }),
     defineField({

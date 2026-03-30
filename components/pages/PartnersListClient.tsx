@@ -51,12 +51,12 @@ export function PartnersListClient({ partners }: PartnersListClientProps) {
                 className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all border border-gray-100 overflow-hidden"
               >
                 {partner.logo ? (
-                  <div className="relative w-full aspect-[4/3] overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+                  <div className="relative w-full aspect-[4/3] overflow-hidden bg-white">
                     <Image
-                      src={urlFor(partner.logo).width(600).height(450).auto('format').url()}
+                      src={urlFor(partner.logo).width(600).fit('max').auto('format').url()}
                       alt={partner.organizationName}
                       fill
-                      className="object-cover"
+                      className="object-contain"
                     />
                   </div>
                 ) : (

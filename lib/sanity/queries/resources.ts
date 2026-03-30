@@ -26,7 +26,7 @@ export const externalResourcesQuery = groq`*[_type == "resource" && isActive == 
   displayOrder
 }`
 
-// Get internal, partner, and emergency resources (for /find-support page)
+// Get internal, partner, and emergency resources (for /help page)
 export const supportResourcesQuery = groq`*[_type == "resource" && isActive == true && (!defined(status) || status == "approved") && resourceType in ["internal", "partner", "emergency"]] | order(isEmergencyContact desc, displayOrder asc, title asc) {
   _id,
   title,

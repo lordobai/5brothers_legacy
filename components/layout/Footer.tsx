@@ -145,8 +145,8 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/find-support" className="text-white/80 hover:text-white transition-colors text-body-sm inline-block hover:translate-x-1 transform duration-300">
-                  Find Support
+                <Link href="/help" className="text-white/80 hover:text-white transition-colors text-body-sm inline-block hover:translate-x-1 transform duration-300">
+                  Find Help
                 </Link>
               </li>
             </ul>

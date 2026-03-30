@@ -15,14 +15,14 @@ const metrics = [
     icon: 'users' 
   },
   { 
-    value: 10, 
+    value: 5, 
     suffix: '+', 
     label: 'Communities Served', 
     gradient: 'from-emerald-400 to-emerald-500',
     icon: 'building' 
   },
   { 
-    value: 50, 
+    value: 20, 
     suffix: '+', 
     label: 'Volunteers Engaged', 
     gradient: 'from-purple-400 to-purple-500',

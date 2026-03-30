@@ -52,7 +52,7 @@ export default async function OurProgramsPage() {
         'Maternal & Child Health',
         'Health Education & Awareness',
       ],
-      impact: '30+ health facilities established',
+      impact: '10+ health facilities reached',
     },
     {
       id: 'wash',
@@ -65,7 +65,7 @@ export default async function OurProgramsPage() {
         'Hygiene Education',
         'Water Quality Monitoring',
       ],
-      impact: '5,000+ people with clean water access',
+      impact: '1500+ people with access to clean water',
     },
     {
       id: 'disaster-response',
@@ -78,7 +78,7 @@ export default async function OurProgramsPage() {
         'Food Security',
         'Recovery & Rebuilding',
       ],
-      impact: '1,500+ families assisted',
+      impact: '1,500+ displaced persons assisted',
     },
     {
       id: 'youth-empowerment',
@@ -91,7 +91,7 @@ export default async function OurProgramsPage() {
         'Mentorship Networks',
         'Career Development',
       ],
-      impact: '5,000+ youth empowered',
+      impact: '100+ youth empowered',
     },
     {
       id: 'advocacy-policy',
@@ -106,7 +106,7 @@ export default async function OurProgramsPage() {
         'Legal Support',
         'Rights Education',
       ],
-      impact: '10+ policy changes influenced',
+      impact: '',
     },
   ]
 

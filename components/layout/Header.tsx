@@ -12,7 +12,7 @@ const navigation = [
   { name: 'Our Team', href: '/our-team' },
   { name: 'Programs', href: '/our-programs' },
   { name: 'Get Involved', href: '/get-involved' },
-  { name: 'Help', href: '/help' },
+  { name: 'Find Help', href: '/help' },
 ]
 
 export const Header = () => {

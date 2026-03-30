@@ -61,9 +61,11 @@ export function InitiativesListClient({ initiatives }: InitiativesListClientProp
                     <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                       {initiative.description}
                     </p>
-                    <div className="mb-6">
-                      <p className="text-[#0B334A] font-semibold mb-2">Impact: {initiative.impact}</p>
-                    </div>
+                    {initiative.impact && (
+                      <div className="mb-6">
+                        <p className="text-[#0B334A] font-semibold mb-2">Impact: {initiative.impact}</p>
+                      </div>
+                    )}
                     {initiative.programs.length > 0 && (
                       <div className="mb-6">
                         <button
