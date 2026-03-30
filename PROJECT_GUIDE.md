@@ -279,7 +279,7 @@ Our design system emphasizes:
 
 #### UI/UX
 - Footer - "Find Help" link pointing to `/help`
-- Hero Section - Updated "Since 2020" to "Since 2026"
+- Hero Section - "Empowering Communities Since 2025"
 - Loading States - Modern spinner animations
 - Form UX - Success/error messages, loading states
 - Team & Partner card images - `object-contain` with white background (no cropping, consistent card sizes)

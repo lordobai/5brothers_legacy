@@ -45,7 +45,7 @@ export const HeroSection = () => {
             className="inline-flex items-center gap-2 px-6 py-2 mb-8 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white/90 text-sm font-medium"
           >
             <span className="h-2 w-2 rounded-full bg-gold-400 animate-pulse"></span>
-            Empowering Communities Since 2026
+            Empowering Communities Since 2025
           </motion.div>
 
           <motion.h1
