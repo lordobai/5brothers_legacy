@@ -71,7 +71,7 @@ export const Footer = () => {
                 <Youtube size={20} className="group-hover:scale-110 transition-transform" />
               </a>
               <a
-                href="#"
+                href="https://www.facebook.com/profile.php?id=61578986090548"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/80 hover:text-white transition-colors group"
@@ -80,7 +80,7 @@ export const Footer = () => {
                 <Facebook size={20} className="group-hover:scale-110 transition-transform" />
               </a>
               <a
-                href="#"
+                href="https://x.com/5brothersLegacy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/80 hover:text-white transition-colors group"
