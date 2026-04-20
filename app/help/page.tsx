@@ -1,3 +1,5 @@
+export const revalidate = 60
+
 import { client } from '@/lib/sanity/client'
 import { externalResourcesQuery } from '@/lib/sanity/queries/resources'
 import { HeroSectionClient } from '@/components/pages/HeroSectionClient'

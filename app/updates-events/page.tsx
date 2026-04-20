@@ -1,3 +1,5 @@
+export const revalidate = 60
+
 import { client } from '@/lib/sanity/client'
 import { postsQuery } from '@/lib/sanity/queries/posts'
 import { allEventsQuery } from '@/lib/sanity/queries/events'

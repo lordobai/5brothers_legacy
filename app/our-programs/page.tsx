@@ -1,3 +1,5 @@
+export const revalidate = 60
+
 import { client } from '@/lib/sanity/client'
 import { activeProgramsQuery } from '@/lib/sanity/queries/programs'
 import { urlFor } from '@/lib/sanity/client'

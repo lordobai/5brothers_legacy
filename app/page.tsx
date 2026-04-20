@@ -1,3 +1,5 @@
+export const revalidate = 60
+
 import { HeroSection } from '@/components/sections/HeroSection';
 import { AboutSnapshot } from '@/components/sections/AboutSnapshot';
 import { ImpactMetrics } from '@/components/sections/ImpactMetrics';

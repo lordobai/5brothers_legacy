@@ -1,3 +1,5 @@
+export const revalidate = 60
+
 import { client } from '@/lib/sanity/client'
 import { testimonialsQuery } from '@/lib/sanity/queries/testimonials'
 import { WaysToSupportHero } from '@/components/pages/WaysToSupportHero'
